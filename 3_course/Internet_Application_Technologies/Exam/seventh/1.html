@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Расчет времени с начала пары</title>
+    <script>
+        function calculateTime() {
+            var startTimeStr = document.getElementById('start-time').value;
+            var startTimeArr = startTimeStr.split(":");
+            var startHour = parseInt(startTimeArr[0]);
+            var startMinute = parseInt(startTimeArr[1]);
+            var startSecond = parseInt(startTimeArr[2]);
+            
+            var now = new Date();
+            var currentHour = now.getHours();
+            var currentMinute = now.getMinutes();
+            var currentSecond = now.getSeconds();
+            
+            var diffHour = currentHour - startHour;
+            var diffMinute = currentMinute - startMinute;
+            var diffSecond = currentSecond - startSecond;
+            
+            var totalMinutes = diffHour * 60 + diffMinute;
+            var totalSeconds = diffSecond;
+            
+            document.getElementById('result').innerHTML = "Прошло " + totalMinutes + " минут и " + totalSeconds + " секунд с начала пары.";
+        }
+    </script>
+</head>
+<body>
+    <h1>Расчет времени с начала пары</h1>
+    <p>Введите время начала пары в формате ЧЧ:ММ:СС</p>
+    <input type="text" id="start-time" placeholder="Например, 09:00:00">
+    <button onclick="calculateTime()">Рассчитать</button>
+    <p id="result"></p>
+</body>
+</html>

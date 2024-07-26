@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<!-- Problem exchange format 0.1 -->
+<Problem
+   Gid="ru.olympiads.cources.8v.127"
+   Name="Наибольшее произведение"
+   Description="task.txt"
+   TimeLimit="5"
+   MemoryLimit=""
+   InputFile="input.txt"
+   OutputFile="output.txt"
+   CheckerExe="Checker.exe"
+   CheckerSrc="Checker.pas"
+   TestCount="50">
+<Test Input="Input01.txt" Answer="Answer01.txt" Points="0"/>
+<Test Input="Input02.txt" Answer="Answer02.txt" Points="0"/>
+<Test Input="Input03.txt" Answer="Answer03.txt" Points="0"/>
+<Test Input="Input04.txt" Answer="Answer04.txt" Points="0"/>
+<Test Input="Input05.txt" Answer="Answer05.txt" Points="0"/>
+<Test Input="Input06.txt" Answer="Answer06.txt" Points="0"/>
+<Test Input="Input07.txt" Answer="Answer07.txt" Points="0"/>
+<Test Input="Input08.txt" Answer="Answer08.txt" Points="0"/>
+<Test Input="Input09.txt" Answer="Answer09.txt" Points="0"/>
+<Test Input="Input10.txt" Answer="Answer10.txt" Points="0"/>
+<Test Input="Input11.txt" Answer="Answer11.txt" Points="0"/>
+<Test Input="Input12.txt" Answer="Answer12.txt" Points="0"/>
+<Test Input="Input13.txt" Answer="Answer13.txt" Points="0"/>
+<Test Input="Input14.txt" Answer="Answer14.txt" Points="0"/>
+<Test Input="Input15.txt" Answer="Answer15.txt" Points="0"/>
+<Test Input="Input16.txt" Answer="Answer16.txt" Points="0"/>
+<Test Input="Input17.txt" Answer="Answer17.txt" Points="0"/>
+<Test Input="Input18.txt" Answer="Answer18.txt" Points="0"/>
+<Test Input="Input19.txt" Answer="Answer19.txt" Points="0"/>
+<Test Input="Input20.txt" Answer="Answer20.txt" Points="0"/>
+<Test Input="Input21.txt" Answer="Answer21.txt" Points="0"/>
+<Test Input="Input22.txt" Answer="Answer22.txt" Points="0"/>
+<Test Input="Input23.txt" Answer="Answer23.txt" Points="0"/>
+<Test Input="Input24.txt" Answer="Answer24.txt" Points="0"/>
+<Test Input="Input25.txt" Answer="Answer25.txt" Points="0"/>
+<Test Input="Input26.txt" Answer="Answer26.txt" Points="0"/>
+<Test Input="Input27.txt" Answer="Answer27.txt" Points="0"/>
+<Test Input="Input28.txt" Answer="Answer28.txt" Points="0"/>
+<Test Input="Input29.txt" Answer="Answer29.txt" Points="0"/>
+<Test Input="Input30.txt" Answer="Answer30.txt" Points="0"/>
+<Test Input="Input31.txt" Answer="Answer31.txt" Points="0"/>
+<Test Input="Input32.txt" Answer="Answer32.txt" Points="0"/>
+<Test Input="Input33.txt" Answer="Answer33.txt" Points="0"/>
+<Test Input="Input34.txt" Answer="Answer34.txt" Points="0"/>
+<Test Input="Input35.txt" Answer="Answer35.txt" Points="0"/>
+<Test Input="Input36.txt" Answer="Answer36.txt" Points="0"/>
+<Test Input="Input37.txt" Answer="Answer37.txt" Points="0"/>
+<Test Input="Input38.txt" Answer="Answer38.txt" Points="0"/>
+<Test Input="Input39.txt" Answer="Answer39.txt" Points="0"/>
+<Test Input="Input40.txt" Answer="Answer40.txt" Points="0"/>
+<Test Input="Input41.txt" Answer="Answer41.txt" Points="0"/>
+<Test Input="Input42.txt" Answer="Answer42.txt" Points="0"/>
+<Test Input="Input43.txt" Answer="Answer43.txt" Points="0"/>
+<Test Input="Input44.txt" Answer="Answer44.txt" Points="0"/>
+<Test Input="Input45.txt" Answer="Answer45.txt" Points="0"/>
+<Test Input="Input46.txt" Answer="Answer46.txt" Points="0"/>
+<Test Input="Input47.txt" Answer="Answer47.txt" Points="0"/>
+<Test Input="Input48.txt" Answer="Answer48.txt" Points="0"/>
+<Test Input="Input49.txt" Answer="Answer49.txt" Points="0"/>
+<Test Input="Input50.txt" Answer="Answer50.txt" Points="0"/>
+</Problem>

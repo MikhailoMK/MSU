@@ -1,0 +1,461 @@
+Translations of this page
+
+Various Licenses and Comments about Them
+ 
+
+Table of Contents
+Introduction 
+Software Licenses 
+GPL-Compatible Free Software Licenses 
+GPL-Incompatible, Free Software Licenses 
+Non-Free Software Licenses 
+Licenses For Documentation 
+Free Documentation Licenses 
+Non-Free Documentation Licenses 
+Licenses For Works Besides Software and Documentation 
+
+--------------------------------------------------------------------------------
+
+Introduction
+We classify a license according to certain key questions:
+
+Whether it qualifies as a free software license. 
+Whether it is a copyleft license. 
+Whether it is compatible with the GNU GPL. (This means you can combine a module which was released under that license with a GPL-covered module to make one larger program.) 
+Whether it causes any particular practical problems. 
+If you want help choosing a license, evaluating a license, or have any other questions about licenses, you can email us at <licensing@gnu.org>.
+
+If you are contemplating writing a new license, please contact the FSF by writing to <licensing@fsf.org>. The proliferation of different free software licenses means increased work for users in understanding the licenses; we may be able to help you find an existing Free Software license that meets your needs. 
+
+If that isn't possible, if you really need a new license, with our help you can ensure that the license really is a Free Software license and avoid various practical problems. 
+
+By the way, if you believe you have found a violation of one of our copyleft licenses, please refer to our license violation page.
+
+
+--------------------------------------------------------------------------------
+
+Software Licenses
+GPL-Compatible Free Software Licenses 
+GPL-Incompatible, Free Software Licenses 
+Non-Free Software Licenses 
+
+--------------------------------------------------------------------------------
+
+The following licenses do qualify as free software licenses, and are compatible with the GNU GPL: 
+
+GPL-Compatible, Free Software Licenses
+GNU General Public License, or GNU GPL for short. 
+This is a free software license, and a copyleft license. We recommend it for most software packages. 
+
+GNU Lesser General Public License, or GNU LGPL for short. 
+This is a free software license, but not a strong copyleft license, because it permits linking with non-free modules. It is compatible with the GNU GPL. We recommend it for special circumstances only. 
+Between version 2 and 2.1, the GNU LGPL was renamed from the GNU Library General Public License to the GNU Lesser General Public License to better reflect its actual purpose. Namely, it is not just for libraries, and the GNU GPL is sometimes more appropriate for libraries.
+
+License of Guile 
+This consists of the GNU GPL plus a special statement giving blanket permission to link with non-free software. As a result, it is not a strong copyleft, and it is compatible with the GNU GPL. We recommend it for special circumstances only--much the same circumstances where you might consider using the LGPL. 
+
+License of the run-time units of the GNU Ada compiler 
+This is much like that of Guile. 
+
+X11 License 
+This is a simple, permissive non-copyleft free software license, compatible with the GNU GPL. Older versions of XFree86 used the same license, and some of the current variants of XFree86 also do. Later versions of XFree86 are distributed under the XFree86 1.1 license (which is GPL-incompatible). 
+This license is sometimes called the "MIT" license, but that term is misleading, since MIT has used many licenses for software.
+
+Expat License. 
+This is a simple, permissive non-copyleft free software license, compatible with the GNU GPL. It is sometime ambiguously referred to as the MIT License. 
+
+Standard ML of New Jersey Copyright License 
+This is a simple, permissive non-copyleft free software license, compatible with the GNU GPL. 
+
+Public Domain 
+Being in the public domain is not a license--rather, it means the material is not copyrighted and no license is needed. Practically speaking, though, if a work is in the public domain, it might as well have an all-permissive non-copyleft free software license. Public domain status is compatible with the GNU GPL. 
+
+Cryptix General License 
+This is a simple, permissive non-copyleft free software license, compatible with the GNU GPL. It is very similar to the X11 license. 
+
+Modified BSD license 
+(Note: on the preceding link, the modified BSD license is listed in the "General" section.) 
+This is the original BSD license, modified by removal of the advertising clause. It is a simple, permissive non-copyleft free software license, compatible with the GNU GPL.
+
+If you want a simple, permissive non-copyleft free software license, the modified BSD license is a reasonable choice. However, it is risky to recommend use of ``the BSD license'', because confusion could easily occur and lead to use of the flawed original BSD license. To avoid this risk, you can suggest the X11 license instead. The X11 license and the revised BSD license are more or less equivalent.
+
+License of ZLib 
+This is a free software license, and compatible with the GPL. 
+
+License of the iMatix Standard Function Library 
+This is a free software license and is GPL compatible. 
+
+W3C Software Notice and License 
+This is a free software license and is GPL compatible. 
+
+Berkeley Database License (aka the Sleepycat Software Product License) 
+This is a free software license and is compatible with the GNU GPL. 
+
+OpenLDAP License, Version 2.7 
+This is a permissive non-copyleft free software license that is compatible with the GNU GPL. 
+
+License of Python 1.6a2 and earlier versions 
+This is a free software license and is compatible with the GNU GPL. Please note, however, that newer versions of Python are under other licenses (see below). 
+
+License of Python 2.0.1, 2.1.1, and newer versions 
+This is a free software license and is compatible with the GNU GPL. Please note, however, that intermediate versions of Python (1.6b1, through 2.0 and 2.1) are under a different license (see below). 
+
+License of Perl 
+This license is the disjunction of the Artistic License and the GNU GPL--in other words, you can choose either of those two licenses. It qualifies as a free software license, but it may not be a real copyleft. It is compatible with the GNU GPL because the GNU GPL is one of the alternatives. 
+We recommend you use this license for any Perl 4 or Perl 5 package you write, to promote coherence and uniformity in Perl programming. Outside of Perl, we urge you not to use this license; it is better to use just the GNU GPL.
+
+Clarified Artistic License 
+This license is a free software license, compatible with the GPL. It is the minimal set of changes needed to correct the vagueness of the Original Artistic License. 
+
+Artistic License 2.0 
+This license is a free software license, compatible with the GPL. It is not in use yet to our knowledge; this license is being considered for use in Perl 6 as part of a disjunctive dual licensing scheme. 
+If you are thinking of releasing a program under Original Artistic License, please consider this revised version instead. However, please do investigate other GPL-compatible, Free Software licensing options listed here first.
+
+Zope Public License version 2.0 
+This is a simple, permissive non-copyleft free software license which is compatible with the GNU GPL. 
+
+Intel Open Source License (as published by OSI) 
+This is a Free Software license, compatible with the GNU GPL. 
+
+License of Netscape Javascript 
+This is the disjunction of the Netscape Public License and the GNU GPL. Because of that, it is a free software license, compatible with the GNU GPL, but not a strong copyleft. 
+This disjunctive license is a good choice if you want to make your package GPL-compatible and MPL-compatible. However you can also accomplish that by using the LGPL or the Guile license.
+
+Such a disjunctive license might be a good choice if you have been using the MPL, and want to change to a GPL-compatible license without subtracting any permission you have given for previous versions.
+
+eCos license version 2.0 
+The eCos license version 2.0 is a GPL-compatible Free Software license. It consists of the GPL, plus an exception allowing linking to software not under the GPL. This license has the same disadvantages as the LGPL. 
+
+Eiffel Forum License, version 2 
+This is a Free Software license, compatible with the GNU GPL. Note that previous releases of the Eiffel license are not compatible with the GPL. 
+
+License of Vim, Version 6.1 or later 
+This is a free software license, partially copyleft but not really. It is compatible with the GPL, by an explicit conversion clause. 
+
+Boost Software License 
+his is a simple, permissive non-copyleft free software license, compatible with the GNU GPL. 
+
+
+--------------------------------------------------------------------------------
+
+GPL-Incompatible, Free Software Licenses
+The following licenses are free software licenses, but are not compatible with the GNU GPL:
+
+XFree86 1.1 License 
+This is a simple, permissive non-copyleft free software license, incompatible with the GNU GPL because of its requirements that apply to all documentation in the distribution that contain acknowledgements. 
+There are currently several variants of XFree86, and only some of them use this license. Some continue to use the X11 license.
+
+Affero General Public License 
+The Affero General Public License is a free software license, copyleft, and incompatible with the GNU GPL. It consists of the GNU GPL version 2, with one additional section that Affero added with FSF approval. The new section, 2(d), covers the distribution of application programs through web services or computer networks. The Affero GPL is incompatible with the GNU GPL version 2 because of section 2(d); however, the section is written so that we can make GNU GPL version 3 upward compatible with the Affero GPL. That is why we gave our approval for Affero to modify the GNU GPL in this way. 
+
+Arphic Public License 
+This is a copyleft free software license, incompatible with the GPL. Its normal use is for fonts, and in that use, the incompatibility does not cause a problem. 
+
+Original BSD license 
+(Note: on the preceding link, the original BSD license is listed in the "UCB/LBL" section.) This is a simple, permissive non-copyleft free software license with a serious flaw: the ``obnoxious BSD advertising clause''. The flaw is not fatal; that is, it does not render the software non-free. But it does cause practical problems, including incompatibility with the GNU GPL. 
+We urge you not to use the original BSD license for software you write. If you want to use a simple, permissive non-copyleft free software license, it is much better to use the modified BSD license or the X11 license. However, there is no reason not to use programs that have been released under the original BSD license.
+
+OpenSSL license 
+The license of OpenSSL is a conjunction of two licenses, One of them being the license of SSLeay. You must follow both. The combination results in a copyleft free software license that is incompatible with the GNU GPL. It also has an advertising clause like the original BSD license and the Apache license. 
+We recommend using GNUTLS instead of OpenSSL in software you write. However, there is no reason not to use OpenSSL and applications that work with OpenSSL.
+
+Academic Free License, version 1.1. 
+The Academic Free License, version 1.1, is a free software license, not copyleft, and incompatible with the GNU GPL in several ways. It is advertised as a "compatible upgrade" for "licenses such as BSD and MIT", but it isn't; the revised BSD license and the MIT license are GPL-compatible, but the AFL is not. 
+The AFL is incompatible with the GPL for two reasons. One is that its rules about trademark use appear to go beyond what trademark law itself actually requires in some countries, prohibiting what would legally be fair use of the trademark.
+
+Another incompatibility comes from its "Mutual termination for Patent Action" clause. Putting aside the difficult question of whether this sort of clause is a good idea or a bad one, it is incompatible with the GPL.
+
+Because of the incompatibility, we urge you not to use the AFL for programs you write; however, there is no reason to avoid running programs that have been released under this license.
+
+Open Software License, version 1.0 
+The Open Software License, version 1.0, is a free software license. Its authors say it is intended to be copyleft, but we are having trouble determining whether the copyleft provisions really work. It is incompatible with the GNU GPL in several ways. 
+We urge you not to use the Open Software License for software you write. However, there is no reason to avoid running programs that have been released under this license.
+
+Apache License, Version 1.0 
+This is a simple, permissive non-copyleft free software license with practical problems like those of the original BSD license, including incompatibility with the GNU GPL. 
+
+Apache License, Version 1.1 
+This is a permissive non-copyleft free software license with a few requirements that render it incompatible with the GNU GPL. 
+We urge you not to use the Apache licenses for software you write. However, there is no reason to avoid running programs that have been released under this license, such as Apache.
+
+Apache Software License, version 2.0 
+This is a free software license but it is incompatible with the GPL. The Apache Software License is incompatible with the GPL because it has a specific requirement that is not in the GPL: it has certain patent termination cases that the GPL does not require. (We don't think those patent termination cases are inherently a bad idea, but nonetheless they are incompatible with the GNU GPL.) 
+
+Zope Public License version 1 
+This is a simple, fairly permissive non-copyleft free software license with practical problems like those of the original BSD license, including incompatibility with the GNU GPL. 
+We urge you not to use the ZPL version 1 for software you write. However, there is no reason to avoid running programs that have been released under this license, such as previous versions of Zope.
+
+The latest version of Zope is available under a GPL-compatible license.
+
+License of xinetd 
+This is a copyleft free software license, incompatible with the GPL. It is incompatible because it places extra restrictions on redistribution of modified versions that contradict the redistribution requirements in the GPL. 
+
+License of Python 1.6b1 and later versions, through 2.0 and 2.1 
+This is a free software license but is incompatible with the GNU GPL. The primary incompatibility is that this Python license is governed by the laws of the "State of Virginia", in the USA, and the GPL does not permit this. 
+
+Old OpenLDAP License, Version 2.3 
+This is a permissive non-copyleft free software license with a few requirements (in sections 4 and 5) that render it incompatible with the GNU GPL. Note that the latest version of OpenLDAP has a different license that is compatible with the GNU GPL. 
+We urge you not to use the older OpenLDAP license for software you write. However, there is no reason to avoid running programs that have been released under this license.
+
+IBM Public License, Version 1.0 
+This is a free software license but it is incompatible with the GPL. 
+The IBM Public License is incompatible with the GPL because it has various specific requirements that are not in the GPL.
+
+For example, it requires certain patent licenses be given that the GPL does not require. (We don't think those patent license requirements are inherently a bad idea, but nonetheless they are incompatible with the GNU GPL.)
+
+Common Public License Version 1.0 
+This is a free software license but it is incompatible with the GPL. 
+The Common Public License is incompatible with the GPL because it has various specific requirements that are not in the GPL.
+
+For example, it requires certain patent licenses be given that the GPL does not require. (We don't think those patent license requirements are inherently a bad idea, but nonetheless they are incompatible with the GNU GPL.)
+
+Phorum License, Version 2.0 
+This is a free software license but it is incompatible with the GPL. Section 5 makes the license incompatible with the GPL. 
+
+LaTeX Project Public License 
+This license is an incomplete statement of the distribution terms for LaTeX. As far as it goes, it is a free software license, but incompatible with the GPL because it has many requirements that are not in the GPL. 
+This license contains complex and annoying restrictions on how to publish a modified version, including one requirement that falls just barely on the good side of the line of what is acceptable: that any modified file must have a new name.
+
+The reason this requirement is acceptable for LaTeX is that LaTeX has a facility to allow you to map file names, to specify ``use file bar when file foo is requested''. With this facility, the requirement is merely annoying; without the facility, the same requirement would be a serious obstacle, and we would have to conclude it makes the program non-free.
+
+The LPPL says that some files, in certain versions of LaTeX, may have additional restrictions, which could render them non-free. For this reason, it may take some careful checking to produce a version of LaTeX that is free software.
+
+The LPPL makes the controversial claim that simply having files on a machine where a few other people could log in and access them in itself constitutes distribution. We believe courts would not uphold this claim, but it is not good for people to start making the claim.
+
+Please do not use this license for any other project.
+
+Note: These comments are based on version 1.2 (3 Sep 1999) of the LPPL.
+
+Mozilla Public License (MPL) 
+This is a free software license which is not a strong copyleft; unlike the X11 license, it has some complex restrictions that make it incompatible with the GNU GPL. That is, a module covered by the GPL and a module covered by the MPL cannot legally be linked together. We urge you not to use the MPL for this reason. 
+However, MPL 1.1 has a provision (section 13) that allows a program (or parts of it) to offer a choice of another license as well. If part of a program allows the GNU GPL as an alternate choice, or any other GPL-compatible license as an alternate choice, that part of the program has a GPL-compatible license.
+
+Netizen Open Source License (NOSL), Version 1.0 
+This is a free software license that is essentially the same as the Mozilla Public License, Version 1.1. Like the MPL, the NOSL has some complex restrictions that make it incompatible with the GNU GPL. That is, a module covered by the GPL and a module covered by the NOSL cannot legally be linked together. We urge you not to use the NOSL for this reason. 
+
+Interbase Public License, Version 1.0 
+This is a free software license that is essentially the same as the Mozilla Public License, Version 1.1. Like the MPL, the IPL has some complex restrictions that make it incompatible with the GNU GPL. That is, a module covered by the GPL and a module covered by the IPL cannot legally be linked together. We urge you not to use the IPL for this reason. 
+
+Sun Public License 
+This is essentially the same as the Mozilla Public License: a free software license incompatible with the GNU GPL. Please do not confuse this with the Sun Community Source License which is not a free software license. 
+
+Nokia Open Source License 
+This is similar to the Mozilla Public License: a free software license incompatible with the GNU GPL. 
+
+Netscape Public License (NPL) 
+This is a free software license, not a strong copyleft, and incompatible with the GNU GPL. It consists of the Mozilla Public License with an added clause that permits Netscape to use your added code even in their proprietary versions of the program. Of course, they do not give you permission to use their code in the analogous way. We urge you not to use the NPL. 
+
+Jabber Open Source License, Version 1.0 
+The license is a free software license, incompatible with the GPL. It permits relicensing under a certain class of licenses, those which include all the requirements of the Jabber license. The GPL is not a member of that class, so the Jabber license does not permit relicensing under the GPL. Therefore, it is not compatible. 
+
+Sun Industry Standards Source License 1.0 
+This is a free software license, not a strong copyleft, which is incompatible with the GNU GPL because of details rather than any major policy. 
+
+Q Public License (QPL), Version 1.0 
+This is a non-copyleft free software license which is incompatible with the GNU GPL. It also causes major practical inconvenience, because modified sources can only be distributed as patches. 
+We recommend that you avoid using the QPL for anything that you write, and use QPL-covered software packages only when absolutely necessary. However, this avoidance no longer applies to Qt itself, since Qt is now also released under the GNU GPL.
+
+Since the QPL is incompatible with the GNU GPL, you cannot take a GPL-covered program and QPL-covered program and link them together, no matter how.
+
+However, if you have written a program that uses QPL-covered library (called FOO), and you want to release your program under the GNU GPL, you can easily do that. You can resolve the conflict for your program by adding a notice like this to it:
+
+  As a special exception, you have permission to link this program
+  with the FOO library and distribute executables, as long as you
+  follow the requirements of the GNU GPL in regard to all of the
+  software in the executable aside from FOO.
+
+You can do this, legally, if you are the copyright holder for the program. Add it in the source files, after the notice that says the program is covered by the GNU GPL.
+
+PHP License, Version 3.0 
+This license is used by most of PHP4. It is a non-copyleft free software license which is incompatible with the GNU GPL. 
+We recommend that you not use this license for anything except PHP add-ons.
+
+Zend License, Version 2.0 
+This license is used by one part of PHP4. It is a non-copyleft free software license which is incompatible with the GNU GPL, and has practical problems like those of the original BSD license. 
+We recommend that you not use this license for anything you write.
+
+Vita Nuova Liberal Source License 
+This is a copyleft free software license, incompatible with the GNU GPL. We recommend that you not use this license for new software that you write, but it is ok to use and improve Inferno under this license. 
+
+Plan 9 License as of June 2003 
+This is a free software license, incompatible with the GNU GPL. We recommend that you not use this license for new software that you write, but it is ok to use and improve Plan 9 under this license. 
+
+Apple Public Source License (APSL), version 2 
+This is a free software license, incompatible with the GNU GPL. We recommend that you not use this license for new software that you write, but it is ok to use and improve the software released under this license. More explanation is available. 
+
+
+--------------------------------------------------------------------------------
+
+Non-Free Software Licenses
+The following licenses do not qualify as free software licenses. A non-free license is automatically incompatible with the GNU GPL.
+
+Of course, we urge you to avoid using non-free software licenses, and to avoid non-free software in general.
+
+There is no way we could list all the known non-free software licenses here; after all, every proprietary software company has its own. We focus here on licenses that are often mistaken for free software licenses but are, in fact, not free software licenses.
+
+We have provided links to these licenses when we can do so without violating our general policy: that we do not make links to sites that promote, encourage or facilitate the use of non-free software packages. The last thing we want to do is give any non-free program some gratis publicity that might encourage more people to use it. For the same reason, we have avoided naming the programs for which a license is used, unless we think that for specific reasons it won't backfire.
+
+(Original) Artistic License 
+We cannot say that this is a free software license because it is too vague; some passages are too clever for their own good, and their meaning is not clear. We urge you to avoid using it, except as part of the disjunctive license of Perl. 
+The problems are matters of wording, not substance. There is a revised version of the Artistic License (dubbed "Artistic License 2.0") which is a free software license, and even compatible with the GNU GPL. This license is being considered for use in Perl 6. If you are thinking of releasing a program under the Artistic License, please do investigate other GPL-compatible, Free Software licensing options listed here first.
+
+Apple Public Source License (APSL), version 1.x 
+Versions 1.0, 1.1 and 1.2 are not free software licenses (follow the link for more explanation). Please don't use these licenses, and we urge you to avoid any software that has been released under them. Version 2.0 of the APSL is a free software license. 
+
+Reciprocal Public License 
+The Reciprocal Public License is a non-free license because of three problems. 1. It puts limits on prices charged for an initial copy. 2. It requires notification of the original developer for publication of a modified version. 3. It requires publication of any modified version that an organization uses, even privately. 
+
+SGI Free Software License B, version 1.1 
+The "SGI Free Software License B", although its name says "free", is not a Free Software License. It has three major problems. 1. It restricts its patent license to unmodified versions of the software. 2. It terminates if your use of the software infringes copyrights or patents which are not SGI's. This is problematic because it gives SGI grounds to sue you even when you have done nothing to them. 3. The license requires you to inform SGI of legal problems with the software. This violates your privacy rights, and can conflict with professional confidentiality requirements, such as attorney-client privilege. 
+
+Sun Community Source License 
+This is not a free software license; it lacks essential freedoms such as publication of modified versions. Please don't use this license, and we urge you to avoid any software that has been released under it. 
+
+Old Plan 9 License 
+This is not a free software license; it lacks essential freedoms such as the right to make and use private changes. Of course you should not use this license, and we urge you to avoid any software that has been released under it. A detailed discussion of this license is also available. 
+In September 2002 it was observed that the published license for Plan 9 had been modified, adding more restrictions to it, although its date still said 09/20/00. However, a further license change in 2003 made Plan 9 free software.
+
+Open Public License 
+This is not a free software license, because it requires sending every published modified version to a specific initial developer. There are also some other words in this license whose meaning we're not sure of that might also be problematic. 
+
+University of Utah Public License 
+The University of Utah Public License is a non-free license because it does not allow commercial redistribution. It also purports to restrict commercially running the software and even commercially giving consultation about it. Those restrictions are probably not legally enforcible under US copyright law, but they might be in some countries; even asserting them is outrageous. 
+The use of this license by the University of Utah exemplifies a dangerous trend for universities to restrict knowledge rather than contributing it to the public.
+
+If a university tries to impose a license like this on the software you are writing, don't give up hope. With persistence and firmness, and some forethought, it is possible to prevail over money-grabbing university administrators.
+
+The earlier you raise the issue, the better.
+
+eCos Public License, version 1.1 
+This was the old license of eCos. It is not a free software license, because it requires sending every published modified version to a specific initial developer. There are also some other words in this license whose meaning we're not sure of that might also be problematic. 
+Today eCos is available under the GNU GPL with additional permission for linking with non-free programs.
+
+Sun Solaris Source Code (Foundation Release) License, Version 1.1 
+This is not a free software license. The license prohibits redistribution, prohibits commercial use of the software, and can be revoked. 
+
+YaST License 
+This is not a free software license. The license prohibits distribution for a fee, and that makes it impossible for the software to be included in the many CD-ROM free software collections that are sold by companies and by organizations such as the FSF. 
+There may be another problem in section 2a, but a word seems to be missing there, so it is hard to be sure what meaning is really intended.
+
+Aladdin Free Public License 
+Despite its name, this is not a free software license because it does not allow charging for distribution, and largely prohibits simply packaging software licensed under it with anything for which a charge is made. 
+
+Scilab license 
+This is not a free software license because it does not allow commercial distribution of a modified version. 
+
+AT&T Public License 
+The AT&T Public License is a non-free license. It has several serious problems: 
+The patent license is voided by any modification, no matter how small, of the pertinent code. 
+You must demand a written agreement when you distribute the sources or patches. 
+It requires notifying AT&T if you distribute a patch. 
+Your license can be terminated through no fault of yours, under section 8/3. 
+It makes compliance with export control laws a condition of the license. 
+Some versions of the license require you to provide support. 
+Some versions of the license say you cannot sell a copy of the software for more than the expense of distribution. 
+The license has two other obnoxious features:
+
+It has a very broad reverse license to AT&T, which goes far beyond the use of your code, even your code modified. 
+It asserts one needs a license from AT&T to make a link to their web site. This is not an immediate practical problem, since the license says it gives permission to make such a link. (Anyway, people shouldn't make links to sites about non-free software.) But such a claim should not be made or propagated. 
+
+Jahia Community Source License 
+The Jahia Community Source License is not a free software license. Use of the source code is limited to research purposees. 
+
+License of ksh93 
+The license of ksh93 is not a free software license. One reason for this is that it requires that all changes be sent to the developer. There may be other problems with the license as well that would make it non-free. 
+
+License of Qmail 
+The license of Qmail is not a free software license because it mostly prohibits the distribution of modified versions. 
+
+The license of PINE 
+The license of PINE is not a free software license because it mostly prohibits the distribution of modified versions. It also restricts the media that can be used for selling copies. 
+
+Microsoft's Shared Source License 
+This license does not permit commercial distribution, and only allows commercial use under certain circumstances. 
+
+Hacktivismo Enhanced-Source Software License Agreement (HESSLA) 
+This is not a free software license, because it restricts what jobs people can use the software for, and restricts in substantive ways what jobs modified versions of the program can do. 
+
+The Squeak license. As applied to software, this is not a free software license because it requires all users in whatever country to obey US export control laws. As applied to fonts, it also does not permit modification. 
+In addition, it has a requirement for users to indemnify the developer, which is enough to make many users think twice about using it at all.
+
+
+--------------------------------------------------------------------------------
+
+Licenses For Documentation
+Free Documentation Licenses 
+Non-Free Documentation Licenses 
+
+--------------------------------------------------------------------------------
+
+The following licenses do qualify as free documentation licenses:
+
+Free Documentation Licenses
+GNU Free Documentation License 
+This is a license intended for use on copylefted free documentation. We plan to adopt it for all GNU manuals. It is also suitable for other kinds of useful works (such as textbooks and dictionaries, for instance). Its applicability is not limited to textual works ("books"). 
+
+FreeBSD Documentation License 
+This is a permissive non-copyleft Free Documentation license that is compatible with the GNU FDL. 
+
+Apple's Common Documentation License, Version 1.0 
+This is a Free Documentation license that is incompatible with the GNU FDL. It is incompatible because Section (2c) says "You add no other terms or conditions to those of this License", and the GNU FDL has additional terms not accounted for in the Common Documentation License. 
+
+Open Publication License, Version 1.0 
+This license can be used as a free documentation license. It is a copyleft free documentation license provided the copyright holder does not exercise any of the "LICENSE OPTIONS" listed in Section VI of the license. But if either of the options is invoked, the license becomes non-free. 
+This creates a practical pitfall in using or recommending this license: if you recommend ``Use the Open Publication License, Version 1.0 but don't enable the options'', it would be easy for the second half of that recommendation to get forgotten; someone might use the license with the options, making a manual non-free, and yet think he or she is following your advice.
+
+Likewise, if you use this license without either of the options to make your manual free, someone else might decide to imitate you, then change his or her mind about the options thinking that that is just a detail; the result would be that his or her manual is non-free.
+
+Thus, while manuals published under this license do qualify as free documentation if neither license option was used, it is better to use the GNU Free Documentation License and avoid the risk of leading someone else astray.
+
+Please note that this license is not the same as the Open Content License. These two licenses are frequently confused, as the Open Content License is often referred to as the "OPL". For clarity, it is better not to use the abbreviation ``OPL'' for either license. It is worth spelling their names in full to make sure people understand what you say.
+
+
+--------------------------------------------------------------------------------
+
+Non-Free Documentation Licenses
+The following licenses do not qualify as free documentation licenses: 
+
+Open Content License, Version 1.0 
+This license does not qualify as free, because there are restrictions on charging money for copies. We recommend you not use this license. 
+Please note that this license is not the same as the Open Publication License. The practice of abbreviating ``Open Content License'' as ``OPL'' leads to confusion between them. For clarity, it is better not to use the abbreviation ``OPL'' for either license. It is worth spelling their names in full to make sure people understand what you say.
+
+Open Directory License (aka dmoz.org License) 
+This is not a free documentation license. The primary problems are that your right to redistribute any given version is not permanent and that it requires the user to keep checking back at that site, which is too restrictive of the user's freedom. 
+
+
+--------------------------------------------------------------------------------
+
+Licenses For Works Besides Software and Documentation
+GNU General Public License 
+The GNU GPL can be used for general data which is not software, as long as one can determine what the definition of "source code" refers to in the particular case. As it turns out, the DSL (see below) also requires that you determine what the "source code" is, using approximately the same definition that the GPL uses. 
+
+GNU Free Documentation License 
+The GNU FDL is recommended for textbooks and teaching materials for all topics. ("Documentation" simply means textbooks and other teaching materials for using equipment or software.) We also recommend the GNU FDL for dictionaries, encyclopedias, and any other works that provide information for practical use. 
+
+Design Science License 
+This is a free and copyleft license meant for general data. Please don't use it for software or documentation, since it is incompatible with the GNU GPL and with the GNU FDL; however, it is fine to use for other kinds of data. 
+
+Free Art License 
+This is a free and copyleft license meant for artistic works. It permits commercial distribution, but any larger work including the copylefted work must be free. 
+
+
+--------------------------------------------------------------------------------
+
+More about licenses
+
+--------------------------------------------------------------------------------
+
+Translations of this page:
+[ Catala | Cesky | English | Espanol | Francais | Bahasa Indonesia | Italiano | ??? | Polski | Portugues | Русский ] 
+
+Return to the GNU Project home page. 
+
+Please send FSF & GNU inquiries to gnu@gnu.org. There are also other ways to contact the FSF. 
+Please send broken links and other corrections (or suggestions) to webmasters@gnu.org. 
+
+Please see the Translations README for information on coordinating and submitting translations of this article. 
+
+Copyright (C) 1999, 2000, 2001, 2002 Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111, USA 
+Verbatim copying and distribution of this entire article is permitted in any medium without royalty provided this notice is preserved. 
+
+Updated: $Date: 2004/10/12 18:44:20 $ $Author: jlpence $ 

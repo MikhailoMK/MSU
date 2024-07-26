@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{BE6C6523-ADD5-4543-B430-50B26AD67A02}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="WorkWithMatrix.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\SortArrays\project\Project2.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="WorkWithMatrix">
+        <MSBuild Projects="WorkWithMatrix.dproj"/>
+    </Target>
+    <Target Name="WorkWithMatrix:Clean">
+        <MSBuild Projects="WorkWithMatrix.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="WorkWithMatrix:Make">
+        <MSBuild Projects="WorkWithMatrix.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Project2">
+        <MSBuild Projects="..\..\SortArrays\project\Project2.dproj"/>
+    </Target>
+    <Target Name="Project2:Clean">
+        <MSBuild Projects="..\..\SortArrays\project\Project2.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Project2:Make">
+        <MSBuild Projects="..\..\SortArrays\project\Project2.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="WorkWithMatrix;Project2"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="WorkWithMatrix:Clean;Project2:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="WorkWithMatrix:Make;Project2:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

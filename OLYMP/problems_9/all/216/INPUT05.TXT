@@ -1,0 +1,320 @@
+Principles behind IOI 2004 Competition Tasks and Their Grading
+========== ====== === ==== =========== ===== === ===== =======
+
+Author: ISC
+Date: 12 July 2004
+Status: Approved by ISC
+
+This document presents some of the principles that have guided the selection of
+the IOI 2004 competition tasks and their grading criteria.
+
+Please read the whole document carefully.  The introduction below explains
+why the ISC formulated these principles.  The second section states the
+principles.  The third section provides some motivation for these principles
+and discusses their intention.  An example is presented in a separate section.
+The final section addresses the future of these principles.
+
+Introduction
+------------
+The GA has often expressed their concern about the relatively low IOI
+scores and relatively few contestants that fully solve tasks.  This
+concern can also be inferred from the responses to the survey about the IOI
+2002 competition.  Statistics for the results of some recent IOIs
+support this impression.  See the appendix for detailed statistics.
+
+            IOI 1999 2000 2001 2002 2003
+            --- ---- ---- ---- ---- ----
+  lowest bronze  135  149  143  135  173.1  (score out of 600 max. for tasks)
+   # hard tasks    ?    2    3    5    5    (<10% of contestants score >= 90%)
+
+The IC has asked the ISC to address these concerns in the preparation of the
+IOI 2004 competition.
+
+Principles
+----------
+After extensive discussions during the ISC review meeting in Greece
+at the end of June 2004, the ISC came up with the following measures
+to address the issues mentioned above.
+
+  1.  The competition tasks will be selected to cover a range of difficulty
+      levels.
+
+  2.  For each task, half of the test inputs used for grading the submitted
+      programs will focus on "testing for correctness".  These inputs
+      will be based on "small" cases only.  What is considered "small"
+      will be stated explicitly in the task description.  These
+      constraints will be referred to as 50%-constraints in this
+      document, to distinguish them from the regular constraints (or
+      100%-constraints) on inputs.
+      
+  3.  The other half of the test inputs will focus on "testing for
+      efficiency". The "size" of these cases is chosen to distinguish
+      the efficiency for a range of algorithm classes specific to that
+      task.
+
+Motivation
+----------
+Concerning the low overall scores, the ISC identified two main causes:
+
+  1.  The set of competition tasks is too hard for most of the contestants.
+  2.  The credit for correct-but-inefficient programs is too small.
+
+The capabilities of the best contestants have increased considerably
+over the years.  However, roughly 5% to 10% of the contestants seem to
+lack the skills for scoring points, no matter how easy it is.  We do
+not see ways to change the latter.  It is the responsibility of the
+delegations to prepare their contestants for the IOI competition.
+
+The first principle (range of difficulty levels) is intended to address
+the first cause.  We explicitly avoid a selection of tasks that are
+(almost) all (very) hard.  This follows the recommendation made in the
+ISC Guidelines for IOI Competitions, but which was not enforced
+sufficiently in the past.  
+
+Some competition tasks should provide a challenge for the very best, so
+that they can be recognized.  Other tasks are easier, so that less
+capable contestants can accomplish them.  Tasks without algorithmic
+challenge (with a "trivial" 100%-solution, involving a standard
+text-book algorithm and some straightforward coding) will be avoided. 
+This follows past practice.
+
+The second principle (50% for correctness-only) is intended to address
+the second cause.  Under this principle, a correct-but-inefficient
+program can still obtain 50% of the full score.  In the past, such
+programs would typically get no more than 10% to 20% of the full
+score.  This principle acknowledges the effort that is required to
+develop a correctly functioning program, even if its efficiency leaves
+room for improvement.  This principle is the most prominent change
+with respect to past IOIs.
+
+The choice of 50% rather than some other percentage is a compromise.
+Some have argued that it should be even higher (say 70%), some that it
+should be lower (say 30%).  For simplicity in applying the principle, we
+have set a uniform percentage at 50% for IOI 2004.
+
+The third principle (50% for a __range__ of efficiencies) is intended to
+distinguish algorithms with sufficiently different performance
+characteristics.  These tests must not only be focused on establishing
+that the program under test meets the 100%-constraints.  It allows
+for less efficient programs to score additional points over 50% as
+well.  This principle has been applied in the past, but we seek to
+apply it more rigorously now.
+
+The 50%-constraints will be stated explicitly in the task description.
+There are several reasons for doing so:
+
+  *  We do not want to have arguments over whether particular algorithms
+     qualify as correct-but-inefficient.  Instead, this is
+     now defined as the ability to solve test inputs within the
+     50%-constraints.  In the end, all that matters is whether the
+     program can solve certain test inputs.  The 50%-constraints
+     characterize those test inputs.
+
+  *  It enables contestants to make an informed trade-off.
+  
+  *  One can view the 50%-constraints as defining an easier version of
+     the task.  A contestant has really accomplished something by
+     writing a program that correctly solves all these cases.  This
+     serves a pedagogical and psychological purpose.
+
+No further details are provided about the characteristics of the test
+inputs.  In particular, the distribution of the test cases for
+distinguishing a range of efficiency levels is not explained in the task
+description.  There are several reasons for this:
+
+  *  It is often too complicated to describe these details.
+  
+  *  It might give too many hints on possible solutions to some
+     contestants, and it might confuse other contestants.
+
+The handouts with background information provided after the competition
+will explain the choice of test data in more detail.
+
+For each task, the 50%- and 100%-constraints, and the distribution of
+test cases for efficiency have been carefully selected, by considering
+various alternative approaches to solving the task.
+
+Output-only tasks are treated separately when designing the input cases.
+For one thing, no program is submitted, so there are no evaluation
+runs.  Secondly, because the inputs are not secret, the contestants can
+analyse the inputs during the contest and they know the exact
+characteristics.
+
+Example
+-------
+As a concrete example, consider the following hypothetical competition task.
+The hypothetical competition machine can execute 10^9 instructions per second.
+
+  TASK SORT
+  
+  An experiment generates a sequence of distinct integers.  For further
+  analysis, this sequence needs to be sorted from low to high.
+  
+  Write a program that inputs a sequence and outputs the corresponding
+  sorted sequence.
+
+  INPUT FORMAT
+  
+  The first line on standard input contains integer N, the length of
+  the sequence.  Each of the subsequent N input lines contains one integer
+  of the sequence.
+
+  OUTPUT FORMAT
+  
+  The sorted sequence is to be written to standard output.  The output must
+  consist of N lines, where each line contains one integer.  The integers
+  must appear in increasing order.
+
+  EXAMPLE INPUT
+  
+    3
+    1000000000
+    0
+    99
+  
+  EXAMPLE OUTPUT
+  
+    0
+    99
+    1000000000
+  
+  CONSTRAINTS
+
+  All inputs will satisfy the following constraints:
+  
+    *  Length N of the sequence: 0 <= N <= 10^6
+    *  Each integer i in the sequence: 0 <= i <= 10^9
+    *  The sequence contains no duplicates.
+  
+  The time limit per run is 2 second.
+  The limit on data memory per run is 5 MB.
+
+  50% of the inputs will satisfy the following ADDITIONAL constraints:
+  
+    *  Length N of the sequence: N <= 10^3
+
+  END OF TASK SORT
+
+Note that the wording of this task is not what matters for this example.
+Also note that sorting does not satisfy the novelty requirement for IOI
+competition tasks.  We have chosen it precisely because it is a
+well-known problem.
+
+Since IOI'94, it has been the custom in IOI competitions that
+quantitative constraints are imposed on the time and memory usage of the
+algorithms to be designed and implemented.  The scientific committee
+selects these constraints to provide interesting yet reasonable
+algorithmic challenges, that can also be graded efficiently.
+
+  ANALYSIS FOR TASK SORT
+  
+  Each input integer can be stored in 4 bytes.  Hence, the maximum-length
+  sequence can be stored in 4 MB.  This still leaves 1 MB.
+  
+  The machine characteristics together with the task constraints imply
+  that an O(N log N) in-situ sorting algorithm with low constant will do.
+  It is not possible to store 2N integers (make a copy of the sequence)
+  for large N.  It is also clear that an O(N^2) in-situ sorting algorithm
+  is too slow.
+
+  The 50%-constraints were chosen such that an O(N^2) sorting
+  algorithm with low constant will suffice.  It could use more storage
+  than needed for just the N input numbers (i.e., not in-situ).
+  
+  An O(N!) or worse algorithm (e.g. that enumerates all permutations of
+  the input sequence and tests them for sortedness) will not pass all of
+  the 50% tests for correctness.
+
+  END OF ANALYSIS FOR TASK SORT
+
+A weaker contestant, who is unable to come up with an O(N log N) in-situ
+sorting algorithm, but who can design and implement an O(N^2) algorithm,
+can still obtain 50% of the full score for this task.
+
+However, the 50%-constraints are such that a O(N!) program will __not__
+score 50%.  This is a deliberate choice in designing the task.  The
+50%-constraints make explicit what still counts as a
+correct-but-inefficient program.  If a program cannot solve the
+50%-constrained inputs within the time and memory limits, then it is
+judged to be an unacceptable solution for this task.
+
+It was also a deliberate choice not to limit the range of integers
+further in the 50%-constraints.  It is not the issue here whether this
+was a good choice, but it illustrates that there are various trade-offs
+to consider when selecting the 50%-constraints.  They are by no means
+obvious.  That is why it is important to make the 50%-constraints
+explicit in the task description.
+
+Conclusion
+----------
+These principles were formulated to guide the preparations for the IOI
+2004 competition only.  Their application to the preparation of future
+IOIs after 2004 will depend on feedback from the IOI community, on
+statistics and surveys for IOI 2004, and on further discussions.
+
+In the future, the ISC Guidelines for IOI Competitions can be updated to
+reflect the experience with these principles.
+
+
+Appendix
+
+STATISTICS
+----------
+For the past five IOIs, we list the lowest score to obtain a bronze,
+silver, and gold medal (the bronze cutoff is approximately the median
+score). The maximum score for all tasks together is 600 (this excludes
+any non-task bonuses).
+
+                         IOI 1999 2000 2001 2002 2003
+                         --- ---- ---- ---- ---- ----
+Lowest bronze medalist score  135  149  143  135  173.1 (approx. median score)
+Lowest silver medalist score  234  310  266  226  257.7
+Lowest gold   medalist score  340  450  378  296  350.9
+Top score                     480  600  580  510  455.4
+
+If available, we also list for each task the number and percentage of
+contestants that scored 90% or more on that task.
+
+   The threshold of 90% allows for a contestant to fail on 1 test case
+   in 10 and still be counted as having "fully solved" the task, that is,  
+   solved it __modulo a small mistake__.
+
+   The classification as Easy, Medium, Hard is based on the following
+   thresholds (which first appeared in the IOI 2002 competition survey):
+
+   EASY  : > 40% of the contestants "fully solved" the task
+   MEDIUM: >= 10% and <= 40% of the contestants "fully solved" the task
+   HARD  : < 10% of the contestants "fully solved" the task
+
+IOI 1999: Score per task per contestant no longer available.
+
+IOI 2000 with 274 ranked contestants 
+
+     |---palin---|--- car ---|--median---|---post ---|---walls---|---block---   
+>=90%|  80 (30%) |  31 (11%) |  27 (10%) |  56 (21%) |  79 (29%) |  11  (4%)    
+     |   MEDIUM  |   MEDIUM  |    HARD   |   MEDIUM  |   MEDIUM  |    HARD      
+
+IOI 2001 with 267 ranked contestants
+
+     |--twofive--|--mobiles--|--ioiwari--|---depot---|---score---|---double--   
+>=90%|   1  (0%) |   3  (1%) |  79 (30%) |  18  (7%) |  39 (15%) |  54 (20%)    
+     |   HARD    |   HARD    |   MEDIUM  |   HARD    |   MEDIUM  |   MEDIUM     
+
+IOI 2002 with 275 ranked contestants
+  Unable to obtain score per task per contestant; the following approximations
+  are inferrred from diagrams in the IOI 2004 competition report (pp. 49, 81)
+
+     |---frog ---|--utopia---|--- xor ---|---batch---|--- bus ---|---rods ---   
+>=90%| 45 (16%)  |   8 (3%)  |   2 (1%)  |  12 (4%)  |   9 (3%)  |  20 (7%)     
+     |   MEDIUM  |    HARD   |    HARD   |    HARD   |    HARD   |    HARD      
+
+IOI 2003 with 265 ranked contestants
+
+     |-maintain--|---code ---|--reverse--|---guess---|--robots---|-boundary--   
+>=90%| 81 (31%)  |   4 (2%)  |   0 (0%)  |  14 (5%)  |  11 (4%)  |  12 (5%)     
+     |   MEDIUM  |    HARD   |    HARD   |    HARD   |    HARD   |    HARD      
+
+END OF STATISTICS
+
+End of Document
+

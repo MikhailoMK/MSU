@@ -1,0 +1,164 @@
+library Project1;
+
+{ Important note about DLL memory management: ShareMem must be the
+  first unit in your library's USES clause AND your project's (select
+  Project-View Source) USES clause if your DLL exports any procedures or
+  functions that pass strings as parameters or function results. This
+  applies to all strings passed to and from your DLL--even those that
+  are nested in records and classes. ShareMem is the interface unit to
+  the BORLNDMM.DLL shared memory manager, which must be deployed along
+  with your DLL. To avoid using BORLNDMM.DLL, pass string information
+  using PChar or ShortString parameters.
+
+  Important note about VCL usage: when this DLL will be implicitly
+  loaded and this DLL uses TWicImage / TImageCollection created in
+  any unit initialization section, then Vcl.WicImageInit must be
+  included into your library's USES clause. }
+
+uses
+  System.SysUtils,
+  System.Classes;
+
+type
+  iARRAY = ARRAY [1..100] OF INTEGER;
+  iARRAY1 = ARRAY[1..100] of Double;
+  SARRAY = ARRAY[1..100] of string;
+
+{$R *.res}
+function IntegerNumber(arr : iARRAY; size : integer; mode : boolean = true):iarray; stdcall;
+var i,j:integer;
+  flag : boolean;
+begin
+  flag := true;
+  while flag do
+  begin
+    flag := false;
+    for i := 1 to size-1 do
+      begin
+        if mode then
+        begin
+          if arr[i] > arr[i+1] then
+          begin
+            j := arr[i+1];
+            arr[i+1] := arr[i];
+            arr[i] := j;
+            flag := true;
+          end;
+        end
+        else
+        begin
+          if arr[i] < arr[i+1] then
+          begin
+            j := arr[i+1];
+            arr[i+1] := arr[i];
+            arr[i] := j;
+            flag := true;
+          end;
+        end;
+      end;
+  end;
+  result := arr;
+end;
+
+function SortIntArray(arr: iarray; mode: Boolean): iarray; stdcall;
+var
+  i, j, minIndex, temp: Integer;
+begin
+  for i := Low(arr) to High(arr) - 1 do
+  begin
+    minIndex := i;
+    for j := i + 1 to High(arr) do
+    begin
+      if (mode and (arr[j] < arr[minIndex])) or (not mode and (arr[j] > arr[minIndex])) then
+      begin
+        minIndex := j;
+      end;
+    end;
+    temp := arr[minIndex];
+    arr[minIndex] := arr[i];
+    arr[i] := temp;
+  end;
+  Result := arr;
+end;
+
+function FloatNumber(arr : iARRAY1; size : integer; mode : boolean = true):iarray1; stdcall;
+  var i:integer;
+      j:double;
+      flag : boolean;
+begin
+  flag := true;
+  while flag do
+  begin
+    flag := false;
+    for i := 1 to size-1 do
+      begin
+        if mode then
+        begin
+          if arr[i] > arr[i+1] then
+          begin
+            j := arr[i+1];
+            arr[i+1] := arr[i];
+            arr[i] := j;
+            flag := true;
+          end;
+        end
+        else
+        begin
+          if arr[i] < arr[i+1] then
+          begin
+            j := arr[i+1];
+            arr[i+1] := arr[i];
+            arr[i] := j;
+            flag := true;
+          end;
+        end;
+      end;
+  end;
+  result := arr;
+end;
+
+function StringSort(arr : SArray; size : integer; mode : boolean = true):sarray;stdcall;
+ var i:integer;
+      j:string;
+      flag : boolean;
+begin
+  flag := true;
+  while flag do
+  begin
+    flag := false;
+    for i := 1 to size-1 do
+      begin
+        if mode then
+        begin
+          if arr[i] > arr[i+1] then
+          begin
+            j := arr[i+1];
+            arr[i+1] := arr[i];
+            arr[i] := j;
+            flag := true;
+          end;
+        end
+        else
+        begin
+          if arr[i] < arr[i+1] then
+          begin
+            j := arr[i+1];
+            arr[i+1] := arr[i];
+            arr[i] := j;
+            flag := true;
+          end;
+        end;
+      end;
+  end;
+  result := arr;
+end;
+
+
+
+exports IntegerNumber;
+exports FloatNumber;
+exports Stringsort;
+exports sortintarray;
+
+begin
+end.

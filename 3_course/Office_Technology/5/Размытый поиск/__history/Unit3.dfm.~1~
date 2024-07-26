@@ -1,0 +1,49 @@
+object Form3: TForm3
+  Left = 0
+  Top = 0
+  Caption = 'Form3'
+  ClientHeight = 733
+  ClientWidth = 1037
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -24
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 29
+  object Memo1: TMemo
+    Left = 112
+    Top = 51
+    Width = 809
+    Height = 674
+    TabOrder = 0
+  end
+  object Edit1: TEdit
+    Left = 8
+    Top = 8
+    Width = 809
+    Height = 37
+    TabOrder = 1
+  end
+  object Button1: TButton
+    Left = 823
+    Top = 8
+    Width = 206
+    Height = 37
+    Caption = #1055#1086#1080#1089#1082
+    TabOrder = 2
+  end
+  object StringGrid1: TStringGrid
+    Left = 8
+    Top = 51
+    Width = 98
+    Height = 674
+    ColCount = 1
+    FixedCols = 0
+    FixedRows = 0
+    Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goColSizing]
+    TabOrder = 3
+  end
+end

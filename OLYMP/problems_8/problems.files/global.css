@@ -1,0 +1,30 @@
+textcss OL {
+	
+}
+BODY {
+	BACKGROUND-COLOR: #b0b0b0; COLOR: black; FONT-SIZE: 10pt
+}
+A:link {
+	COLOR: #4433ff
+}
+A:visited {
+	COLOR: #cc00ff
+}
+A:active {
+	COLOR: #cc00ff
+}
+A:hover {
+	COLOR: #dd4433
+}
+P {
+	TEXT-ALIGN: justify
+}
+P.header {
+	FONT-SIZE: 16pt; TEXT-ALIGN: center
+}
+TABLE {
+	FONT-SIZE: 10pt; cellSpacing: 1; cellpadding: 3
+}
+IMG {
+	BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BORDER-RIGHT: medium none; BORDER-TOP: medium none
+}

@@ -1,0 +1,82 @@
+object Form3: TForm3
+  Left = 0
+  Top = 0
+  Caption = 'Form3'
+  ClientHeight = 733
+  ClientWidth = 1037
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -24
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnCreate = FormCreate
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 29
+  object Label1: TLabel
+    Left = 472
+    Top = 115
+    Width = 117
+    Height = 29
+    Caption = #1056#1077#1079#1091#1083#1100#1090#1072#1090':'
+  end
+  object Label2: TLabel
+    Left = 472
+    Top = 209
+    Width = 221
+    Height = 29
+    Caption = #1055#1086#1088#1103#1076#1082#1086#1074#1099#1081' '#1085#1086#1084#1077#1088':'
+  end
+  object Edit1: TEdit
+    Left = 8
+    Top = 8
+    Width = 809
+    Height = 37
+    TabOrder = 0
+  end
+  object Button1: TButton
+    Left = 823
+    Top = 8
+    Width = 206
+    Height = 37
+    Caption = #1055#1086#1080#1089#1082
+    TabOrder = 1
+    OnClick = Button1Click
+  end
+  object StringGrid1: TStringGrid
+    Left = 8
+    Top = 51
+    Width = 458
+    Height = 230
+    ColCount = 3
+    FixedCols = 0
+    FixedRows = 0
+    Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goColSizing]
+    TabOrder = 2
+  end
+  object Edit2: TEdit
+    Left = 472
+    Top = 150
+    Width = 557
+    Height = 37
+    TabOrder = 3
+  end
+  object Edit3: TEdit
+    Left = 472
+    Top = 244
+    Width = 557
+    Height = 37
+    TabOrder = 4
+  end
+  object Button2: TButton
+    Left = 472
+    Top = 51
+    Width = 557
+    Height = 38
+    Caption = #1057#1087#1080#1089#1086#1082' '#1087#1088#1077#1076#1084#1077#1090#1086#1074
+    TabOrder = 5
+    OnClick = Button2Click
+  end
+end

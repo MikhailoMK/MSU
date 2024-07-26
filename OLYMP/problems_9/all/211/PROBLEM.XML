@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<!-- Problem exchange format 0.1 -->
+<Problem
+   Gid="ru.olympiads.cources.8v.211"
+   Name="Копирование файла"
+   Description="task.txt"
+   TimeLimit="5"
+   MemoryLimit=""
+   InputFile="input.txt"
+   OutputFile="output.txt"
+   CheckerExe="Checker.exe"
+   CheckerSrc="Checker.pas"
+   TestCount="4">
+<Test Input="Input01.txt" Answer="Answer01.txt" Points="0"/>
+<Test Input="Input02.txt" Answer="Answer02.txt" Points="0"/>
+<Test Input="Input03.txt" Answer="Answer03.txt" Points="0"/>
+<Test Input="Input04.txt" Answer="Answer04.txt" Points="0"/>
+</Problem>

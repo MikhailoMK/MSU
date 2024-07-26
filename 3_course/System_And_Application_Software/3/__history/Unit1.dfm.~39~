@@ -1,0 +1,229 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 628
+  ClientWidth = 1085
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -18
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  OnClose = FormClose
+  OnCreate = FormCreate
+  TextHeight = 25
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 1085
+    Height = 60
+    Align = alTop
+    TabOrder = 0
+    ExplicitWidth = 1082
+    object Label2: TLabel
+      Left = 546
+      Top = 1
+      Width = 114
+      Height = 58
+      Align = alRight
+      ExplicitLeft = 496
+    end
+    object Label1: TLabel
+      Left = 685
+      Top = 27
+      Width = 5
+      Height = 25
+    end
+    object MediaPlayer1: TMediaPlayer
+      Left = 98
+      Top = 1
+      Width = 448
+      Height = 58
+      Align = alClient
+      VisibleButtons = [btPlay, btPause, btStop]
+      DoubleBuffered = True
+      FileName = 
+        'C:\Users\krasa\OneDrive\Pictures\'#1055#1083#1077#1085#1082#1072'\WIN_20230912_18_32_34_Pr' +
+        'o.jpg'
+      ParentDoubleBuffered = False
+      TabOrder = 0
+      ExplicitWidth = 391
+    end
+    object Button3: TButton
+      Left = 1
+      Top = 1
+      Width = 97
+      Height = 58
+      Align = alLeft
+      Caption = 'Previous'
+      TabOrder = 1
+      OnClick = Button3Click
+    end
+    object Button4: TButton
+      Left = 660
+      Top = 1
+      Width = 75
+      Height = 58
+      Align = alRight
+      Caption = 'Next'
+      TabOrder = 2
+      OnClick = Button4Click
+      ExplicitLeft = 807
+    end
+    object Panel4: TPanel
+      Left = 885
+      Top = 1
+      Width = 199
+      Height = 58
+      Align = alRight
+      TabOrder = 3
+      ExplicitLeft = 882
+      object RadioButton1: TRadioButton
+        Left = 1
+        Top = 1
+        Width = 197
+        Height = 25
+        Align = alTop
+        Caption = 'Random'
+        TabOrder = 0
+      end
+      object RadioButton2: TRadioButton
+        Left = 1
+        Top = 26
+        Width = 197
+        Height = 27
+        Align = alTop
+        Caption = 'Sequence'
+        TabOrder = 1
+        ExplicitLeft = -7
+        ExplicitTop = 32
+      end
+    end
+    object TrackBar1: TTrackBar
+      Left = 735
+      Top = 1
+      Width = 150
+      Height = 58
+      Align = alRight
+      DoubleBuffered = False
+      LineSize = 300
+      Max = 65535
+      ParentDoubleBuffered = False
+      ParentShowHint = False
+      ShowHint = False
+      TabOrder = 4
+      OnChange = TrackBar1Change
+      ExplicitLeft = 738
+    end
+  end
+  object Panel2: TPanel
+    Left = 0
+    Top = 60
+    Width = 885
+    Height = 544
+    Align = alClient
+    TabOrder = 1
+    OnResize = Panel2Resize
+    ExplicitWidth = 882
+    ExplicitHeight = 498
+    object Image1: TImage
+      Left = 1
+      Top = 1
+      Width = 883
+      Height = 542
+      Align = alClient
+      Center = True
+      Visible = False
+      ExplicitLeft = 352
+      ExplicitTop = -8
+      ExplicitWidth = 105
+      ExplicitHeight = 105
+    end
+  end
+  object ScrollBar1: TScrollBar
+    Left = 0
+    Top = 604
+    Width = 1085
+    Height = 24
+    Align = alBottom
+    PageSize = 0
+    TabOrder = 2
+    OnScroll = ScrollBar1Scroll
+    ExplicitTop = 558
+    ExplicitWidth = 1082
+  end
+  object Panel3: TPanel
+    Left = 885
+    Top = 60
+    Width = 200
+    Height = 544
+    Align = alRight
+    Caption = 'Panel3'
+    TabOrder = 3
+    ExplicitLeft = 882
+    ExplicitHeight = 498
+    object ListBox1: TListBox
+      Left = 1
+      Top = 1
+      Width = 198
+      Height = 452
+      Align = alClient
+      ItemHeight = 25
+      TabOrder = 0
+      ExplicitHeight = 406
+    end
+    object Button2: TButton
+      Left = 1
+      Top = 483
+      Width = 198
+      Height = 30
+      Align = alBottom
+      Caption = 'Play'
+      TabOrder = 1
+      OnClick = Button2Click
+      ExplicitTop = 437
+    end
+    object Button5: TButton
+      Left = 1
+      Top = 513
+      Width = 198
+      Height = 30
+      Align = alBottom
+      Caption = 'Delete'
+      TabOrder = 2
+      OnClick = Button5Click
+      ExplicitTop = 467
+    end
+    object Button1: TButton
+      Left = 1
+      Top = 453
+      Width = 198
+      Height = 30
+      Align = alBottom
+      Caption = 'Open...'
+      TabOrder = 3
+      OnClick = Button1Click
+      ExplicitTop = 407
+    end
+  end
+  object OpenDialog1: TOpenDialog
+    Filter = 'Media|*.mp3;*.mp4;*.vma;*.avi;*.WMV;*.jpg;'
+    Left = 8
+    Top = 88
+  end
+  object Timer1: TTimer
+    Enabled = False
+    Interval = 30
+    OnTimer = Timer1Timer
+    Left = 40
+    Top = 88
+  end
+  object Timer2: TTimer
+    Enabled = False
+    Interval = 5000
+    OnTimer = Timer2Timer
+    Left = 88
+    Top = 88
+  end
+end

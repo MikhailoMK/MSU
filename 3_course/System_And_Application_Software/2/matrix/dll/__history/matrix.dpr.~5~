@@ -1,0 +1,272 @@
+library matrix;
+
+{ Important note about DLL memory management: ShareMem must be the
+  first unit in your library's USES clause AND your project's (select
+  Project-View Source) USES clause if your DLL exports any procedures or
+  functions that pass strings as parameters or function results. This
+  applies to all strings passed to and from your DLL--even those that
+  are nested in records and classes. ShareMem is the interface unit to
+  the BORLNDMM.DLL shared memory manager, which must be deployed along
+  with your DLL. To avoid using BORLNDMM.DLL, pass string information
+  using PChar or ShortString parameters.
+
+  Important note about VCL usage: when this DLL will be implicitly
+  loaded and this DLL uses TWicImage / TImageCollection created in
+  any unit initialization section, then Vcl.WicImageInit must be
+  included into your library's USES clause. }
+
+uses
+  System.SysUtils,
+  System.Classes,
+  Math;
+
+{$R *.res}
+type
+  Int_Matrix=array[1..200,1..200] of integer;
+
+function SortMatrixRow(A: Int_Matrix; row:integer; column:integer; kind: Integer): Int_Matrix; stdcall;
+var
+  i, j,t,row1,temp: Integer;
+begin
+t:=1;
+  if kind=1 then t:=0;
+  for row1 := 1 to row do
+  begin
+    for i := 1 to column-1 do
+    begin
+      for j := 1 to column-1 do
+        begin
+          if A[row1,j+t]>A[row1,j+1-t] then
+          begin
+            temp:=A[row1,j+t];
+            A[row1,j+t]:=A[row1,j+1-t];
+            A[row1,j+1-t]:=temp;
+          end;
+        end;
+    end;
+  end;
+
+  Result:=A;
+end;
+
+function SortMatrixCol(A: Int_Matrix; size:integer; kind: Integer): Int_Matrix; stdcall;
+var
+  i, j,t,col,temp: Integer;
+begin
+t:=1;
+  if kind=1 then t:=0;
+  for col := 1 to size do
+  begin
+    for i := 1 to size-1 do
+    begin
+      for j := 1 to size-1 do
+        begin
+          if A[j+t,col]>A[j+1-t,col] then
+          begin
+            temp:=A[j+t,col];
+            A[j+t,col]:=A[j+1-t,col];
+            A[j+1-t,col]:=temp;
+          end;
+        end;
+    end;
+  end;
+
+  Result:=A;
+end;
+
+function Sign1(j: Integer): Integer;
+begin
+  if j > 0 then
+    Result := 1
+  else if j < 0 then
+    Result := -1
+  else
+    Result := 0;
+end;
+
+
+   type Int_Dyn_Matrix = array of array of integer;
+   type Double_Dyn_Matrix = array of array of double;
+function Determinant(a: Double_Dyn_Matrix; n: integer): real;stdCall;
+var
+  i, j, k: integer;
+  det: real;
+  b: Double_Dyn_Matrix;
+begin
+  if n = 1 then
+    det := a[0, 0]
+  else if n = 2 then
+    det := a[0, 0] * a[1, 1] - a[0, 1] * a[1, 0]
+  else
+  begin
+    det := 0;
+    SetLength(b, n, n);
+    for i := 0 to n - 1 do
+    begin
+      for j := 1 to n - 1 do
+        for k := 0 to n - 1 do
+        begin
+          if k < i then
+            b[j - 1, k] := a[j, k]
+          else if k > i then
+            b[j - 1, k - 1] := a[j, k];
+        end;
+      if i mod 2 = 0 then
+        det := det + a[0, i] * Determinant(b, n - 1)
+      else
+        det := det - a[0, i] * Determinant(b, n - 1);
+    end;
+  end;
+  Result := det;
+end;
+
+
+function InverseMatrix(a: Double_Dyn_Matrix; n: integer):Double_Dyn_Matrix ; stdCall;
+var
+  i, j, k: integer;
+  ratio, aik: double;
+  b: Double_Dyn_Matrix;
+begin
+  SetLength(b, n, n);
+  for i := 0 to n - 1 do
+  begin
+    for j := 0 to n - 1 do
+    begin
+      if i = j then
+        b[i, j] := 1
+      else
+        b[i, j] := 0;
+    end;
+  end;
+
+  for i := 0 to n - 1 do
+  begin
+    aik := a[i, i];
+    for j := 0 to n - 1 do
+    begin
+      a[i, j] := a[i, j] / aik;
+      b[i, j] := b[i, j] / aik;
+    end;
+    for k := 0 to n - 1 do
+    begin
+      if k <> i then
+      begin
+        ratio := a[k, i];
+        for j := 0 to n - 1 do
+        begin
+          a[k, j] := a[k, j] - ratio * a[i, j];
+          b[k, j] := b[k, j] - ratio * b[i, j];
+        end;
+      end;
+    end;
+  end;
+
+  Result := b;
+end;
+
+function TransposeMatrix(matrix: Int_MATRIX; size: Integer):Int_Matrix; stdcall;
+var
+  i, j, temp: Integer;
+begin
+  for i := 1 to size do
+  begin
+    for j := i + 1 to size do
+    begin
+      temp := matrix[i][j];
+      matrix[i][j] := matrix[j][i];
+      matrix[j][i] := temp;
+    end;
+  end;
+  result:=matrix;
+end;
+
+function AddMatrices(matrix1, matrix2: Int_Matrix; size: Integer):Int_Matrix; stdcall;
+var
+  i, j: Integer;
+begin
+  for i := 1 to size do
+  begin
+    for j := 1 to size do
+    begin
+      matrix1[i][j] := matrix1[i][j] + matrix2[i][j];
+    end;
+  end;
+  result:=matrix1;
+end;
+
+function SubtractMatrices(matrix1, matrix2: Int_Matrix; size: Integer):Int_Matrix; stdcall;
+var
+  i, j: Integer;
+begin
+  for i := 1 to size do
+  begin
+    for j := 1 to size do
+    begin
+      matrix1[i][j] := matrix1[i][j] - matrix2[i][j];
+    end;
+  end;
+  result:=matrix1;
+end;
+
+function MultiplyMatrices(matrix1, matrix2:Int_Matrix; size: Integer):Int_Matrix;stdcall;
+var
+  i, j, k: Integer;
+  result1:Int_Matrix;
+begin
+  for i := 1 to size do
+  begin
+    for j := 1 to size do
+    begin
+      result1[i][j] := 0;
+      for k := 1 to size do
+      begin
+        result1[i][j] := result1[i][j] + matrix1[i][k] * matrix2[k][j];
+      end;
+    end;
+  end;
+  result:=result1;
+end;
+
+ function Conjugate(x: string): string;
+var
+  i: Integer;
+begin
+  Result := '';
+  for i := 1 to Length(x) do
+    if x[i] = '+' then
+      Result := Result + '-'
+    else if x[i] = '-' then
+      Result := Result + '+'
+    else
+      Result := Result + x[i];
+end;
+
+type
+  mmc=array[1..200,1..200] of string;
+function ConjugateMatrix(matrix:mmc; size:integer):mmc;stdcall;
+begin
+var
+  i, j: Integer;
+begin
+  for i := 1 to size do
+    for j := 1 to size do
+      matrix[i][j] := Conjugate(matrix[i][j]);
+end;
+result:=matrix;
+end;
+
+function SumByRow(matrix:Int_Matrix; size:integer;row: integer): integer;stdcall;
+begin
+    var i,j: Integer;
+    var sum:integer;
+    sum:=0;
+    for i :=1  to size do
+      begin
+         sum:=sum+matrix[row,i];
+      end;
+    result:=sum;
+
+end;
+exports SortMatrixRow,InverseMatrix,ConjugateMatrix,MultiplyMatrices,SubtractMatrices,AddMatrices,SortMatrixCol,Determinant,TransposeMatrix, SumByRow;
+begin
+end.

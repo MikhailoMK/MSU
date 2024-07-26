@@ -1,0 +1,109 @@
+object LoginWindow: TLoginWindow
+  Left = 756
+  Top = 208
+  BorderIcons = [biSystemMenu, biMinimize]
+  ClientHeight = 412
+  ClientWidth = 348
+  Color = clBtnFace
+  Font.Charset = RUSSIAN_CHARSET
+  Font.Color = clWhite
+  Font.Height = -19
+  Font.Name = 'Oswald Light'
+  Font.Style = []
+  Position = poScreenCenter
+  OnClose = FormClose
+  OnCreate = FormCreate
+  TextHeight = 22
+  object VirtualImage1: TVirtualImage
+    Left = -8
+    Top = -4
+    Width = 377
+    Height = 437
+    ImageCollection = MainWindow.ImageCollection1
+    ImageWidth = 0
+    ImageHeight = 0
+    ImageIndex = 18
+    ImageName = 'RedSolid'
+    Proportional = False
+  end
+  object Label3: TLabel
+    Left = 101
+    Top = 363
+    Width = 142
+    Height = 22
+    Cursor = crHandPoint
+    Caption = #1057#1086#1079#1076#1072#1090#1100' '#1072#1082#1082#1072#1091#1085#1090
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWhite
+    Font.Height = -19
+    Font.Name = 'Oswald Light'
+    Font.Style = []
+    ParentFont = False
+    OnClick = Label3Click
+  end
+  object Label1: TLabel
+    Left = 53
+    Top = 183
+    Width = 228
+    Height = 44
+    Caption = #1054#1073#1091#1095#1072#1102#1097#1080#1081' '#1094#1077#1085#1090#1088' '#1089#1087#1072#1088#1090#1072
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWhite
+    Font.Height = -19
+    Font.Name = 'Oswald Light'
+    Font.Style = []
+    ParentFont = False
+    WordWrap = True
+  end
+  object VirtualImage2: TVirtualImage
+    Left = 70
+    Top = 8
+    Width = 211
+    Height = 161
+    ImageCollection = MainWindow.ImageCollection1
+    ImageWidth = 0
+    ImageHeight = 0
+    ImageIndex = 19
+    ImageName = 'LogoRoman'
+  end
+  object Button1: TButton
+    Left = 26
+    Top = 304
+    Width = 300
+    Height = 41
+    Cursor = crHandPoint
+    Caption = #1044#1072#1083#1077#1077
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -21
+    Font.Name = 'Oswald Light'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 0
+    OnClick = Button1Click
+  end
+  object Edit1: TEdit
+    Left = 26
+    Top = 254
+    Width = 300
+    Height = 32
+    AutoSelect = False
+    Color = clWhite
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -21
+    Font.Name = 'Oswald Light'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 1
+    Text = 'mikhail'
+    TextHint = #1051#1086#1075#1080#1085
+    OnKeyPress = Edit1KeyPress
+  end
+  object ADOQuery1: TADOQuery
+    Connection = MainWindow.ADOConnection1
+    Parameters = <>
+    Left = 272
+    Top = 376
+  end
+end

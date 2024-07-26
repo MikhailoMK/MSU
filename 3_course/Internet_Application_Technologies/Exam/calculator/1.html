@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Квадратный корень из суммы чисел</title>
+</head>
+<body>
+    <label for="a">Введите число a:</label>
+    <input type="text" id="a"><br>
+    <label for="b">Введите число b:</label>
+    <input type="text" id="b"><br>
+    <button onclick="calculate()">Вычислить</button><br>
+    <label for="result">Результат:</label>
+    <input type="text" id="result" disabled><br>
+
+    <script>
+        function calculate() {
+            var a = parseFloat(document.getElementById('a').value);
+            var b = parseFloat(document.getElementById('b').value);
+            var result = Math.sqrt(a) + Math.pow(b,2);
+            document.getElementById('result').value = result;
+        }
+    </script>
+</body>
+</html>

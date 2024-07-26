@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        body {
+            background-image: url('img/back.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-color: black;
+            color: white;
+            text-align: center;
+        }
+        
+        .converter {
+            width: 400px;
+            height: 410px;
+            padding: 20px;
+        }
+        
+        label {
+            grid-column-start: 1;
+            text-align: right;
+            margin-right: 10px;
+            font-size: 25px;
+            font-weight: 700;
+            line-height: 35px;
+            color: white;
+            margin: auto 0;
+        }
+        
+        input {
+            width: 400px;
+            height: 35px;
+            text-align: right;
+            margin-bottom: 10px;
+            font-size: 30px;
+            border-radius: 3px;
+            color: black;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="converter">
+        <label style="grid-row-start: 1;" for="celsius">Цельсий</label>
+        <input style="grid-row-start: 1;" type="text" id="celsius" />
+        <label style="grid-row-start: 2;" for="fahrenheit">Фаренгейт</label>
+        <input style="grid-row-start: 2;" type="text" id="fahrenheit" />
+        <label style="grid-row-start: 3;" for="kelvin">Кельвин</label>
+        <input style="grid-row-start: 3;" type="text" id="kelvin" />
+        <label style="grid-row-start: 4;" for="rankine">Ранкин</label>
+        <input style="grid-row-start: 4;" type="text" id="rankine" />
+        <label style="grid-row-start: 5;" for="reaumur">Реомюр</label>
+        <input style="grid-row-start: 5;" type="text" id="reaumur" />
+    </div>
+
+    <script>
+        const celsiusInput = document.getElementById('celsius');
+        const fahrenheitInput = document.getElementById('fahrenheit');
+        const kelvinInput = document.getElementById('kelvin');
+        const rankineInput = document.getElementById('rankine');
+        const reaumurInput = document.getElementById('reaumur');
+
+        function convertCelsiusToOthers() {
+            const celsius = parseFloat(celsiusInput.value);
+            if (isNaN(celsius)) {
+                clearInputs();
+                return;
+            }
+            const fahrenheit = (celsius * 9 / 5) + 32;
+            const kelvin = celsius + 273.15;
+            const rankine = (celsius + 273.15) * 9 / 5;
+            const reaumur = celsius * 4 / 5;
+
+            fahrenheitInput.value = fahrenheit.toFixed(2);
+            kelvinInput.value = kelvin.toFixed(2);
+            rankineInput.value = rankine.toFixed(2);
+            reaumurInput.value = reaumur.toFixed(2);
+        }
+
+        function convertFahrenheitToOthers() {
+            const fahrenheit = parseFloat(fahrenheitInput.value);
+            if (isNaN(fahrenheit)) {
+                clearInputs();
+                return;
+            }
+            const celsius = (fahrenheit - 32) * 5 / 9;
+            const kelvin = (fahrenheit - 32) * 5 / 9 + 273.15;
+            const rankine = fahrenheit + 459.67;
+            const reaumur = (fahrenheit - 32) * 4 / 9;
+
+            celsiusInput.value = celsius.toFixed(2);
+            kelvinInput.value = kelvin.toFixed(2);
+            rankineInput.value = rankine.toFixed(2);
+            reaumurInput.value = reaumur.toFixed(2);
+        }
+
+        function convertKelvinToOthers() {
+            const kelvin = parseFloat(kelvinInput.value);
+            if (isNaN(kelvin)) {
+                clearInputs();
+                return;
+            }
+            const celsius = kelvin - 273.15;
+            const fahrenheit = (kelvin - 273.15) * 9 / 5 + 32;
+            const rankine = kelvin * 9 / 5;
+            const reaumur = (kelvin - 273.15) * 4 / 5;
+
+            celsiusInput.value = celsius.toFixed(2);
+            fahrenheitInput.value = fahrenheit.toFixed(2);
+            rankineInput.value = rankine.toFixed(2);
+            reaumurInput.value = reaumur.toFixed(2);
+        }
+
+        function convertRankineToOthers() {
+            const rankine = parseFloat(rankineInput.value);
+            if (isNaN(rankine)) {
+                clearInputs();
+                return;
+            }
+            const celsius = (rankine - 491.67) * 5 / 9;
+            const fahrenheit = rankine - 459.67;
+            const kelvin = rankine * 5 / 9;
+            const reaumur = (rankine - 491.67) * 4 / 9;
+
+            celsiusInput.value = celsius.toFixed(2);
+            fahrenheitInput.value = fahrenheit.toFixed(2);
+            kelvinInput.value = kelvin.toFixed(2);
+            reaumurInput.value = reaumur.toFixed(2);
+        }
+
+        function convertReaumurToOthers() {
+            const reaumur = parseFloat(reaumurInput.value);
+            if (isNaN(reaumur)) {
+                clearInputs();
+                return;
+            }
+            const celsius = reaumur * 5 / 4;
+            const fahrenheit = reaumur * 9 / 4 + 32;
+            const kelvin = reaumur * 5 / 4 + 273.15;
+            const rankine = (reaumur * 9 / 4 + 273.15) * 9 / 5;
+
+            celsiusInput.value = celsius.toFixed(2);
+            fahrenheitInput.value = fahrenheit.toFixed(2);
+            kelvinInput.value = kelvin.toFixed(2);
+            rankineInput.value = rankine.toFixed(2);
+        }
+
+        function clearInputs() {
+            celsiusInput.value = '';
+            fahrenheitInput.value = '';
+            kelvinInput.value = '';
+            rankineInput.value = '';
+            reaumurInput.value = '';
+        }
+
+        celsiusInput.addEventListener('input', convertCelsiusToOthers);
+        fahrenheitInput.addEventListener('input', convertFahrenheitToOthers);
+        kelvinInput.addEventListener('input', convertKelvinToOthers);
+        rankineInput.addEventListener('input', convertRankineToOthers);
+        reaumurInput.addEventListener('input', convertReaumurToOthers);
+    </script>
+</body>
+
+</html>

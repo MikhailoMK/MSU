@@ -1,0 +1,197 @@
+unit Unit1;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
+
+type
+  iARRAY = ARRAY [1..100] OF INTEGER;
+  iARRAY1 = ARRAY [1..100] of Double;
+  sarray = array[1..100] of string;
+type
+  TForm1 = class(TForm)
+    Memo1: TMemo;
+    Memo2: TMemo;
+    Button1: TButton;
+    Button2: TButton;
+    ComboBox1: TComboBox;
+    ComboBox2: TComboBox;
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+  procedure MergeSort(var arr: sArray; left, right: Integer; ascending: Boolean);
+  procedure QuickSort(var arr: iarray; left, right: Integer; ascending: Boolean);stdcall;
+  function IntegerNumber(arr : iARRAY; size : integer; mode : boolean = true):iarray;  stdcall;
+  function FloatNumber(arr : iARRAY1; size : integer; mode : boolean = true):iarray1; stdcall;
+  function StringSort(arr : SArray; size : integer; mode : boolean = true):sarray;stdcall;
+
+implementation
+  procedure MergeSort; external 'Project1' name 'MergeSort';
+  procedure QuickSort; external 'Project1' name 'QuickSort';
+  function IntegerNumber; external 'Project1' name 'IntegerNumber';
+  function FloatNumber; external 'Project1' name 'FloatNumber';
+  function StringSort; external 'Project1' name 'StringSort';
+{$R *.dfm}
+
+procedure TForm1.Button1Click(Sender: TObject);
+var i, size : integer;
+    iArr, fun : IARRAY;
+    iarr1, fun1 : iarray1;
+    sarr, sfun : sarray;
+    mode : boolean;
+begin
+  Memo2.Clear;
+  if combobox2.ItemIndex = 0 then mode := true
+  else mode := false;
+  if combobox1.ItemIndex = 0 then
+  begin
+      for i := 1 to memo1.lines.count do
+      begin
+        iarr[i] := StrToInt(Memo1.lines.strings[i-1]);
+      end;
+      QuickSort(iarr, 1, Memo1.lines.Count, mode) ;
+      for i := 1 to Memo1.lines.Count do
+      begin
+        memo2.lines.add(IntToStr(iarr[i]));
+      end;
+  end
+  else if combobox1.itemIndex = 1 then
+    begin
+     for i := 0 to memo1.lines.count-1 do
+        begin
+         iarr1[i+1] := StrToFloat(Memo1.lines.strings[i]);
+        end;
+      size := Memo1.lines.Count;
+      fun1 := FloatNumber(iarr1, size, mode);
+      for i := 1 to size do
+       begin
+         memo2.lines.add(FloatToStr(fun1[i]));
+       end;
+    end
+  else if combobox1.ItemIndex = 2 then
+       begin
+        for i := 1 to memo1.lines.count do
+            begin
+             sarr[i] := Memo1.lines.strings[i - 1];
+            end;
+          size := Memo1.lines.Count;
+          Mergesort(sarr, 1, size, mode);
+          for i := 1 to size do
+           begin
+             memo2.lines.add(sarr[i]);
+           end;
+       end
+  else if combobox1.ItemIndex = 3 then
+    begin
+       for i := 1 to memo1.lines.count do
+            begin
+            if length( Memo1.lines.strings[i - 1]) = 1 then
+              sarr[i] := Memo1.lines.strings[i - 1]
+            else
+             begin
+              ShowMessage('Это не символ');
+              break;
+             end;
+            end;
+          size := Memo1.lines.Count;
+          Mergesort(sarr, 1, size, mode);
+          for i := 1 to size do
+           begin
+             memo2.lines.add(sarr[i]);
+           end;
+    end;
+
+  
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);
+var h : THandle;
+    func : procedure (var arr: iarray; left, right: Integer; ascending: Boolean);stdcall;
+    dfun : function (arr : iARRAY1; size : integer; mode : boolean = true):iarray1; stdcall;
+    sfun : function (arr : SArray; size : integer; mode : boolean = true):sarray;stdcall;
+    merFun : procedure (var arr: sArray; left, right: Integer; ascending: Boolean);
+    i,size : integer;
+    iArr,fun : IARRAY;
+    dArr,ddfun : iarray1;
+    sarr,ssfun : sarray;
+    mode : boolean;
+begin
+  h := LoadLibrary(pchar('Project1.dll'));
+  @sfun := GetProcAddress(h, pchar('StringSort'));
+  @dfun := GetProcAddress(h, pchar('FloatNumber'));
+  @func := GetProcAddress(h, pchar('QuickSort'));
+  @merfun :=  GetProcAddress(h, pchar('MergeSort'));
+
+  Memo2.Clear;
+  if combobox2.ItemIndex = 0 then mode := true
+  else mode := false;
+  if combobox1.ItemIndex = 0 then
+    begin
+     for i := 1 to memo1.lines.count do
+      begin
+        iarr[i] := StrToInt(Memo1.lines.strings[i-1]);
+      end;
+      func(iarr,1,Memo1.lines.Count ,mode) ;
+      for i := 1 to Memo1.lines.Count do
+      begin
+        memo2.lines.add(IntToStr(iarr[i]));
+      end;
+    end
+  else if combobox1.itemIndex = 1 then
+  begin
+     for i := 0 to memo1.lines.count - 1 do
+      begin
+        darr[i + 1] := StrToFloat(Memo1.lines.strings[i]);
+      end;
+      size := Memo1.lines.Count;
+      ddfun := dfun(darr, size, mode);
+      for i := 1 to size do
+      begin
+        memo2.lines.add(FloatToStr(ddfun[i]));
+      end;
+  end
+  else if combobox1.itemIndex = 2 then
+    begin
+     for i := 1 to memo1.lines.count do
+      begin
+        sarr[i] := Memo1.lines.strings[i - 1];
+      end;
+      size := Memo1.lines.Count;
+      merfun(sarr, 1, size, mode);
+      for i := 1 to size do
+      begin
+        memo2.lines.add(sarr[i]);
+      end;
+    end
+  else if combobox1.itemIndex = 3 then
+    begin
+     for i := 1 to memo1.lines.count do
+      begin
+            if length( Memo1.lines.strings[i - 1]) = 1 then
+              sarr[i] := Memo1.lines.strings[i - 1]
+            else
+            begin
+             ShowMessage('Не символ!');
+             break;
+            end;
+      end;
+      size := Memo1.lines.Count;
+      merfun(sarr,1,size,mode);
+      for i := 1 to size do
+      begin
+        memo2.lines.add(sarr[i]);
+      end;
+    end;
+
+end;
+
+end.

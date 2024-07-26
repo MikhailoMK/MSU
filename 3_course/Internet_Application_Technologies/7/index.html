@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Labirint</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="main">
+            <div class="table-info">
+                <div class="fields">
+                    <div class="size">
+                        <h3 >Строки: </h3>
+                        <input type="text" id="rows" >
+                        <h3 for="columns" >Столбцы: </h3>
+                        <input type="text" id="columns">
+                    </div>
+                    <div class="speed">
+                        <h3 style="margin-left: 15px;"> Скорость поиска: </h3>
+                        <input type="text" id="speed">
+                        <h3> Скорость перемещения </h3>
+                        <input type="text" id="delay">
+                    </div>
+                </div>
+                <button class="createTable btn" type="button" onclick="createTable()">Создать таблицу</button>
+                <button class="clearPath btn" type="button" onclick="clearPath()">Очистить путь</button>
+            </div>
+
+            <div class="content">
+                <div id="mazeContainer"></div>
+                <label style="color: bisque;" id="pathLengthLabel"></label>
+                <button class="findPath" type="button" onclick="findPath()">Найти путь</button>
+            </div>
+        </div>
+    </div>
+    <script src="./script.js"></script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Конвертер систем счисления</title>
+    <style>
+        body {
+            background-image: url('img/back.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-color: black;
+            color: white;
+            text-align: center;
+        }
+        
+        .converter {
+            margin: auto;
+            padding: 2.5rem;
+            display: grid;
+            width: 1100px;
+            grid-template-columns: repeat(4, 300px);
+            grid-template-rows: repeat(8, 60px);
+        }
+        
+        label {
+            text-align: left;
+            font-size: 25px;
+            font-weight: 700;
+            line-height: 35px;
+            color: white;
+        }
+        
+        input {
+            height: 30px;
+            width: 200px;
+            display: block;
+            border: 0;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 25px;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="converter">
+        <label for="binary">Двоичная</label>
+        <input type="text" id="base2" oninput="convertFromBase(this.value, 2)">
+        <label for="ternary">Троичная</label>
+        <input type="text" id="base3" oninput="convertFromBase(this.value, 3)">
+        <label for="quaternary">Четверичная</label>
+        <input type="text" id="base4" oninput="convertFromBase(this.value, 4)">
+        <label for="quinary">Пятеричная</label>
+        <input type="text" id="base5" oninput="convertFromBase(this.value, 5)">
+        <label for="senary">Шестеричная</label>
+        <input type="text" id="base6" oninput="convertFromBase(this.value, 6)">
+        <label for="septenary">Семеричная</label>
+        <input type="text" id="base7" oninput="convertFromBase(this.value, 7)">
+        <label for="octal">Восьмеричная</label>
+        <input type="text" id="base8" oninput="convertFromBase(this.value, 8)">
+        <label for="nonary">Девятеричная</label>
+        <input type="text" id="base9" oninput="convertFromBase(this.value, 9)">
+        <label for="decimal">Десятичная</label>
+        <input type="text" id="base10" oninput="convertFromBase(this.value, 10)">
+        <label for="undecimal">Одиннадцатеричная</label>
+        <input type="text" id="base11" oninput="convertFromBase(this.value, 11)">
+        <label for="duodecimal">Двенадцатеричная</label>
+        <input type="text" id="base12" oninput="convertFromBase(this.value, 12)">
+        <label for="tridecimal">Тринадцатеричная</label>
+        <input type="text" id="base13" oninput="convertFromBase(this.value, 13)">
+        <label for="tetradecimal">Четырнадцатеричная</label>
+        <input type="text" id="base14" oninput="convertFromBase(this.value, 14)">
+        <label for="pentadecimal">Пятнадцатеричная</label>
+        <input type="text" id="base15" oninput="convertFromBase(this.value, 15)">
+        <label style="grid-column-start: 2;" for="hexadecimal">Шестнадцатеричная</label>
+        <input type="text" id="base16" oninput="convertFromBase(this.value, 16)">
+    </div>
+
+    <script>
+        function convertFromBase(value, base) {
+            clearInputs(base);
+            const decimal = parseInt(value, base);
+            for (let i = 2; i <= 16; i++) {
+                if (i !== base) {
+                    document.getElementById('base' + i).value = value === '0' ? '0' : (decimal ? decimal.toString(i).toUpperCase() : '');
+                }
+            }
+        }
+
+        function clearInputs(exclude) {
+            for (let i = 2; i <= 16; i++) {
+                if (i !== exclude) {
+                    document.getElementById('base' + i).value = '';
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

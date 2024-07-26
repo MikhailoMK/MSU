@@ -1,0 +1,129 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{setspace}
+\usepackage{changepage}
+\usepackage{caption}
+\usepackage{ccaption}
+\captionsetup[figure]{labelformat=empty}
+\usepackage{tikz}
+
+\textwidth=18cm
+\oddsidemargin=-1cm
+\evensidemargin=-1cm
+\topmargin=-2.5cm
+\textheight=32cm
+\linespread{0.8}
+
+\begin{document}
+	\Large
+	
+	\begin{adjustwidth}{1.5cm}{}
+		172 
+		\vspace*{-14pt}
+		\begin{center}
+			III. ЗАКОНЫ СОХРАНЕНИЯ
+		\end{center}
+		\vspace*{-7pt}
+		
+		\hspace*{-0.6cm}\rule{16.5cm}{0.5pt}
+		
+		\begin{itemize}
+			\item В каких случаях законом сохранения импульса системы можно пользоваться и при наличии внешних сил?
+			\item Какие преимущества дает использование закона сохранения импульса по сравнению с динамическим подходом?
+			\item Когда на тело действует переменная сила $F(t)$, ее импульс определяется правой частью формулы (5) — интегралом от $F(t)$ по промежутку времени, в течение которого она действует. Пусть нам дан график зависимости $F(t)$ (рис. 109). Как по этому графику определить импульс силы для каждого из случаев \itа \rmи \itб?
+		\end{itemize}
+		
+		\noindent\textbf{\S 30. Центр масс. Реактивное движение}
+		\vspace{0.4cm}
+		
+		\noindent Когда мы имеем дело с системой частиц, удобно найти такую точку — \itцентр масс\rm, которая характеризовала бы положение и движение этой системы как целого. В системе из двух одинаковых частиц такая точка С, очевидно, лежит посередине между ними (рис. 110\itа\rm). Это ясно из соображений симметрии: в однородном и изотропном пространстве эта точка выделена среди всех остальных, ибо для любой другой точки А, расположенной ближе к одной из частиц, налется симметричная ей точка В, расположенная		
+		
+		\begin{figure}[h]
+			
+			\begin{adjustwidth}{3cm}{}
+				\begin{tikzpicture}[>=stealth, scale=1.5, line width=0.4mm]
+					\draw[->] (0, 0) -- (0.45, 1.4) node[midway, left] {$r_1$};
+					\draw[->] (0, 0) -- (1.9, 0.1) node[midway, below] {$r_2$};
+					\draw[dashed] (0.5, 1.5) -- (2.5, 1.5) node[midway, above, xshift=1cm] {$r_1 + r_2$};
+					\draw[dashed] (2, 0.1) -- (2.5, 1.5);
+					\draw[->] (0, 0) -- (2.5, 1.5);
+					\draw[dashed] (0.5, 1.5) -- (2, 0.1);
+					\draw[->] (0, 0) -- (1.3, 0.75) node[midway, below, xshift=0.7cm, yshift=0.3cm] {$r_C$};
+					\node[right] at (1.3, 0.75) {$C$};
+					
+					\fill[black] (2, 0.1) circle (3pt);
+					\fill[white] (1.98, 0.14) circle (1.1pt);
+					\node[below] at (2, 0.01) {$m$};
+					
+					\fill[black] (0.5, 1.5) circle (3pt);
+					\fill[white] (0.48, 1.54) circle (1.1pt);
+					\node[above] at (0.5, 1.55) {$m$};
+					%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+					\draw[dashed] (3, 1.5) -- (4.3, 0.1);
+					\node[right] at (3.8, 0.75) {$C$};
+					
+					\fill[black] (4.3, 0.1) circle (3pt);
+					\fill[white] (4.28, 0.14) circle (1.1pt);
+					\node[below] at (4.3, 0.01) {$m$};
+					
+					\fill[black] (3, 1.5) circle (3pt);
+					\fill[white] (2.98, 1.54) circle (1.1pt);
+					\node[above] at (3, 1.55) {$m$};
+					
+					\draw[dashed] (3.65, 1.4) -- (3.65, 0.2);
+					
+					\fill[black] (3.65, 1.4) circle (1.5pt);
+					\fill[white] (3.65, 1.4) circle (1.1pt);
+					
+					\fill[black] (3.65, 0.2) circle (1.5pt);
+					\fill[white] (3.65, 0.2) circle (1.1pt);
+					
+					\node[above] at (3.65, 1.4) {$A$};
+					\node[below] at (3.65, 0.2) {$B$};
+					
+					\node[below] at (2.5, -0.4) {\itа};
+					%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+					\draw[->] (5, 0) -- (7.9, 0.5) node[midway, below] {$r_2$};
+					\fill[black] (8, 0.5) circle (3pt);
+					\fill[white] (7.98, 0.54) circle (1.1pt);
+					\node[above] at (8, 0.55) {$m_2$};
+					
+					\draw[->] (5, 0) -- (5.75, 1.4) node[midway, left] {$r_1$};
+					\fill[black] (5.8, 1.5) circle (3pt);
+					\fill[white] (5.78, 1.54) circle (1.1pt);
+					\node[above] at (5.8, 1.55) {$m_1$};
+					
+					\draw[dashed] (5.8, 1.5) -- (7.9, 0.55);
+					
+					\draw[->] (5, 0) -- (6.45, 1.2) node[midway, below, xshift=1cm, yshift=0.55cm] {$r_C$};
+					\node[above] at (6.55, 1.15) {$C$};
+					\node[above] at (6.2, 1.3) {$l_1$};
+					\node[below] at (7.2, 1.25) {$l_2$};
+					
+					\node[below] at (6.5, -0.1) {$m_1 l_1 = m_2 l_2$};
+					\node[below] at (6.5, -0.4) {\itб};
+					
+					\draw[line width=0.3cm] (8.5, -0.7) -- (8.5, 2);
+				\end{tikzpicture}
+			\end{adjustwidth}	
+			\begin{adjustwidth}{1.5cm}{}
+				\hangcaption{Рис. 110. Центр масс двух одинаковых частиц находится в точке $C$ с радиусом-вектором $r_C=(r_1+r_2)/2$ (\itа\rm); центр масс двух частиц с разной массой делит отрезок между ними в отношении, обратно пропорциональном массам чатиц (\itб\rm)}
+			\end{adjustwidth}
+		\end{figure}
+		
+		
+		
+		\noindentближе ко второй частице. Очевидно, что радиус-вектор $r_C$ точки $C$ равен полусумме радиусов-векторов $r_1$ и $r_2$ одинаковых частиц (рис. 110\it a\rm): $r_C = (r_1 + r_2)/2$. Другими словами, $r_C$ представляет собой обычное среднее значение векторов $r_1$ и $r_2$.
+		
+		\vspace{0.4cm}
+		
+		\noindent\textbf{Определение центра масс.} Как обобщить это определение на случай двух частиц с разными массами $m_1$ и $m_2$? Можно ожидать, что наряду с геометрическим центром системы, радиус-вектор которого по-прежнему равен полусумме $(r _1+ r _2)/2$, будет играть определенную роль точка, положение которой определяется распределени-
+		
+		
+	\end{adjustwidth}
+	
+\end{document}

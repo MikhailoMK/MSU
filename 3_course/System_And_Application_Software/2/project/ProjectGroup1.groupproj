@@ -1,0 +1,66 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{025BB2DA-973F-41DF-883A-A4DC0E8C172C}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Project2.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\SortArrays\dll\Project2.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\SortArrays\project\Project2.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\ObernenaMatricaGAUSS\Project1.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\dll\WorkWithMatrix.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Project2">
+        <MSBuild Projects="..\..\SortArrays\project\Project2.dproj"/>
+    </Target>
+    <Target Name="Project2:Clean">
+        <MSBuild Projects="..\..\SortArrays\project\Project2.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Project2:Make">
+        <MSBuild Projects="..\..\SortArrays\project\Project2.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Project1">
+        <MSBuild Projects="..\..\ObernenaMatricaGAUSS\Project1.dproj"/>
+    </Target>
+    <Target Name="Project1:Clean">
+        <MSBuild Projects="..\..\ObernenaMatricaGAUSS\Project1.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Project1:Make">
+        <MSBuild Projects="..\..\ObernenaMatricaGAUSS\Project1.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="WorkWithMatrix">
+        <MSBuild Projects="..\dll\WorkWithMatrix.dproj"/>
+    </Target>
+    <Target Name="WorkWithMatrix:Clean">
+        <MSBuild Projects="..\dll\WorkWithMatrix.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="WorkWithMatrix:Make">
+        <MSBuild Projects="..\dll\WorkWithMatrix.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Project2;Project2;Project2;Project1;WorkWithMatrix"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Project2:Clean;Project2:Clean;Project2:Clean;Project1:Clean;WorkWithMatrix:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Project2:Make;Project2:Make;Project2:Make;Project1:Make;WorkWithMatrix:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

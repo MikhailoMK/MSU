@@ -1,0 +1,53 @@
+library WorkWithMatrix;
+
+{ Important note about DLL memory management: ShareMem must be the
+  first unit in your library's USES clause AND your project's (select
+  Project-View Source) USES clause if your DLL exports any procedures or
+  functions that pass strings as parameters or function results. This
+  applies to all strings passed to and from your DLL--even those that
+  are nested in records and classes. ShareMem is the interface unit to
+  the BORLNDMM.DLL shared memory manager, which must be deployed along
+  with your DLL. To avoid using BORLNDMM.DLL, pass string information
+  using PChar or ShortString parameters.
+
+  Important note about VCL usage: when this DLL will be implicitly
+  loaded and this DLL uses TWicImage / TImageCollection created in
+  any unit initialization section, then Vcl.WicImageInit must be
+  included into your library's USES clause. }
+
+uses
+  System.SysUtils,
+  System.Classes;
+
+{$R *.res}
+type
+  mm=array[1..200,1..200] of integer;
+
+function SortMatrixRow(A: mm; size:integer; kind: Integer): mm; stdcall;
+var
+  i, j,t,row,temp: Integer;
+begin
+t:=1;
+  if kind=1 then t:=0;
+  for row := 1 to size do
+  begin
+    for i := 1 to size-1 do
+    begin
+      for j := 1 to size-1 do
+        begin
+          if A[row,j+t]>A[row,j+1-t] then
+          begin
+            temp:=A[row,j+t];
+            A[row,j+t]:=A[row,j+1-t];
+            A[row,j+1-t]:=temp;
+          end;
+        end;
+    end;
+  end;
+
+  Result:=A;
+end;
+
+exports SortMatrixRow;
+begin
+end.

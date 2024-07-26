@@ -1,0 +1,169 @@
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}
+body{line-height:1}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}
+nav ul{list-style:none}
+blockquote,q{quotes:none}
+blockquote:before,blockquote:after,q:before,q:after{content:none}
+a{margin:0;padding:0;font-size:100%;vertical-align:baseline;background:transparent}
+ins{background-color:#ff9;color:#000;text-decoration:none}
+mark{background-color:#ff9;color:#000;font-style:italic;font-weight:bold}
+del{text-decoration:line-through}
+abbr[title],dfn[title]{border-bottom:1px dotted;cursor:help}
+table{border-collapse:collapse;border-spacing:0}
+hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padding:0}
+input,select{vertical-align:middle;font-size: 1.5rem; color: #27192c;font-weight:bold}
+label{font-size: 1.5rem; color: #071a14;font-weight:bold}
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+    background-image: url('img/back.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    min-height: 80px;
+    padding: 2rem;
+    background-color: #27192c;
+    width: 100%;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 3rem;
+    width: 92.5%;
+}
+
+.table-info {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    padding: 2rem;
+    border-radius: 5px;
+    background-color: black;
+}
+
+.fields {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 1rem;
+    border-radius: 5px;
+    background-color:black;
+    color:white;
+}
+
+.size {
+    display: flex;
+    flex-direction: row;
+    gap:10px;
+    justify-content: space-between;
+    width: calc(100% - 4rem);
+}
+
+.speed {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    gap:10px;
+    width: calc(100% - 4rem);
+}
+
+table {
+    border-collapse: collapse;
+    table-layout: fixed;
+    border-radius:  5px;
+    background-color: gray;
+    color: #fff;
+}
+
+table, th, td {
+    border: 1px dashed #27192c;
+    margin: .5rem;
+    padding: .25rem;
+    text-align: center;
+    font-size: 2rem;
+    line-height: 2rem;
+}
+
+td {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+}
+
+input[type="text"] {
+    width: 50px;
+}
+
+.visited {
+    background-color: white;
+    
+}
+
+.path{
+    background-color: white;
+}
+
+.path::before{
+    content: url('img/plotva.png');
+}
+
+.findPath {
+    margin: 2rem; 
+    padding: 1rem 2rem; 
+    color: #fff;
+    background-color: #27192c;
+    font-size: 1.5rem;
+    border: .5px dashed #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.findPath:hover {
+    background-color: #fff;
+    color: #27192c;
+    border: .5px dashed #27192c;
+}
+
+.btn {
+    margin: .5rem; 
+    padding: .5rem 1rem; 
+    color: #fff;
+    background-color: #27192c;
+    font-size: 1.5rem;
+    border: .5px dashed #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #fff;
+    color: #27192c;
+    border: .5px dashed #27192c;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 2rem;
+    border-radius: 5px;
+    background-color: black;
+    margin: 3rem;
+}

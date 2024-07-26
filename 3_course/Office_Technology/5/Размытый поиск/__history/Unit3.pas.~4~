@@ -1,0 +1,42 @@
+unit Unit3;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Grids, Vcl.StdCtrls,
+  VclTee.TeeGDIPlus, VCLTee.TeEngine, Vcl.ExtCtrls, VCLTee.TeeProcs,
+  VCLTee.Chart;
+
+type
+  TForm3 = class(TForm)
+    Edit1: TEdit;
+    Button1: TButton;
+    StringGrid1: TStringGrid;
+    Edit2: TEdit;
+    Label1: TLabel;
+    Label2: TLabel;
+    Edit3: TEdit;
+    Button2: TButton;
+    procedure FormCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form3: TForm3;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm3.FormCreate(Sender: TObject);
+begin
+  StringGrid1.ColWidths[0] := 65;
+  StringGrid1.ColWidths[1] := 322;
+  StringGrid1.ColWidths[2] := 65;
+end;
+
+end.

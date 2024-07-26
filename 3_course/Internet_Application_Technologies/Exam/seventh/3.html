@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Оставшееся время до Парада на 9 Мая</title>
+    <script>
+        function calculateTime() {
+            var paradeTime = new Date("2025-05-09T10:00:00");
+            
+            var now = new Date();
+            
+            var diff = paradeTime - now;
+            
+            var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('result').innerHTML = "До Парада на 9 Мая осталось " + days + " дней, " + hours + " часов, " + minutes + " минут и " + seconds + " секунд.";
+        }
+    </script>
+</head>
+<body>
+    <h1>Оставшееся время до Парада на 9 Мая</h1>
+    <button onclick="calculateTime()">Рассчитать</button>
+    <p id="result"></p>
+</body>
+</html>

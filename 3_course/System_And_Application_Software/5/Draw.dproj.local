@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899/12/30 00:00:00.000.948,=C:\Users\Fotima Yorova\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899/12/30 00:00:00.000.205,C:\Users\Fotima Yorova\Desktop\system_software\project\canvas.pas=C:\Users\Fotima Yorova\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899/12/30 00:00:00.000.596,C:\Users\Fotima Yorova\Desktop\system_software\project\Project1.dproj=C:\Users\Fotima Yorova\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>1899/12/30 00:00:00.000.205,C:\Users\Fotima Yorova\Desktop\system_software\project\canvas.dfm=C:\Users\Fotima Yorova\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2024/01/11 22:26:34.000.243,C:\canvas\Project1.dproj=C:\Users\ASUS\Desktop\Системное и ППО\5\Draw.dproj</Transaction>
+  </Transactions>
+</BorlandProject>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        body {
+            background-image: url('img/back.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-color: black;
+            color: white;
+            text-align: center;
+        }
+        
+        .converter {
+            padding: 2.5rem;
+            display: grid;
+            width: 680px;
+            grid-template-columns: repeat(2, 350px);
+            grid-template-rows: repeat(8, 60px);
+        }
+        
+        label {
+            grid-column-start: 1;
+            text-align: left;
+            margin-right: 10px;
+            font-size: 30px;
+            font-weight: 700;
+            line-height: 35px;
+            color: white;
+            margin: auto 0;
+            border: none;
+        }
+        
+        input {
+            margin: auto;
+            text-align: right;
+            height: 30px;
+            width: 300px;
+            grid-column-start: 2;
+            display: block;
+            font-size: 30px;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="converter">
+        <label style="grid-row-start: 1;" for="squareMile">Квадратная миль</label>
+        <input style="grid-row-start: 1;" type="text" id="squareMile" />
+        <label style="grid-row-start: 2;" for="squareKilometer">Квадратный километр</label>
+        <input style="grid-row-start: 2;" type="text" id="squareKilometer" />
+        <label style="grid-row-start: 3;" for="hectare">Гектар</label>
+        <input style="grid-row-start: 3;" type="text" id="hectare" />
+        <label style="grid-row-start: 4;" for="acre">Арк</label>
+        <input style="grid-row-start: 4;" type="text" id="acre" />
+        <label style="grid-row-start: 5;" for="squareMeter">Квадратный метр</label>
+        <input style="grid-row-start: 5;" type="text" id="squareMeter" />
+        <label style="grid-row-start: 6;" for="squareYard">Квадратный ярд</label>
+        <input style="grid-row-start: 6;" type="text" id="squareYard" />
+        <label style="grid-row-start: 7;" for="squareFoot">Квадратный фут</label>
+        <input style="grid-row-start: 7;" type="text" id="squareFoot" />
+        <label style="grid-row-start: 8;" for="squareInch">Квадратный дюйм</label>
+        <input style="grid-row-start: 8;" type="text" id="squareInch" />
+    </div>
+
+    <script>
+        const squareMeterInput = document.getElementById('squareMeter');
+        const squareFootInput = document.getElementById('squareFoot');
+        const squareYardInput = document.getElementById('squareYard');
+        const squareInchInput = document.getElementById('squareInch');
+        const squareMileInput = document.getElementById('squareMile');
+        const squareKilometerInput = document.getElementById('squareKilometer');
+        const hectareInput = document.getElementById('hectare');
+        const acreInput = document.getElementById('acre');
+
+        function convertSquareMeterToOthers() {
+            const squareMeter = parseFloat(squareMeterInput.value);
+            if (isNaN(squareMeter)) {
+                clearInputs();
+                return;
+            }
+            const squareFoot = squareMeter * 10.7639;
+            const squareYard = squareMeter * 1.19599;
+            const squareInch = squareMeter * 1550;
+            const squareMile = squareMeter * 3.861e-7;
+            const squareKilometer = squareMeter / 1e+6;
+            const hectare = squareMeter / 10000;
+            const acre = squareMeter * 0.000247105;
+
+            squareFootInput.value = squareFoot.toFixed(2);
+            squareYardInput.value = squareYard.toFixed(2);
+            squareInchInput.value = squareInch.toFixed(2);
+            squareMileInput.value = squareMile.toFixed(6);
+            squareKilometerInput.value = squareKilometer.toFixed(6);
+            hectareInput.value = hectare.toFixed(6);
+            acreInput.value = acre.toFixed(6);
+        }
+
+        function convertSquareFootToOthers() {
+            const squareFoot = parseFloat(squareFootInput.value);
+            if (isNaN(squareFoot)) {
+                clearInputs();
+                return;
+            }
+            const squareMeter = squareFoot / 10.7639;
+            const squareYard = squareFoot / 9;
+            const squareInch = squareFoot * 144;
+            const squareMile = squareFoot * 2.788e-8;
+            const squareKilometer = squareMeter / 1e+6;
+            const hectare = squareMeter / 10000;
+            const acre = squareMeter * 0.000247105;
+
+            squareMeterInput.value = squareMeter.toFixed(2);
+            squareYardInput.value = squareYard.toFixed(2);
+            squareInchInput.value = squareInch.toFixed(2);
+            squareMileInput.value = squareMile.toFixed(6);
+            squareKilometerInput.value = squareKilometer.toFixed(6);
+            hectareInput.value = hectare.toFixed(6);
+            acreInput.value = acre.toFixed(6);
+        }
+
+        function convertSquareYardToOthers() {
+            const squareYard = parseFloat(squareYardInput.value);
+            if (isNaN(squareYard)) {
+                clearInputs();
+                return;
+            }
+            const squareMeter = squareYard / 1.19599;
+            const squareFoot = squareYard * 9;
+            const squareInch = squareYard * 1296;
+            const squareMile = squareYard * 1.196e-7;
+            const squareKilometer = squareMeter / 1e+6;
+            const hectare = squareMeter / 10000;
+            const acre = squareMeter * 0.000247105;
+
+            squareMeterInput.value = squareMeter.toFixed(2);
+            squareFootInput.value = squareFoot.toFixed(2);
+            squareInchInput.value = squareInch.toFixed(2);
+            squareMileInput.value = squareMile.toFixed(6);
+            squareKilometerInput.value = squareKilometer.toFixed(6);
+            hectareInput.value = hectare.toFixed(6);
+            acreInput.value = acre.toFixed(6);
+        }
+
+        function convertSquareInchToOthers() {
+            const squareInch = parseFloat(squareInchInput.value);
+            if (isNaN(squareInch)) {
+                clearInputs();
+                return;
+            }
+            const squareMeter = squareInch / 1550;
+            const squareFoot = squareInch / 144;
+            const squareYard = squareInch / 1296;
+            const squareMile = squareInch * 6.273e-8;
+            const squareKilometer = squareMeter / 1e+6;
+            const hectare = squareMeter / 10000;
+            const acre = squareMeter * 0.000247105;
+
+            squareMeterInput.value = squareMeter.toFixed(2);
+            squareFootInput.value = squareFoot.toFixed(2);
+            squareYardInput.value = squareYard.toFixed(2);
+            squareMileInput.value = squareMile.toFixed(6);
+            squareKilometerInput.value = squareKilometer.toFixed(6);
+            hectareInput.value = hectare.toFixed(6);
+            acreInput.value = acre.toFixed(6);
+        }
+
+        function convertSquareMileToOthers() {
+            const squareMile = parseFloat(squareMileInput.value);
+            if (isNaN(squareMile)) {
+                clearInputs();
+                return;
+            }
+            const squareMeter = squareMile / 3.861e-7;
+            const squareFoot = squareMeter * 10.7639;
+            const squareYard = squareMeter * 1.19599;
+            const squareInch = squareMeter * 1550;
+            const squareKilometer = squareMeter / 1e+6;
+            const hectare = squareMeter / 10000;
+            const acre = squareMeter * 0.000247105;
+
+            squareMeterInput.value = squareMeter.toFixed(2);
+            squareFootInput.value = squareFoot.toFixed(2);
+            squareYardInput.value = squareYard.toFixed(2);
+            squareInchInput.value = squareInch.toFixed(2);
+            squareKilometerInput.value = squareKilometer.toFixed(6);
+            hectareInput.value = hectare.toFixed(6);
+            acreInput.value = acre.toFixed(6);
+        }
+
+        function convertSquareKilometerToOthers() {
+            const squareKilometer = parseFloat(squareKilometerInput.value);
+            if (isNaN(squareKilometer)) {
+                clearInputs();
+                return;
+            }
+            const squareMeter = squareKilometer * 1e+6;
+            const squareFoot = squareMeter * 10.7639;
+            const squareYard = squareMeter * 1.19599;
+            const squareInch = squareMeter * 1550;
+            const squareMile = squareKilometer * 0.386102;
+            const hectare = squareMeter / 10000;
+            const acre = squareMeter * 0.000247105;
+
+            squareMeterInput.value = squareMeter.toFixed(2);
+            squareFootInput.value = squareFoot.toFixed(2);
+            squareYardInput.value = squareYard.toFixed(2);
+            squareInchInput.value = squareInch.toFixed(2);
+            squareMileInput.value = squareMile.toFixed(6);
+            hectareInput.value = hectare.toFixed(6);
+            acreInput.value = acre.toFixed(6);
+        }
+
+        function convertHectareToOthers() {
+            const hectare = parseFloat(hectareInput.value);
+            if (isNaN(hectare)) {
+                clearInputs();
+                return;
+            }
+            const squareMeter = hectare * 10000;
+            const squareFoot = squareMeter * 10.7639;
+            const squareYard = squareMeter * 1.19599;
+            const squareInch = squareMeter * 1550;
+            const squareMile = hectare * 0.00386102;
+            const squareKilometer = squareMeter / 1e+6;
+            const acre = squareMeter * 0.000247105;
+
+            squareMeterInput.value = squareMeter.toFixed(2);
+            squareFootInput.value = squareFoot.toFixed(2);
+            squareYardInput.value = squareYard.toFixed(2);
+            squareInchInput.value = squareInch.toFixed(2);
+            squareMileInput.value = squareMile.toFixed(6);
+            squareKilometerInput.value = squareKilometer.toFixed(6);
+            acreInput.value = acre.toFixed(6);
+        }
+
+        function convertAcreToOthers() {
+            const acre = parseFloat(acreInput.value);
+            if (isNaN(acre)) {
+                clearInputs();
+                return;
+            }
+            const squareMeter = acre / 0.000247105;
+            const squareFoot = squareMeter * 10.7639;
+            const squareYard = squareMeter * 1.19599;
+            const squareInch = squareMeter * 1550;
+            const squareMile = acre * 0.0015625;
+            const squareKilometer = squareMeter / 1e+6;
+            const hectare = squareMeter / 10000;
+
+            squareMeterInput.value = squareMeter.toFixed(2);
+            squareFootInput.value = squareFoot.toFixed(2);
+            squareYardInput.value = squareYard.toFixed(2);
+            squareInchInput.value = squareInch.toFixed(2);
+            squareMileInput.value = squareMile.toFixed(6);
+            squareKilometerInput.value = squareKilometer.toFixed(6);
+            hectareInput.value = hectare.toFixed(6);
+        }
+
+        function clearInputs() {
+            squareMeterInput.value = '';
+            squareFootInput.value = '';
+            squareYardInput.value = '';
+            squareInchInput.value = '';
+            squareMileInput.value = '';
+            squareKilometerInput.value = '';
+            hectareInput.value = '';
+            acreInput.value = '';
+        }
+
+        squareMeterInput.addEventListener('input', convertSquareMeterToOthers);
+        squareFootInput.addEventListener('input', convertSquareFootToOthers);
+        squareYardInput.addEventListener('input', convertSquareYardToOthers);
+        squareInchInput.addEventListener('input', convertSquareInchToOthers);
+        squareMileInput.addEventListener('input', convertSquareMileToOthers);
+        squareKilometerInput.addEventListener('input', convertSquareKilometerToOthers);
+        hectareInput.addEventListener('input', convertHectareToOthers);
+        acreInput.addEventListener('input', convertAcreToOthers);
+    </script>
+</body>
+
+</html>

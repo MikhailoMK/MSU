@@ -1,0 +1,64 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+template <class T>
+class SUM
+{
+private:
+    T* A;
+    size_t size_{};
+    size_t capacity_{};
+
+    void Add()
+    {
+        capacity_ *= 2;
+        T* temp = A;
+        A = new T[capacity_];
+        for (int i = 0; i < size_; i++) A[i] = temp[i];
+        delete[] temp;
+    }
+public:
+    SUM()
+    {
+        A = new T[1];
+        capacity_ = 1;
+    }
+
+    void PushBack(T& value)
+    {
+        if (size_ >= capacity_) Add();
+        A[size_++] = value;
+    }
+    T FindSum()
+    {
+        T ans = 0;
+        for (int i = 0; i < size_; i++) {
+            ans += A[i];
+        }
+        return ans;
+    }
+};
+
+int main()
+{
+    SUM<int> A;
+    SUM<double> B;
+    SUM<char> C;
+
+    int n = 10, x;
+    double x1;
+
+    for (int  i = 0; i < n; i++) {
+        cin >> x;
+        A.PushBack(x);
+    }
+    for (int  i = 0; i < n; i++) {
+        cin >> x1;
+        B.PushBack(x1);
+    }
+
+    int IntAns = A.FindSum();
+    double DoubleAns = B.FindSum();
+    cout << IntAns << endl << DoubleAns;
+
+}

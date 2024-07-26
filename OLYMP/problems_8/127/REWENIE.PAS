@@ -1,0 +1,31 @@
+var a:array[1..100]of longint;
+    i,n,m,x,y,z,o,o1,o2,o3:longint;
+    t:text;
+begin
+assign(t,'input.txt');
+reset(t);
+read(t,n);
+for i:=1 to n do
+  read(t,a[i]);
+close(t);
+
+m:=a[1]*a[2]*a[3];
+o1:=a[1];
+o2:=a[2];
+o3:=a[3];
+for x:=1 to n do
+  for y:=x+1 to n do
+    for z:=y+1 to n do
+      if a[x]*a[y]*a[z]>m then
+        begin
+          m:=a[x]*a[y]*a[z];
+          o1:=a[x];
+          o2:=a[y];
+          o3:=a[z];
+        end;
+
+assign(t,'output.txt');
+rewrite(t);
+writeln(t,o1,' ',o2,' ',o3);
+close(t);
+end.

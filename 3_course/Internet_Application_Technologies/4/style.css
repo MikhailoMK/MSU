@@ -1,0 +1,16 @@
+@font-face {
+  font-family: "w3";
+  src: url("fonts/masonchronicles.ttf");
+}
+
+body, p, button, input, label, .form-group select {
+  font-family: "w3", sans-serif;
+}
+
+.converter{
+  background-color: rgba(0, 0, 0, 0.6);
+  margin: 10px auto;
+  border-radius: 25px;
+  box-shadow: 0px 0px 10px 0px black;
+  border: none;
+}

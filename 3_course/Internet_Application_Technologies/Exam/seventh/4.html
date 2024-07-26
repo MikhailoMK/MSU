@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Определение знака зодиака</title>
+    <script>
+        function determineZodiacSign() {
+            var zodiacSigns = ["Овен", "Телец", "Близнецы", "Рак", "Лев", "Дева", "Весы", "Скорпион", "Стрелец", "Козерог", "Водолей", "Рыбы"];
+            
+            var zodiacDates = [
+                new Date(0, 2, 21), // Овен
+                new Date(0, 3, 21), // Телец
+                new Date(0, 4, 21), // Близнецы
+                new Date(0, 5, 22), // Рак
+                new Date(0, 6, 23), // Лев
+                new Date(0, 7, 23), // Дева
+                new Date(0, 8, 23), // Весы
+                new Date(0, 9, 24), // Скорпион
+                new Date(0, 10, 23), // Стрелец
+                new Date(0, 11, 22), // Козерог
+                new Date(0, 0, 20), // Водолей
+                new Date(0, 1, 19) // Рыбы
+            ];
+            
+            var now = new Date();
+            var zodiacSign = "";
+            for (var i = 0; i < zodiacDates.length; i++) {
+                if ((now.getMonth() == zodiacDates[i].getMonth() && now.getDate() >= zodiacDates[i].getDate()) || now.getMonth() > zodiacDates[i].getMonth()) {
+                    zodiacSign = zodiacSigns[i];
+                }
+            }
+            
+            document.getElementById('result').innerHTML = "Текущий знак зодиака: " + zodiacSign;
+        }
+    </script>
+</head>
+<body>
+    <h1>Определение знака зодиака</h1>
+    <button onclick="determineZodiacSign()">Определить</button>
+    <p id="result"></p>
+</body>
+</html>

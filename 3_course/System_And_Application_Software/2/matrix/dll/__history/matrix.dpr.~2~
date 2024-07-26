@@ -1,0 +1,327 @@
+library matrix;
+
+{ Important note about DLL memory management: ShareMem must be the
+  first unit in your library's USES clause AND your project's (select
+  Project-View Source) USES clause if your DLL exports any procedures or
+  functions that pass strings as parameters or function results. This
+  applies to all strings passed to and from your DLL--even those that
+  are nested in records and classes. ShareMem is the interface unit to
+  the BORLNDMM.DLL shared memory manager, which must be deployed along
+  with your DLL. To avoid using BORLNDMM.DLL, pass string information
+  using PChar or ShortString parameters.
+
+  Important note about VCL usage: when this DLL will be implicitly
+  loaded and this DLL uses TWicImage / TImageCollection created in
+  any unit initialization section, then Vcl.WicImageInit must be
+  included into your library's USES clause. }
+
+uses
+  System.SysUtils,
+  System.Classes,
+  Math;
+
+{$R *.res}
+type
+  mm=array[1..200,1..200] of integer;
+ // mmd=array[1..200,1..200] of real;
+
+function SortMatrixRow(A: mm; size:integer; kind: Integer): mm; stdcall;
+var
+  i, j,t,row,temp: Integer;
+begin
+t:=1;
+  if kind=1 then t:=0;
+  for row := 1 to size do
+  begin
+    for i := 1 to size-1 do
+    begin
+      for j := 1 to size-1 do
+        begin
+          if A[row,j+t]>A[row,j+1-t] then
+          begin
+            temp:=A[row,j+t];
+            A[row,j+t]:=A[row,j+1-t];
+            A[row,j+1-t]:=temp;
+          end;
+        end;
+    end;
+  end;
+
+  Result:=A;
+end;
+
+function SortMatrixCol(A: mm; size:integer; kind: Integer): mm; stdcall;
+var
+  i, j,t,col,temp: Integer;
+begin
+t:=1;
+  if kind=1 then t:=0;
+  for col := 1 to size do
+  begin
+    for i := 1 to size-1 do
+    begin
+      for j := 1 to size-1 do
+        begin
+          if A[j+t,col]>A[j+1-t,col] then
+          begin
+            temp:=A[j+t,col];
+            A[j+t,col]:=A[j+1-t,col];
+            A[j+1-t,col]:=temp;
+          end;
+        end;
+    end;
+  end;
+
+  Result:=A;
+end;
+
+function Sign1(j: Integer): Integer;
+begin
+  if j > 0 then
+    Result := 1
+  else if j < 0 then
+    Result := -1
+  else
+    Result := 0;
+end;
+
+type mmd=array of array of Double;
+{function Determinant(A: mmd; n: Integer): Double;
+var
+  i, j, k,l: Integer;
+  det: Double;
+  temp: array of array of Double;
+begin
+  det := 1;
+  SetLength(temp, n, n);
+  for i := 1 to n do
+    for j := 1 to n do
+      temp[i - 1][j - 1] := A[i][j];
+  for i := 1 to n - 1 do
+    for j := i + 1 to n do
+    begin
+      while temp[i - 1][i - 1] = 0 do
+      begin
+        for k := i + 1 to n do
+        begin
+          if temp[k - 1][i - 1] <> 0 then
+          begin
+            for l := 1 to n do
+            begin
+              temp[i - 1][l - 1] := temp[i - 1][l - 1] + temp[k - 1][l - 1];
+            end;
+            break;
+          end;
+        end;
+      end;
+      det := det * temp[i - 1][i - 1];
+      for k := i + 1 to n do
+      begin
+        for l := i + 1 to n do
+        begin
+          temp[k - 1][l - 1] := temp[k - 1][l - 1] - temp[k - 1][i - 1] / temp[i - 1][i - 1] * temp[i - 1][l - 1];
+        end;
+      end;
+    end;
+  det := det * temp[n - 1][n - 1];
+  Result := det;
+end;
+         }
+
+type mmdinamic = array of array of integer;
+function Determinant(matrix: mmdinamic; n: integer): double;
+var
+  i, j, k, sign: integer;
+  det: double;
+  temp: mmdinamic;
+begin
+  det := 0;
+  sign := 1;
+  if n = 1 then
+    det := matrix[1][1]
+  else
+  begin
+    for i := 1 to n do
+    begin
+      SetLength(temp, n - 1, n - 1);
+      for j := 2 to n do
+      begin
+        for k := 1 to n do
+        begin
+          if k < i then
+            temp[j - 1][k] := matrix[j][k]
+          else if k > i then
+            temp[j - 1][k - 1] := matrix[j][k];
+        end;
+      end;
+      det := det + sign * matrix[1][i] * Determinant(temp, n - 1);
+      sign := -sign;
+    end;
+  end;
+  Result := det;
+end;
+
+
+type mmdynamic=array of array of Double;
+function RGetMinor(mrx, minor: mmd; size, row, col: Integer): mmd;
+var
+  minorRow, minorCol, i, j: Integer;
+begin
+  minorRow := 0;
+  for i := 0 to size - 1 do
+  begin
+    if i <> row then
+    begin
+      minorCol := 0;
+      for j := 0 to size - 1 do
+      begin
+        if j <> col then
+        begin
+          minor[minorRow * (size - 1) + minorCol] := mrx[i * size + j];
+          Inc(minorCol);
+        end;
+      end;
+      Inc(minorRow);
+    end;
+  end;
+  Result := minor;
+end;
+
+type mme = array[1..200,1..200] of Extended;
+{function InverseMatrix(mrx:mm; size: Integer): mmd;StdCall;
+var
+  invMatrix, minor: mm;
+  det, minorDet: real;
+  sign: real;
+  i, j, minorSize: Integer;
+begin
+  det := Determinant(mrx, size);
+
+  sign := 1;
+
+  for i := 1 to size do
+  begin
+    for j := 1 to size do
+    begin
+      minorSize := size;
+      minor := RGetMinor(mrx, minor, size, i, j);
+      minorDet := Determinant(minor, minorSize);
+      invMatrix[j,i] :=(sign * minorDet / det);
+      sign := -sign;
+    end;
+
+    if size mod 2 = 0 then
+      sign := -sign;
+  end;
+
+  Result := invMatrix;
+end;
+ }
+
+
+function TransposeMatrix(matrix: mm; size: Integer):mm; stdcall;
+var
+  i, j, temp: Integer;
+begin
+  for i := 1 to size do
+  begin
+    for j := i + 1 to size do
+    begin
+      temp := matrix[i][j];
+      matrix[i][j] := matrix[j][i];
+      matrix[j][i] := temp;
+    end;
+  end;
+  result:=matrix;
+end;
+
+function AddMatrices(matrix1, matrix2: mm; size: Integer):mm; stdcall;
+var
+  i, j: Integer;
+begin
+  for i := 1 to size do
+  begin
+    for j := 1 to size do
+    begin
+      matrix1[i][j] := matrix1[i][j] + matrix2[i][j];
+    end;
+  end;
+  result:=matrix1;
+end;
+
+function SubtractMatrices(matrix1, matrix2: mm; size: Integer):mm; stdcall;
+var
+  i, j: Integer;
+begin
+  for i := 1 to size do
+  begin
+    for j := 1 to size do
+    begin
+      matrix1[i][j] := matrix1[i][j] - matrix2[i][j];
+    end;
+  end;
+  result:=matrix1;
+end;
+
+function MultiplyMatrices(matrix1, matrix2:mm; size: Integer):mm;stdcall;
+var
+  i, j, k: Integer;
+  result1:mm;
+begin
+  for i := 1 to size do
+  begin
+    for j := 1 to size do
+    begin
+      result1[i][j] := 0;
+      for k := 1 to size do
+      begin
+        result1[i][j] := result1[i][j] + matrix1[i][k] * matrix2[k][j];
+      end;
+    end;
+  end;
+  result:=result1;
+end;
+
+ function Conjugate(x: string): string;
+var
+  i: Integer;
+begin
+  Result := '';
+  for i := 1 to Length(x) do
+    if x[i] = '+' then
+      Result := Result + '-'
+    else if x[i] = '-' then
+      Result := Result + '+'
+    else
+      Result := Result + x[i];
+end;
+
+type
+  mmc=array[1..200,1..200] of string;
+function ConjugateMatrix(matrix:mmc; size:integer):mmc;stdcall;
+begin
+var
+  i, j: Integer;
+begin
+  for i := 1 to size do
+    for j := 1 to size do
+      matrix[i][j] := Conjugate(matrix[i][j]);
+end;
+result:=matrix;
+end;
+
+function SumByRow(matrix:mm; size:integer;row: integer): integer;stdcall;
+begin
+    var i,j: Integer;
+    var sum:integer;
+    sum:=0;
+    for i :=1  to size do
+      begin
+         sum:=sum+matrix[row,i];
+      end;
+    result:=sum;
+
+end;
+exports SortMatrixRow,ConjugateMatrix,MultiplyMatrices,SubtractMatrices,AddMatrices,SortMatrixCol,Determinant,TransposeMatrix, SumByRow;
+begin
+end.

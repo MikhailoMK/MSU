@@ -1,0 +1,78 @@
+Sub Text_Analyze()    Dim doc As Document
+    Dim text As String    Dim totalChars As Long
+    Dim upperCaseCount As Long    Dim lowerCaseCount As Long
+    Dim latinCount As Long    Dim russianCount As Long
+    Dim digitCount As Long    Dim punctuationCount As Long
+    Dim wordCount As Long    Dim sentenceCount As Long
+    Dim paragraphCount As Long    Dim i As Long
+    Set doc = ActiveDocument
+    text = doc.Range.text
+    totalChars = Len(text)
+    upperCaseCount = CountCapitalLetters(text)    lowerCaseCount = CountLowerCaseLetters(text)
+    latinCount = CountLatinLetters(text)    russianCount = CountRussianLetters(text)
+    digitCount = CountDigits(text)    punctuationCount = CountPunctuation(text)
+    wordCount = CountWords(ActiveDocument)    sentenceCount = doc.Sentences.count
+    paragraphCount = doc.Paragraphs.count
+    MsgBox "Общее количество символов: " & totalChars & vbCrLf & _
+           "Количество заглавных букв: " & upperCaseCount & vbCrLf & _           "Количество строчных букв: " & lowerCaseCount & vbCrLf & _
+           "Количество латинских букв: " & latinCount & vbCrLf & _           "Количество русских букв: " & russianCount & vbCrLf & _
+           "Количество цифр: " & digitCount & vbCrLf & _           "Количество знаков препинания: " & punctuationCount & vbCrLf & _
+           "Количество слов: " & wordCount & vbCrLf & _           "Количество предложений: " & sentenceCount & vbCrLf & _
+           "Количество абзацев: " & paragraphCount
+End Sub
+Function CountCapitalLetters(text As String) As Long
+    Dim count As Long    Dim i As Long
+    For i = 1 To Len(text)
+        If AscW(Mid(text, i, 1)) >= 65 And AscW(Mid(text, i, 1)) <= 90 Then            count = count + 1
+        ElseIf AscW(Mid(text, i, 1)) >= 1040 And AscW(Mid(text, i, 1)) <= 1071 Then            count = count + 1
+        End If    Next i
+    CountCapitalLetters = count
+End Function
+Function CountLowerCaseLetters(text As String) As Long    Dim count As Long
+    Dim i As Long
+    For i = 1 To Len(text)        If AscW(Mid(text, i, 1)) >= 97 And AscW(Mid(text, i, 1)) <= 122 Then
+            count = count + 1        ElseIf AscW(Mid(text, i, 1)) >= 1072 And AscW(Mid(text, i, 1)) <= 1103 Then
+            count = count + 1        End If
+    Next i
+    CountLowerCaseLetters = countEnd Function
+Function CountLatinLetters(text As String) As Long
+    Dim count As Long    Dim i As Long
+    For i = 1 To Len(text)
+        If (AscW(Mid(text, i, 1)) >= 65 And AscW(Mid(text, i, 1)) <= 90) Or _           (AscW(Mid(text, i, 1)) >= 97 And AscW(Mid(text, i, 1)) <= 122) Then
+            count = count + 1        End If
+    Next i
+    CountLatinLetters = countEnd Function
+Function CountRussianLetters(text As String) As Long
+    Dim count As Long    Dim i As Long
+    For i = 1 To Len(text)
+        If (AscW(Mid(text, i, 1)) >= 1040 And AscW(Mid(text, i, 1)) <= 1071) Or _           (AscW(Mid(text, i, 1)) >= 1072 And AscW(Mid(text, i, 1)) <= 1103) Then
+            count = count + 1        End If
+    Next i
+    CountRussianLetters = countEnd Function
+
+Function CountDigits(text As String) As Long    Dim count As Long
+    Dim i As Long
+    For i = 1 To Len(text)        If IsNumeric(Mid(text, i, 1)) Then
+            count = count + 1        End If
+    Next i
+    CountDigits = countEnd Function
+Function CountPunctuation(text As String) As Long
+    Dim count As Long    Dim i As Long
+    Dim punctuation As String    punctuation = "!@#$%^&*()_+={[}]|\:;""'<,>.?/…"
+    For i = 1 To Len(text)
+        If InStr(punctuation, Mid(text, i, 1)) > 0 Then            count = count + 1
+        End If    Next i
+    CountPunctuation = count
+End Function
+
+Function CountWords(ByVal doc As Document) As Long    Dim wordCount As Long
+    Dim rng As Range    Dim words() As String
+    Dim i As Long
+    Set rng = doc.Content
+    wordCount = 0
+    words = Split(rng.text, " ")
+    For i = LBound(words) To UBound(words)        If Len(Trim(words(i))) > 0 Then
+            wordCount = wordCount + 1        End If
+    Next i
+    CountWords = wordCount
+End Function

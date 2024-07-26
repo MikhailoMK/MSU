@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        body {
+            background-image: url('img/back.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-color: black;
+            color: white;
+            text-align: center;
+        }
+        
+        .converter {
+            width: 400px;
+            height: 650px;
+            padding: 20px;
+        }
+        
+        label {
+            grid-column-start: 1;
+            text-align: right;
+            margin-right: 10px;
+            font-size: 25px;
+            font-weight: 700;
+            line-height: 35px;
+            color: white;
+            margin: auto 0;
+        }
+        
+        input {
+            width: 400px;
+            height: 35px;
+            text-align: right;
+            margin-bottom: 10px;
+            font-size: 30px;
+            border-radius: 3px;
+            color: black;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="converter">  
+        <label style="grid-row-start: 1;" for="mile">Мили</label>
+        <input style="grid-row-start: 1;" type="text" id="mile" />
+        <label style="grid-row-start: 2;" for="kilometer">Километры</label>
+        <input style="grid-row-start: 2;" type="text" id="kilometer" />
+        <label style="grid-row-start: 3;" for="meter">Метры</label>
+        <input style="grid-row-start: 3;" type="text" id="meter" />
+        <label style="grid-row-start: 4;" for="yard">Ярды</label>
+        <input style="grid-row-start: 4;" type="text" id="yard" />
+        <label style="grid-row-start: 5;" for="foot">Футы</label>
+        <input style="grid-row-start: 5;" type="text" id="foot" />
+        <label style="grid-row-start: 6;" for="inch">Дюймы</label>
+        <input style="grid-row-start: 6;" type="text" id="inch" />
+        <label style="grid-row-start: 7;" for="centimeter">Сантиметры</label>
+        <input style="grid-row-start: 7;" type="text" id="centimeter" />
+        <label style="grid-row-start: 8;" for="millimeter">Миллиметры</label>
+        <input style="grid-row-start: 8;" type="text" id="millimeter" />
+    </div>
+
+    <script>
+        const mileInput = document.getElementById('mile');
+        const kilometerInput = document.getElementById('kilometer');
+        const meterInput = document.getElementById('meter');
+        const yardInput = document.getElementById('yard');
+        const footInput = document.getElementById('foot');
+        const inchInput = document.getElementById('inch');
+        const centimeterInput = document.getElementById('centimeter');
+        const millimeterInput = document.getElementById('millimeter');
+
+        function convertMeterToOthers() {
+            const meter = parseFloat(meterInput.value);
+            if (isNaN(meter)) {
+                clearInputs();
+                return;
+            }
+            const foot = meter * 3.28084;
+            const yard = meter * 1.09361;
+            const inch = meter * 39.3701;
+            const mile = meter * 0.000621371;
+            const kilometer = meter / 1000;
+            const centimeter = meter * 100;
+            const millimeter = meter * 1000;
+
+            footInput.value = foot.toFixed(2);
+            yardInput.value = yard.toFixed(2);
+            inchInput.value = inch.toFixed(2);
+            mileInput.value = mile.toFixed(6);
+            kilometerInput.value = kilometer.toFixed(6);
+            centimeterInput.value = centimeter.toFixed(2);
+            millimeterInput.value = millimeter.toFixed(2);
+        }
+
+        function convertFootToOthers() {
+            const foot = parseFloat(footInput.value);
+            if (isNaN(foot)) {
+                clearInputs();
+                return;
+            }
+            const meter = foot / 3.28084;
+            const yard = foot / 3;
+            const inch = foot * 12;
+            const mile = foot / 5280;
+            const kilometer = meter / 1000;
+            const centimeter = meter * 100;
+            const millimeter = meter * 1000;
+
+            meterInput.value = meter.toFixed(2);
+            yardInput.value = yard.toFixed(2);
+            inchInput.value = inch.toFixed(2);
+            mileInput.value = mile.toFixed(6);
+            kilometerInput.value = kilometer.toFixed(6);
+            centimeterInput.value = centimeter.toFixed(2);
+            millimeterInput.value = millimeter.toFixed(2);
+        }
+
+        function convertYardToOthers() {
+            const yard = parseFloat(yardInput.value);
+            if (isNaN(yard)) {
+                clearInputs();
+                return;
+            }
+            const meter = yard / 1.09361;
+            const foot = yard * 3;
+            const inch = yard * 36;
+            const mile = yard / 1760;
+            const kilometer = meter / 1000;
+            const centimeter = meter * 100;
+            const millimeter = meter * 1000;
+
+            meterInput.value = meter.toFixed(2);
+            footInput.value = foot.toFixed(2);
+            inchInput.value = inch.toFixed(2);
+            mileInput.value = mile.toFixed(6);
+            kilometerInput.value = kilometer.toFixed(6);
+            centimeterInput.value = centimeter.toFixed(2);
+            millimeterInput.value = millimeter.toFixed(2);
+        }
+
+        function convertInchToOthers() {
+            const inch = parseFloat(inchInput.value);
+            if (isNaN(inch)) {
+                clearInputs();
+                return;
+            }
+            const meter = inch / 39.3701;
+            const foot = inch / 12;
+            const yard = inch / 36;
+            const mile = inch / 63360;
+            const kilometer = meter / 1000;
+            const centimeter = meter * 100;
+            const millimeter = meter * 1000;
+
+            meterInput.value = meter.toFixed(2);
+            footInput.value = foot.toFixed(2);
+            yardInput.value = yard.toFixed(2);
+            mileInput.value = mile.toFixed(6);
+            kilometerInput.value = kilometer.toFixed(6);
+            centimeterInput.value = centimeter.toFixed(2);
+            millimeterInput.value = millimeter.toFixed(2);
+        }
+
+        function convertMileToOthers() {
+            const mile = parseFloat(mileInput.value);
+            if (isNaN(mile)) {
+                clearInputs();
+                return;
+            }
+            const meter = mile / 0.000621371;
+            const foot = mile * 5280;
+            const yard = mile * 1760;
+            const inch = mile * 63360;
+            const kilometer = meter / 1000;
+            const centimeter = meter * 100;
+            const millimeter = meter * 1000;
+
+            meterInput.value = meter.toFixed(2);
+            footInput.value = foot.toFixed(2);
+            yardInput.value = yard.toFixed(2);
+            inchInput.value = inch.toFixed(2);
+            kilometerInput.value = kilometer.toFixed(6);
+            centimeterInput.value = centimeter.toFixed(2);
+            millimeterInput.value = millimeter.toFixed(2);
+        }
+
+        function convertKilometerToOthers() {
+            const kilometer = parseFloat(kilometerInput.value);
+            if (isNaN(kilometer)) {
+                clearInputs();
+                return;
+            }
+            const meter = kilometer * 1000;
+            const foot = meter * 3.28084;
+            const yard = meter * 1.09361;
+            const inch = meter * 39.3701;
+            const mile = meter * 0.000621371;
+            const centimeter = meter * 100;
+            const millimeter = meter * 1000;
+
+            meterInput.value = meter.toFixed(2);
+            footInput.value = foot.toFixed(2);
+            yardInput.value = yard.toFixed(2);
+            inchInput.value = inch.toFixed(2);
+            mileInput.value = mile.toFixed(6);
+            centimeterInput.value = centimeter.toFixed(2);
+            millimeterInput.value = millimeter.toFixed(2);
+        }
+
+        function convertCentimeterToOthers() {
+            const centimeter = parseFloat(centimeterInput.value);
+            if (isNaN(centimeter)) {
+                clearInputs();
+                return;
+            }
+            const meter = centimeter / 100;
+            const foot = meter * 3.28084;
+            const yard = meter * 1.09361;
+            const inch = meter * 39.3701;
+            const mile = meter * 0.000621371;
+            const kilometer = meter / 1000;
+            const millimeter = meter * 1000;
+
+            meterInput.value = meter.toFixed(2);
+            footInput.value = foot.toFixed(2);
+            yardInput.value = yard.toFixed(2);
+            inchInput.value = inch.toFixed(2);
+            mileInput.value = mile.toFixed(6);
+            kilometerInput.value = kilometer.toFixed(6);
+            millimeterInput.value = millimeter.toFixed(2);
+        }
+
+        function convertMillimeterToOthers() {
+            const millimeter = parseFloat(millimeterInput.value);
+            if (isNaN(millimeter)) {
+                clearInputs();
+                return;
+            }
+            const meter = millimeter / 1000;
+            const foot = meter * 3.28084;
+            const yard = meter * 1.09361;
+            const inch = meter * 39.3701;
+            const mile = meter * 0.000621371;
+            const kilometer = meter / 1000;
+            const centimeter = millimeter / 10;
+
+            meterInput.value = meter.toFixed(2);
+            footInput.value = foot.toFixed(2);
+            yardInput.value = yard.toFixed(2);
+            inchInput.value = inch.toFixed(2);
+            mileInput.value = mile.toFixed(6);
+            kilometerInput.value = kilometer.toFixed(6);
+            centimeterInput.value = centimeter.toFixed(2);
+        }
+
+        function clearInputs() {
+            meterInput.value = '';
+            footInput.value = '';
+            yardInput.value = '';
+            inchInput.value = '';
+            mileInput.value = '';
+            kilometerInput.value = '';
+            centimeterInput.value = '';
+            millimeterInput.value = '';
+        }
+
+        meterInput.addEventListener('input', convertMeterToOthers);
+        footInput.addEventListener('input', convertFootToOthers);
+        yardInput.addEventListener('input', convertYardToOthers);
+        inchInput.addEventListener('input', convertInchToOthers);
+        mileInput.addEventListener('input', convertMileToOthers);
+        kilometerInput.addEventListener('input', convertKilometerToOthers);
+        centimeterInput.addEventListener('input', convertCentimeterToOthers);
+        millimeterInput.addEventListener('input', convertMillimeterToOthers);
+    </script>
+</body>
+
+</html>

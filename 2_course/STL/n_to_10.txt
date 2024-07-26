@@ -1,0 +1,22 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+template <typename T>
+int func (T num, int p) {
+    int n = 0;
+    for (int i = 0, j = num.length()- 1; i < num.length(); i++, j--){
+        n += (num[i] - 48) * pow(p, j);
+    }
+    return n;
+}
+
+int main()
+{
+    int p;
+    string a;
+    while (true) {
+        cin >> p;
+        cin >> a;
+        cout << func(a, p) << endl << endl;
+    }
+}

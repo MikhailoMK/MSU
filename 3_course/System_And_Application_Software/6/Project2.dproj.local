@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2024/01/18 14:22:30.000.101,=C:\Users\ASUS\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2024/01/22 00:47:50.000.792,=C:\Users\ASUS\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2024/01/22 00:48:37.000.002,C:\Системное и ППО\6\Unit2.dfm=C:\Users\ASUS\Documents\Embarcadero\Studio\Projects\Unit2.dfm</Transaction>
+    <Transaction>2024/01/22 00:48:37.000.002,C:\Системное и ППО\6\Unit2.pas=C:\Users\ASUS\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2024/01/22 00:48:39.000.397,C:\Системное и ППО\6\Project2.dproj=C:\Users\ASUS\Documents\Embarcadero\Studio\Projects\Project2.dproj</Transaction>
+  </Transactions>
+</BorlandProject>

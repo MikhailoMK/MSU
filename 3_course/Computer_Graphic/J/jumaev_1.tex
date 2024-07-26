@@ -1,0 +1,91 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\textwidth=18cm
+\oddsidemargin=-1cm
+\evensidemargin=-1cm
+\topmargin=-3cm
+\textheight=32cm
+\linespread{0.8}
+
+
+\begin{document}
+	\Large	
+	\bf УДК 517.956\\
+	\begin{center}
+		\bfИсследования условий совместности одной переопределенной системы\\
+		дифференциальных уравнений\\
+	\end{center}
+	
+	\noindent\bf Шарипов Б., (Душанбе, к. ф.-м.-н., доцент кафедры высшей математики ТГФЭУ)\\
+	\bf{Джумаев Э.Х. (к. ф.-м.-н., доцент кафедры математики и естественных наук филиала МГУ имени М.В. Ломоносова, в г. Душанбе)}\\
+	
+	\vspace{0.5cm}
+	
+	\bfАннотация: \it Предлагаемое сообщение посвящено исследованию условий совместности одной переопределенной системы дифференциальных уравнений. В случае тождественного выполнения условий совместности, многообразия решений системы выражается определённой формулой, через произвольную аналитическую функцию.\\
+	
+	\bfКлючевые слова: \it аналитическая функция, непрерывные решения системы, частные решения, особые решения, совместность системы, условия совместности.\\
+	
+	\begin{center}
+		\textbf{Investigations of the jointness conditions of one overdetermined system of differential equations}\\
+	\end{center}
+	
+	\bf Abstract: \it The proposed communication is devoted to the study of the jointness conditions of one overdetermined system of differential equations. In the case of identical fulfillment of the coexistence conditions, the manifold of solutions of the system is expressed by a certain formula, through an arbitrary analytic function.\\
+	
+	\bf Keywords: \it analytic function, continuous solutions of the system, partial solutions, special solutions, jointness of the system, jointness conditions.\\
+	
+	\vspace{0.5cm}
+	
+	\rm Рассмотрим переопределённую обобщённую систему Коши-Римана (п.о.с. К.-Р.) вида
+	
+	
+	\begin{equation} \tag{1}
+		\begin{cases} 
+			\frac{\partial W}{\partial\overline{z}_1} = a(z, \overline{z}) \cdot W, \frac{\partial W}{\partial\overline{z}_k} = \frac{b_k(z, \overline{z})}{(\overline{z}_1 - \overline{z}_1 ^{(0)}) ^ m}W + \frac{h_k(z, \overline{z})}{(\overline{z}_1 - \overline{z}_1 ^{(0)}) ^ m} W^k, (k=2,...,n - 1)\\
+			\\
+			\frac{\partial W}{\partial\overline{z}_1} = \frac{f(z, \overline{z}; W)}{(\overline{z}_1 - \overline{z}_1 ^{(0)}) ^ m}, z=(z_1,z_2,...,z_n),\overline{z}=(\overline{z}_1,\overline{z}_2,...,\overline{z}_n)
+		\end{cases}
+	\end{equation}
+	
+	
+	\noindent где функции $a, b_k, h_k, f \in RA(\overline{\prod}_{2n}), W \in RA(\prod_{2n+1}^{(0)}), f$ - аналитическая по переменной $W$ функция, $k,m$-целые положительные числа.\\
+	
+	Целью настоящей работы является исследование системы (1) на выявление случаев при которых условия совместности системы выполняются тождественно и многообразия решений системы находятся в явном виде. Для существования непрерывного решения системы (1), во всей заданной области, по аналогии с [4-6], будем требовать ограниченность производных от неизвестной функции $W$ по переменным $\overline{z}_1,\overline{z}_2,...,\overline{z}_n$  и выполнение условия обобщенной леммы Л.Г.Михайлова [2-3]:\\
+	
+	\vspace{6cm}
+	
+	\bf Лемма. \it Пусть в системе дифференциальных уравнений (1) функции $a, b_k, h_k, f \in RA(\overline{\prod}_{2n}), W \in RA(\prod_{2n+1}^{(0)})$; неизвестная функция $W$ и ее частные производные по каждой переменной в данной области являются ограниченными; существуют и равны нулю пределы\\
+	
+	$\lim\limits_{{\overline{z}_1 \to \overline{z}_1 ^{(0)}}} \left((\overline{z}_1 - \overline{z}_1 ^{(0)})^n \cdot \frac{\partial W}{\partial\overline{z}_{k+1}}\right) = 0, (k=1,2,...).$ \\
+	
+	\it Тогда из системы (1) находятся такие функции, $W=h_1(z, \overline{z}_2, \overline{z}_3, ...)$, $W=h_2(z, \overline{z}_2, \overline{z}_3, ...)$, ... $z=(z_1, z_2, ..., z_n)$, которые будут частными, либо особыми  решениями данной системы (1). \\
+	
+	\rm Дальнейшие исследования показали, что если функция $f(z, \sigma; W)$  представима в виде
+
+	\begin{align} \tag{2}
+		f(z, \sigma; W) = (\sigma_1 - \sigma_1 ^{(0)})^n \cdot \left((1-k)\frac{\partial\omega}{\partial\sigma}W + \frac{1}{1-k} \frac{\partial\Omega}{\partial\sigma_j} \right) \cdot exp[(1-k)\omega(z, \sigma)]W^k +\nonumber \\
+		+ \frac{(\sigma_1 - \sigma_1 ^{(0)}) ^n}{1-k}F\left[z,\tilde{\sigma};exp\{(k-1)\omega(z, \sigma)\}W^{1-k} - \Omega(z, \sigma)\right]exp[(1-k)\omega(z, \sigma)]W^k \nonumber
+	\end{align}
+	то условия совместности системы (1) выполняется тождественно. Тогда многообразию решений системы (1) содержащую одну произвольную аналитическую функцию можно представить в виде
+	
+	\begin{equation} \tag{3}
+		W(z, \overline{z}) = exp\left(\omega_1(z, \overline{z})\right) \cdot \left[V(z, \overline{z}) + (1-k)\Omega(z, \tilde{\overline{z}};\Phi(z))\right]^{1/(1-l)}, \overline{z}=(\overline{z}_2, \overline{z}_3,..., \overline{z}_n).
+	\end{equation}
+	Такое решение является непрерывной и периодической, за счёт присутствия в ней показательной функции, во всей данной области. \\
+	
+	\bfТеорема. \itПусть в п.о.с. К.-Р. (1) функции, $a, b_k, h_k, f \in RA(\overline{\prod}_{2n}), W \in RA(\prod_{2n+1}^{(0)}) m \geq 0$ и имеют место условия леммы,  а также пусть условия совместности этой системы выполняются, но не тождественно, тогда находятся некоторые частные, либо особые решения  данной системы. Для того, чтобы условия совместности системы (1) выполнялись тождественно, необходимо и достаточно, чтобы функция f(…) имела вид (2). Тогда система дифференциальных уравнений (1) разрешима, и многообразия ее решений определятся формулой вида (3), причём непрерывной во всей области исследования. 
+	
+	\bf Литература\\
+	\bf1. \rm Векуа И.Н. Обобщённые аналитические функции.- М:, Гл. РФ-МЛ.,1988,-512 с. \\
+	\bf2. \rm Михайлов Л.Г. Новый класс особых интегральных уравнений и его применения к дифференциальным уравнениям с сингулярными коэффициентами. Душанбе, 1963, -268 с.\\
+	\bf3. \rm Михайлов Л.Г. - К сингулярной теории полных дифференциалов. //ДАН России, 1997, т. 354, №1.\\
+	\bf4. \rm Шарипов Б. -Явные формулы представления решений некоторых квазилинейных систем Коши-Римана с двумя комплексными переменными.- //Докл. АН Тадж. ССР, 1985,т.28,№1,с.16-20.\\
+	\bf5. \rm Шарипов Б., Джумаев Э.Х. Об одной нелинейной обобщённой системе Коши-Римана с сингулярными коэффициентами. Уфимская математическая школа-2021, Материалы международной конференции., т.2, с. 118-119.\\
+	\bf6. \rm Лаврентьев МА., Шабат Б.В. Методы теории функций комплексного переменного. М.: Наука, 1965,-715с.
+	
+	
+\end{document}

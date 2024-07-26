@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        body {
+            background-image: url('img/back.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-color: black;
+            color: white;
+            text-align: center;
+        }
+        
+        .converter {
+            padding: 2.5rem;
+            display: grid;
+            height: 300px;
+            width: 680px;
+            grid-template-columns: repeat(2, 350px);
+            grid-template-rows: repeat(8, 60px);
+        }
+        
+        label {
+            grid-column-start: 1;
+            text-align: left;
+            margin-right: 10px;
+            font-size: 30px;
+            font-weight: 700;
+            line-height: 35px;
+            color: white;
+            margin: auto 0;
+            border: none;
+        }
+        
+        input {
+            margin: auto;
+            text-align: right;
+            height: 30px;
+            width: 300px;
+            grid-column-start: 2;
+            display: block;
+            font-size: 30px;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="converter">
+        <label style="grid-row-start: 1;" for="cubicMeter">Кубический метр</label>
+        <input style="grid-row-start: 1;" type="text" id="cubicMeter" />
+        <label style="grid-row-start: 2;" for="liter">Литр</label>
+        <input style="grid-row-start: 2;" type="text" id="liter" />
+        <label style="grid-row-start: 3;" for="cubicDecimeter">Кубический дециметр</label>
+        <input style="grid-row-start: 3;" type="text" id="cubicDecimeter" />
+        <label style="grid-row-start: 4;" for="cubicCentimeter">Кубический сантиметр</label>
+        <input style="grid-row-start: 4;" type="text" id="cubicCentimeter" />
+        <label style="grid-row-start: 5;" for="milliliter">Миллилитр</label>
+        <input style="grid-row-start: 5;" type="text" id="milliliter" />
+    </div>
+
+    <script>
+        const cubicMeterInput = document.getElementById('cubicMeter');
+        const cubicDecimeterInput = document.getElementById('cubicDecimeter');
+        const cubicCentimeterInput = document.getElementById('cubicCentimeter');
+        const literInput = document.getElementById('liter');
+        const milliliterInput = document.getElementById('milliliter');
+
+        function convertCubicMeterToOthers() {
+            const cubicMeter = parseFloat(cubicMeterInput.value);
+            if (isNaN(cubicMeter)) {
+                clearInputs();
+                return;
+            }
+            const cubicDecimeter = cubicMeter * 1000;
+            const cubicCentimeter = cubicMeter * 1e+6;
+            const liter = cubicMeter * 1000;
+            const milliliter = cubicMeter * 1e+6;
+
+            cubicDecimeterInput.value = cubicDecimeter.toFixed(2);
+            cubicCentimeterInput.value = cubicCentimeter.toFixed(2);
+            literInput.value = liter.toFixed(2);
+            milliliterInput.value = milliliter.toFixed(2);
+        }
+
+        function convertCubicDecimeterToOthers() {
+            const cubicDecimeter = parseFloat(cubicDecimeterInput.value);
+            if (isNaN(cubicDecimeter)) {
+                clearInputs();
+                return;
+            }
+            const cubicMeter = cubicDecimeter / 1000;
+            const cubicCentimeter = cubicDecimeter * 1000;
+            const liter = cubicDecimeter;
+            const milliliter = cubicDecimeter * 1000;
+
+            cubicMeterInput.value = cubicMeter.toFixed(2);
+            cubicCentimeterInput.value = cubicCentimeter.toFixed(2);
+            literInput.value = liter.toFixed(2);
+            milliliterInput.value = milliliter.toFixed(2);
+        }
+
+        function convertCubicCentimeterToOthers() {
+            const cubicCentimeter = parseFloat(cubicCentimeterInput.value);
+            if (isNaN(cubicCentimeter)) {
+                clearInputs();
+                return;
+            }
+            const cubicMeter = cubicCentimeter / 1e+6;
+            const cubicDecimeter = cubicCentimeter / 1000;
+            const liter = cubicCentimeter / 1000;
+            const milliliter = cubicCentimeter;
+
+            cubicMeterInput.value = cubicMeter.toFixed(2);
+            cubicDecimeterInput.value = cubicDecimeter.toFixed(2);
+            literInput.value = liter.toFixed(2);
+            milliliterInput.value = milliliter.toFixed(2);
+        }
+
+        function convertLiterToOthers() {
+            const liter = parseFloat(literInput.value);
+            if (isNaN(liter)) {
+                clearInputs();
+                return;
+            }
+            const cubicMeter = liter / 1000;
+            const cubicDecimeter = liter;
+            const cubicCentimeter = liter * 1000;
+            const milliliter = liter * 1000;
+
+            cubicMeterInput.value = cubicMeter.toFixed(2);
+            cubicDecimeterInput.value = cubicDecimeter.toFixed(2);
+            cubicCentimeterInput.value = cubicCentimeter.toFixed(2);
+            milliliterInput.value = milliliter.toFixed(2);
+        }
+
+        function convertMilliliterToOthers() {
+            const milliliter = parseFloat(milliliterInput.value);
+            if (isNaN(milliliter)) {
+                clearInputs();
+                return;
+            }
+            const cubicMeter = milliliter / 1e+6;
+            const cubicDecimeter = milliliter / 1000;
+            const cubicCentimeter = milliliter;
+            const liter = milliliter / 1000;
+
+            cubicMeterInput.value = cubicMeter.toFixed(2);
+            cubicDecimeterInput.value = cubicDecimeter.toFixed(2);
+            cubicCentimeterInput.value = cubicCentimeter.toFixed(2);
+            literInput.value = liter.toFixed(2);
+        }
+
+        function clearInputs() {
+            cubicMeterInput.value = '';
+            cubicDecimeterInput.value = '';
+            cubicCentimeterInput.value = '';
+            literInput.value = '';
+            milliliterInput.value = '';
+        }
+
+        cubicMeterInput.addEventListener('input', convertCubicMeterToOthers);
+        cubicDecimeterInput.addEventListener('input', convertCubicDecimeterToOthers);
+        cubicCentimeterInput.addEventListener('input', convertCubicCentimeterToOthers);
+        literInput.addEventListener('input', convertLiterToOthers);
+        milliliterInput.addEventListener('input', convertMilliliterToOthers);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        body {
+            background-image: url('img/back.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-color: black;
+            color: white;
+            text-align: center;
+        }
+        
+        .converter {
+            padding: 2.5rem;
+            display: grid;
+            height: 400px;
+            width: 680px;
+            grid-template-columns: repeat(2, 350px);
+            grid-template-rows: repeat(9, 60px);
+        }
+        
+        label {
+            grid-column-start: 1;
+            text-align: left;
+            margin-right: 10px;
+            font-size: 30px;
+            font-weight: 700;
+            line-height: 35px;
+            color: white;
+            margin: auto 0;
+            border: none;
+        }
+        
+        input {
+            margin: auto;
+            text-align: right;
+            height: 30px;
+            width: 300px;
+            grid-column-start: 2;
+            display: block;
+            font-size: 30px;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="converter">
+        <label style="grid-row-start: 1;" for="gram">Грамм</label>
+        <input style="grid-row-start: 1;" type="text" id="gram" />
+        <label style="grid-row-start: 2;" for="kilogram">Килограмм</label>
+        <input style="grid-row-start: 2;" type="text" id="kilogram" />
+        <label style="grid-row-start: 3;" for="ounce">Унция</label>
+        <input style="grid-row-start: 3;" type="text" id="ounce" />
+        <label style="grid-row-start: 4;" for="pound">Пунд</label>
+        <input style="grid-row-start: 4;" type="text" id="pound" />
+        <label style="grid-row-start: 5;" for="stone">Стоун</label>
+        <input style="grid-row-start: 5;" type="text" id="stone" />
+	<label style="grid-row-start: 6;" for="centner">Центнер</label>
+        <input style="grid-row-start: 6;" type="text" id="centner" />
+        <label style="grid-row-start: 7;" for="tonne">Тонна</label>
+        <input style="grid-row-start: 7;" type="text" id="tonne" />
+    </div>
+
+    <script>
+        const gramInput = document.getElementById('gram');
+        const kilogramInput = document.getElementById('kilogram');
+        const ounceInput = document.getElementById('ounce');
+        const poundInput = document.getElementById('pound');
+        const stoneInput = document.getElementById('stone');
+        const centnerInput = document.getElementById('centner');
+        const tonneInput = document.getElementById('tonne');
+
+        function convertGramToOthers() {
+            const gram = parseFloat(gramInput.value);
+            if (isNaN(gram)) {
+                clearInputs();
+                return;
+            }
+            const kilogram = gram / 1000;
+            const ounce = gram * 0.03527396;
+            const pound = gram * 0.002204623;
+            const stone = gram * 0.000157473;
+            const centner = gram / 100000;
+            const tonne = gram / 1000000;
+
+            kilogramInput.value = kilogram.toFixed(4);
+            ounceInput.value = ounce.toFixed(4);
+            poundInput.value = pound.toFixed(4);
+            stoneInput.value = stone.toFixed(6);
+	    centnerInput.value = centner.toFixed(6);
+            tonneInput.value = tonne.toFixed(8);
+        }
+
+        function convertKilogramToOthers() {
+            const kilogram = parseFloat(kilogramInput.value);
+            if (isNaN(kilogram)) {
+                clearInputs();
+                return;
+            }
+            const gram = kilogram * 1000;
+            const ounce = kilogram * 35.27396;
+            const pound = kilogram * 2.204623;
+            const stone = kilogram * 0.157473;
+	    const centner = kilogram / 100;
+            const tonne = kilogram / 1000;
+
+            gramInput.value = gram.toFixed(4);
+            ounceInput.value = ounce.toFixed(4);
+            poundInput.value = pound.toFixed(4);
+            stoneInput.value = stone.toFixed(4);
+	    centnerInput.value = centner.toFixed(6);	
+            tonneInput.value = tonne.toFixed(6);
+        }
+
+        function convertOunceToOthers() {
+            const ounce = parseFloat(ounceInput.value);
+            if (isNaN(ounce)) {
+                clearInputs();
+                return;
+            }
+            const gram = ounce / 0.03527396;
+            const kilogram = ounce / 35.27396;
+            const pound = ounce / 16;
+            const stone = ounce / 224;
+            const centner = kilogram / 100;
+            const tonne = kilogram / 1000;
+
+            gramInput.value = gram.toFixed(4);
+            kilogramInput.value = kilogram.toFixed(4);
+            poundInput.value = pound.toFixed(4);
+            stoneInput.value = stone.toFixed(4);
+            centnerInput.value = centner.toFixed(6);
+            tonneInput.value = tonne.toFixed(6);
+        }
+
+        function convertPoundToOthers() {
+            const pound = parseFloat(poundInput.value);
+            if (isNaN(pound)) {
+                clearInputs();
+                return;
+            }
+            const gram = pound / 0.002204623;
+            const kilogram = pound / 2.204623;
+            const ounce = pound * 16;
+            const stone = pound * 0.071429;
+            const centner = kilogram / 100;
+            const tonne = kilogram / 1000;
+
+            gramInput.value = gram.toFixed(4);
+            kilogramInput.value = kilogram.toFixed(4);
+            ounceInput.value = ounce.toFixed(4);
+            stoneInput.value = stone.toFixed(4);
+            centnerInput.value = centner.toFixed(6);
+            tonneInput.value = tonne.toFixed(6);
+        }
+
+        function convertStoneToOthers() {
+            const stone = parseFloat(stoneInput.value);
+            if (isNaN(stone)) {
+                clearInputs();
+                return;
+            }
+            const gram = stone / 0.000157473;
+            const kilogram = stone / 0.157473;
+            const ounce = stone * 224;
+            const pound = stone * 14;
+            const centner = kilogram / 100;
+            const tonne = kilogram / 1000;
+
+            gramInput.value = gram.toFixed(4);
+            kilogramInput.value = kilogram.toFixed(4);
+            ounceInput.value = ounce.toFixed(4);
+            poundInput.value = pound.toFixed(4);
+            centnerInput.value = centner.toFixed(6);
+            tonneInput.value = tonne.toFixed(6);
+        }
+
+        function convertTonneToOthers() {
+            const tonne = parseFloat(tonneInput.value);
+            if (isNaN(tonne)) {
+                clearInputs();
+                return;
+            }
+            const gram = tonne * 1000000;
+            const kilogram = tonne * 1000;
+            const ounce = kilogram * 35.27396;
+            const pound = kilogram * 2.204623;
+            const stone = kilogram * 0.157473;
+            const centner = tonne * 10;
+
+            gramInput.value = gram.toFixed(4);
+            kilogramInput.value = kilogram.toFixed(4);
+            ounceInput.value = ounce.toFixed(4);
+            poundInput.value = pound.toFixed(4);
+            stoneInput.value = stone.toFixed(4);
+            centnerInput.value = centner.toFixed(4);
+        }
+
+	function convertCentnerToOthers() {
+            const centner = parseFloat(centnerInput.value);
+            if (isNaN(centner)) {
+                clearInputs();
+                return;
+            }
+            const gram = centner * 100000;
+            const kilogram = centner * 100;
+            const ounce = kilogram * 35.27396;
+            const pound = kilogram * 2.204623;
+            const stone = kilogram * 0.157473;
+	    const tonne = centner / 10;
+
+            gramInput.value = gram.toFixed(4);
+            kilogramInput.value = kilogram.toFixed(4);
+            ounceInput.value = ounce.toFixed(4);
+            poundInput.value = pound.toFixed(4);
+            stoneInput.value = stone.toFixed(4);
+	    tonneInput.value = tonne.toFixed(4);
+        }
+
+        function clearInputs() {
+            gramInput.value = '';
+            kilogramInput.value = '';
+            ounceInput.value = '';
+            poundInput.value = '';
+            stoneInput.value = '';
+            centnerInput.value = '';
+            tonneInput.value = '';
+        }
+
+        gramInput.addEventListener('input', convertGramToOthers);
+        kilogramInput.addEventListener('input', convertKilogramToOthers);
+        ounceInput.addEventListener('input', convertOunceToOthers);
+        poundInput.addEventListener('input', convertPoundToOthers);
+        stoneInput.addEventListener('input', convertStoneToOthers);
+	centnerInput.addEventListener('input', convertCentnerToOthers);
+        tonneInput.addEventListener('input', convertTonneToOthers);
+    </script>
+</body>
+
+</html>

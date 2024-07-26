@@ -1,0 +1,61 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+data = np.loadtxt('data_b.txt')
+
+x = data[:, 0]
+y = data[:, 1]
+z = data[:, 2]
+
+plt.hist2d(x, y, weights = z, bins = 50)
+plt.colorbar(label = 'z')
+plt.xlabel('x')
+plt.ylabel('y')
+plt.title('График плотности')
+plt.show()
+
+####################################################################
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+data = np.loadtxt('data_b.txt')
+
+x = data[:, 0]
+y = data[:, 1]
+z = data[:, 2]
+
+x = x.reshape((int(np.sqrt(len(x))), int(np.sqrt(len(x)))))
+y = y.reshape((int(np.sqrt(len(y))), int(np.sqrt(len(y)))))
+z = z.reshape((int(np.sqrt(len(z))), int(np.sqrt(len(z)))))
+
+plt.contour(x, y, z, colors=['red', 'green', 'blue'])
+plt.xlabel('x')
+plt.ylabel('y')
+plt.title('График контуров')
+plt.show()
+
+####################################################################
+
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+data = np.loadtxt('data_b.txt')
+
+x = data[:, 0]
+y = data[:, 1]
+z = data[:, 2]
+
+x = x.reshape((int(np.sqrt(len(x))), int(np.sqrt(len(x)))))
+y = y.reshape((int(np.sqrt(len(y))), int(np.sqrt(len(y)))))
+z = z.reshape((int(np.sqrt(len(z))), int(np.sqrt(len(z)))))
+
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+ax.plot_surface(x, y, z)
+ax.set_xlabel('x')
+ax.set_ylabel('y')
+ax.set_zlabel('z')
+plt.title('График поверхности')
+plt.show()

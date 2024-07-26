@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Расчет времени до конца пары</title>
+    <script>
+        function calculateTime() {
+            var endTimeStr = document.getElementById('end-time').value;
+            var endTimeArr = endTimeStr.split(":");
+            var endHour = parseInt(endTimeArr[0]);
+            var endMinute = parseInt(endTimeArr[1]);
+            var endSecond = parseInt(endTimeArr[2]);
+            
+            var now = new Date();
+            var currentHour = now.getHours();
+            var currentMinute = now.getMinutes();
+            var currentSecond = now.getSeconds();
+            
+            var diffHour = endHour - currentHour;
+            var diffMinute = endMinute - currentMinute;
+            var diffSecond = endSecond - currentSecond;
+            
+            var totalMinutes = diffHour * 60 + diffMinute;
+            var totalSeconds = diffSecond;
+            
+            document.getElementById('result').innerHTML = "Осталось " + totalMinutes + " минут и " + totalSeconds + " секунд до конца пары.";
+        }
+    </script>
+</head>
+<body>
+    <h1>Расчет времени до конца пары</h1>
+    <p>Введите время окончания пары в формате ЧЧ:ММ:СС</p>
+    <input type="text" id="end-time" placeholder="Например, 10:30:00">
+    <button onclick="calculateTime()">Рассчитать</button>
+    <p id="result"></p>
+</body>
+</html>

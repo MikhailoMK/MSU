@@ -1,0 +1,58 @@
+const nmax=100;
+
+var a:array[1..nmax,1..nmax] of integer;
+    b:array[1..nmax] of integer;
+    c:array[1..nmax] of integer;
+    i,j,n,k:integer;
+    v1,v2:integer;
+
+begin
+assign(input,'input.txt');
+reset(input);
+read(n);
+for i:=1 to n do
+  for j:=1 to n do
+    read(a[i,j]);
+
+read(v1,v2);
+
+for i:=1 to n do begin
+  for j:=1 to n do
+    if a[i,j]<>a[j,i] then runerror(43);
+  if a[i,i]<>0 then runerror(43);
+  end;
+
+for i:=1 to n do
+  b[i]:=-1;
+
+b[v1]:=0;
+for k:=0 to n-1 do
+  for i:=1 to n do
+    if b[i]=k then begin
+      for j:=1 to n do
+        if (a[i,j]=1) and (b[j]=-1) then b[j]:=k+1;
+      end;
+assign(output,'output.txt');
+rewrite(output);
+writeln(b[v2]);
+if b[v2]<>0 then begin
+  c[1]:=v2;
+  k:=1;
+  while c[k]<>v1 do begin
+    for i:=1 to n do
+      if (a[c[k],i]=1) and (b[i]<b[c[k]]) then begin
+        c[k+1]:=i;
+        break;
+        end;
+    inc(k);
+    end;
+  for i:=k downto 1 do
+    write(c[i],' ');
+  end;
+
+close(output);
+end.
+
+
+
+

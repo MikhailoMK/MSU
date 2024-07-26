@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        body {
+            background-image: url('img/back.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-color: black;
+            color: white;
+            text-align: center;
+        }
+
+        .converter {
+            width: 400px;
+            height: 610px;
+            padding: 20px;
+        }
+
+        button {
+            width: 85px;
+            height: 85px;
+            font-size: 40px;
+            margin: 2px;
+            color: black;
+            cursor: pointer;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            border: none;
+        }
+
+        input {
+            width: 400px;
+            height: 60px;
+            text-align: right;
+            margin-bottom: 10px;
+            font-size: 50px;
+            border-radius: 3px;
+            color: black;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="converter">
+        <input type="text" id="result" disabled>
+        <br>
+        <button onclick="setOperator('%')">%</button>
+        <button onclick="clearEntry()">CE</button>
+        <button onclick="clearResult()">C</button>
+        <button onclick="backspace()">BK</button>
+        <br>
+        <button onclick="inverse()">1/x</button>
+        <button onclick="square()">x^2</button>
+        <button onclick="sqrt()">sqrt</button>
+        <button onclick="setOperator('/')">/</button>
+        <br>
+        <button onclick="appendNumber('7')">7</button>
+        <button onclick="appendNumber('8')">8</button>
+        <button onclick="appendNumber('9')">9</button>
+        <button onclick="setOperator('*')">*</button>
+        <br>
+        <button onclick="appendNumber('4')">4</button>
+        <button onclick="appendNumber('5')">5</button>
+        <button onclick="appendNumber('6')">6</button>
+        <button onclick="setOperator('-')">-</button>
+        <br>
+        <button onclick="appendNumber('1')">1</button>
+        <button onclick="appendNumber('2')">2</button>
+        <button onclick="appendNumber('3')">3</button>
+        <button onclick="setOperator('+')">+</button>
+        <br>
+        <button onclick="changeSign()">+/-</button>
+        <button onclick="appendNumber('0')">0</button>
+        <button onclick="appendNumber('.')">.</button>
+        <button onclick="calculate()">=</button>
+    </div>
+
+    <script>
+        var operator = '';
+        var lastOperator = '';
+        var operand1 = 0;
+        var operand2 = null;
+        var lastOperand = null;
+        var result = document.getElementById('result');
+        result.value = '0';
+
+        function clearResult() {
+            result.value = '0';
+            operator = '';
+            operand1 = 0;
+            operand2 = null;
+            lastOperator = '';
+            lastOperand = null;
+        }
+
+        function clearEntry() {
+            result.value = '0';
+        }
+
+        function backspace() {
+            result.value = result.value.slice(0, -1);
+        }
+
+        function appendNumber(number) {
+            if (result.value === '0' && number !== '.') {
+                result.value = number;
+            } else {
+                result.value = result.value + number;
+            }
+        }
+
+        function setOperator(op) {
+            operator = op;
+            operand1 = parseFloat(result.value);
+            result.value = '';
+        }
+
+        function changeSign() {
+            result.value = parseFloat(result.value) * -1;
+        }
+
+        function inverse() {
+            result.value = 1 / parseFloat(result.value);
+        }
+
+        function square() {
+            result.value = Math.pow(parseFloat(result.value), 2);
+        }
+
+        function sqrt() {
+            result.value = Math.sqrt(parseFloat(result.value));
+        }
+
+        function calculate() {
+            if (operator !== '') {
+                if (operator == '%') {
+                    operand2 = parseFloat(result.value);
+                    var res = eval(operand1 * operand2 / 100);
+                    result.value = res;
+                    lastOperator = operator;
+                    lastOperand = operand2;
+                    operator = '';
+                }
+                else {
+                    operand2 = parseFloat(result.value);
+                    var res = eval(operand1 + ' ' + operator + ' ' + operand2);
+                    result.value = res;
+                    lastOperator = operator;
+                    lastOperand = operand2;
+                    operator = '';
+                }
+            } else if (lastOperator !== '') {
+                operand1 = parseFloat(result.value);
+                var res = eval(operand1 + ' ' + lastOperator + ' ' + lastOperand);
+                result.value = res;
+            }
+        }
+    </script>
+</body>
+</html>

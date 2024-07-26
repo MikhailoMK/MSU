@@ -1,0 +1,476 @@
+unit Matrix;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Grids;
+type
+  dm=array[0..200,0..200] of real;
+  ddm=array of array of real;
+  RealArray=array of real;
+  String_Matrix=array of array of string;
+
+type
+  TForm2 = class(TForm)
+    Button1: TButton;
+    StringGrid1: TStringGrid;
+    RadioGroup1: TRadioGroup;
+    StringGrid2: TStringGrid;
+    Edit1: TEdit;
+    Button2: TButton;
+    RadioGroup2: TRadioGroup;
+    StringGrid3: TStringGrid;
+    Button11: TButton;
+    Edit2: TEdit;
+    Edit3: TEdit;
+    Edit4: TEdit;
+    StringGrid4: TStringGrid;
+    RadioGroup5: TRadioGroup;
+    Button4: TButton;
+    Button5: TButton;
+    Button6: TButton;
+    Button7: TButton;
+    Button8: TButton;
+    Button9: TButton;
+    Button10: TButton;
+    Button12: TButton;
+    Button13: TButton;
+    Button3: TButton;
+    Button14: TButton;
+    Button15: TButton;
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure Button11Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
+    procedure Button6Click(Sender: TObject);
+    procedure Button7Click(Sender: TObject);
+    procedure Button8Click(Sender: TObject);
+    procedure Button9Click(Sender: TObject);
+    procedure Button10Click(Sender: TObject);
+    procedure Button12Click(Sender: TObject);
+    procedure Button13Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    procedure Button14Click(Sender: TObject);
+    procedure Button15Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    function fillMD(n,m:integer):ddm;
+    function fillM(n,m:integer):dm;
+    procedure showMD(a:ddm;n,m:integer);
+    procedure showM(a:dm;n,m:integer);
+    var n1,n2,m1,m2:Integer;
+    var dir:boolean;
+    var matrix:ddm;
+  end;
+
+
+
+
+var
+  Form2: TForm2;
+  function SortMatrixRow(A:dm;row:integer;column:integer;kind:integer):dm;export;stdcall;
+  function SortMatrixCol(A:dm;row:integer;column:integer;kind:integer):dm;export;stdcall;
+  function Determinant(A:ddm;size:integer):real;export;stdcall;
+  function InverseMatrix(A:ddm;size:integer):ddm;export;stdcall;
+  function TransposeMatrix(A:ddm;size:integer):ddm;export;stdcall;
+  function AddMatrices(A,B:ddm;row,column:integer):ddm;export;stdcall;
+  function SubtractMatrices(A,B:ddm;row,column:integer):ddm;export;stdcall;
+  function MultiplyMatrices(A,B:ddm;row1,col1,row2,col2:integer):ddm;export;stdcall;
+  function ConjugateMatrix(A:String_Matrix;row,column:integer):String_Matrix;export;stdcall;
+  function ReadMatrixByCorners(a: ddm; n: integer; m: integer): RealArray;export;stdcall;
+  function WriteMatrixByCorners(res: RealArray; n: integer; m: integer): ddm;export;stdcall;
+  function ArrayToSpiralMatrix(a: RealArray; n: integer; m: integer): ddm;export;stdcall;
+  function SpiralMatrixToArray(a: ddm; n: integer; m: integer; clockwise: boolean): RealArray;export;stdcall;
+
+
+{n1:=StrToInt(Edit1.Text);
+m1:=StrToInt(Edit2.Text);
+n2:=StrToInt(Edit3.Text);
+m2:=Strtoint(Edit3.Text);
+if RadioGroup5.ItemIndex=0 then dir:=True
+else if RadioGroup5.ItemIndex=1 then dir:=False;
+}
+
+
+implementation
+  function SortMatrixRow;external 'C:\Users\akhli\OneDrive\Рабочий стол\matrix\dll\Win32\Debug\matrix.dll' name 'SortMatrixRow';
+  function SortMatrixCol;external 'C:\Users\akhli\OneDrive\Рабочий стол\matrix\dll\Win32\Debug\matrix.dll' name 'SortMatrixCol';
+  function Determinant;external 'C:\Users\akhli\OneDrive\Рабочий стол\matrix\dll\Win32\Debug\matrix.dll' name 'Determinant';
+  function InverseMatrix;external 'C:\Users\akhli\OneDrive\Рабочий стол\matrix\dll\Win32\Debug\matrix.dll' name 'InverseMatrix';
+  function TransposeMatrix;external 'C:\Users\akhli\OneDrive\Рабочий стол\matrix\dll\Win32\Debug\matrix.dll' name 'TransposeMatrix';
+  function AddMatrices;external 'C:\Users\akhli\OneDrive\Рабочий стол\matrix\dll\Win32\Debug\matrix.dll' name 'AddMatrices';
+  function SubtractMatrices;external 'C:\Users\akhli\OneDrive\Рабочий стол\matrix\dll\Win32\Debug\matrix.dll' name 'SubtractMatrices';
+  function MultiplyMatrices;external 'C:\Users\akhli\OneDrive\Рабочий стол\matrix\dll\Win32\Debug\matrix.dll' name 'MultiplyMatrices';
+  function ConjugateMatrix;external 'C:\Users\akhli\OneDrive\Рабочий стол\matrix\dll\Win32\Debug\matrix.dll' name 'ConjugateMatrix';
+  function ReadMatrixByCorners;external 'C:\Users\akhli\OneDrive\Рабочий стол\matrix\dll\Win32\Debug\matrix.dll' name 'ReadMatrixByCorners';
+  function WriteMatrixByCorners;external 'C:\Users\akhli\OneDrive\Рабочий стол\matrix\dll\Win32\Debug\matrix.dll' name 'WriteMatrixByCorners';
+  function ArrayToSpiralMatrix;external 'C:\Users\akhli\OneDrive\Рабочий стол\matrix\dll\Win32\Debug\matrix.dll' name 'ArrayToSpiralMatrix';
+  function SpiralMatrixToArray;external 'C:\Users\akhli\OneDrive\Рабочий стол\matrix\dll\Win32\Debug\matrix.dll' name 'SpiralMatrixToArray';
+
+
+{$R *.dfm}
+
+
+function TForm2.fillMD(n,m:integer):ddm;
+var
+  i: Integer;
+  j: Integer;
+  a:ddm;
+begin
+  setlength(a,n,m);
+  for i := 0 to n-1 do
+    for j := 0 to m-1 do
+    begin
+      a[i,j]:=StrToFloat(StringGrid1.Cells[j,i])
+    end;
+  Result:=a;
+end;
+
+function TForm2.fillM(n,m:integer):dm;
+var
+  i: Integer;
+  j: Integer;
+  a:dm;
+begin
+  for i := 0 to n-1 do
+   for j := 0 to m-1 do
+   begin
+     a[i,j]:=StrToFloat(StringGrid1.Cells[j,i])
+    end;
+  Result:=a;
+end;
+
+procedure TForm2.showMD(a:ddm;n,m:integer);
+var
+  i: Integer;
+  j: Integer;
+begin
+  for i := 0 to n-1 do
+    for j := 0 to m-1 do
+    begin
+      StringGrid2.Cells[j,i]:=FloatToStr(a[i,j])
+    end;
+end;
+
+procedure TForm2.showM(a:dm;n,m:integer);
+var
+  i: Integer;
+  j: Integer;
+begin
+  for i := 0 to n-1 do
+    for j := 0 to m-1 do
+    begin
+      StringGrid2.Cells[j,i]:=FloatToStr(a[i,j])
+    end;
+end;
+
+
+
+procedure TForm2.Button10Click(Sender: TObject);
+begin
+var kind: Integer;
+n1:=Strtoint(edit1.Text);
+m1:=strtoint(edit2.Text);
+setlength(matrix,n1,n1);
+    if n1<>m1 then showmessage('Матрица не квадратичная!!!')
+    else
+    begin
+      matrix:=fillMD(n1,m1);
+      showmessage('Детерминант равен: ' + FloatToStr(Determinant(matrix,n1)));
+    end;
+end;
+
+procedure TForm2.Button11Click(Sender: TObject);
+begin
+  var row1,col1,row2,col2,i,j: integer;
+  row1:=StrToInt(Edit1.Text);
+  col1:=StrToInt(Edit2.Text);
+  row2:=StrToInt(Edit3.Text);
+  col2:=StrToInt(Edit4.Text);
+
+  for i := 1 to row1 do
+    for j := 1 to col1 do
+    begin
+      StringGrid1.Cells[j - 1, i - 1]:=FloatToStr(Random(100));
+    end;
+  for i := 1 to row2 do
+    for j := 1 to col2 do
+    begin
+      StringGrid3.Cells[j - 1, i - 1]:=FloatToStr(Random(100));
+    end;
+
+
+end;
+
+procedure TForm2.Button12Click(Sender: TObject);
+begin
+var a: RealArray;
+n1:=strtoint(edit1.Text);
+m1:=strtoint(edit2.Text);
+if RadioGroup5.ItemIndex=0 then dir:=True
+else if RadioGroup5.ItemIndex=1 then dir:=False;
+
+    setlength(a,n1*m1);
+    setlength(matrix,n1,m1);
+    matrix:=fillMD(n1,m1);
+    a:= SpiralMatrixToArray(matrix,n1,m1,dir);
+    var i,j:integer;
+
+    for i := 0 to StringGrid4.ColCount do
+      StringGrid4.Cells[i,0]:='';
+    for i := 0 to n1*m1-1 do
+      StringGrid4.Cells[i,0]:=FloatToStr(a[i])
+end;
+
+procedure TForm2.Button13Click(Sender: TObject);
+begin
+n1:=strtoint(edit1.Text);
+m1:=strtoint(edit2.Text);
+if RadioGroup5.ItemIndex=0 then dir:=True
+else if RadioGroup5.ItemIndex=1 then dir:=False;
+ var a:RealArray;
+    setlength(a,n1*m1);
+    setlength(matrix,n1,m1);
+    var i,j:integer;
+    for i := 0 to n1*m1-1 do
+      a[i]:=StrToFloat(StringGrid4.Cells[i,0]);
+    matrix:=ArrayToSpiralMatrix(a,n1,m1);
+    if RadioGroup5.ItemIndex=0 then matrix:=TransposeMatrix(matrix,n1);
+    matrix:=TransposeMatrix(matrix,n1);
+    showMD(matrix,n1,m1);
+end;
+
+procedure TForm2.Button14Click(Sender: TObject);
+begin
+//function ReadMatrixByCorners(a: ddm; n: integer; m: integer): RealArray;export;stdcall;
+//function WriteMatrixByCorners(res: RealArray; n: integer; m: integer): ddm;export;stdcall;
+ var a:RealArray;
+ var i:integer;
+ n1:=Strtoint(Edit1.Text);
+ m1:=strtoint(edit2.Text);
+ setlength(matrix,n1,m1);
+ setlength(a,n1*m1);
+ matrix:=fillMD(n1,m1);
+ a:= ReadMatrixByCorners(matrix,n1,m1);
+ for i := 0 to n1*m1-1 do
+ begin
+   StringGrid4.Cells[i,0]:=FloatToStr(a[i]);
+ end;
+
+end;
+
+procedure TForm2.Button15Click(Sender: TObject);
+begin
+var i:integer;
+n1:=StrToint(edit1.Text);
+m1:=strtoint(Edit2.Text);
+for i := 0 to n1*m1-1 do
+  begin
+    StringGrid4.Cells[i,0]:=FloatToStr(Random(100));
+  end;
+end;
+
+procedure TForm2.Button1Click(Sender: TObject);
+begin
+  var matrix:dm;
+  var i, j,kind,row1,column1: Integer;
+  row1:=StrToInt(Edit1.Text);
+  column1:=StrToInt(Edit2.Text);
+  matrix:=fillM(row1,column1);
+  kind:=RadioGroup1.ItemIndex;
+  if RadioGroup2.ItemIndex=0 then
+    matrix:=SortMatrixRow(matrix,row1,column1,kind)
+  else if RadioGroup2.ItemIndex=1 then
+    matrix:=SortMatrixCol(matrix,row1,column1,kind);
+
+  showM(matrix,row1,column1);
+end;
+
+procedure TForm2.Button2Click(Sender: TObject);
+begin
+  StringGrid1.ColCount:=StrToInt(Edit2.Text);
+  StringGrid1.RowCount:=StrToInt(Edit1.Text);
+  StringGrid2.RowCount:=StrToInt(Edit1.Text);
+  StringGrid2.ColCount:=StrToInt(Edit2.Text);
+  StringGrid3.RowCount:=StrToInt(Edit3.Text);
+  StringGrid3.ColCount:=StrToInt(Edit4.Text);
+  StringGrid4.ColCount:=StrToint(Edit1.Text)*StrToInt(Edit2.Text);
+
+end;
+
+procedure TForm2.Button3Click(Sender: TObject);
+begin
+//function ReadMatrixByCorners(a: ddm; n: integer; m: integer): RealArray;export;stdcall;
+//function WriteMatrixByCorners(res: RealArray; n: integer; m: integer): ddm;export;stdcall;
+ var a:RealArray;
+ var i:integer;
+ n1:=Strtoint(Edit1.Text);
+ m1:=strtoint(edit2.Text);
+ setlength(matrix,n1,m1);
+ setlength(a,n1*m1);
+ for i := 0 to n1*m1-1 do
+ begin
+   a[i]:=StrToFloat(StringGrid4.Cells[i,0]);
+ end;
+ matrix:=WriteMatrixByCorners(a,n1,m1);
+ showMD(matrix,n1,m1);
+
+end;
+
+procedure TForm2.Button4Click(Sender: TObject);
+begin
+    n1:=strtoint(Edit1.Text);
+    m1:=strtoint(Edit2.text);
+    if n1=m1 then
+    begin
+      matrix:=fillMD(n1,m1);
+      setlength(matrix,n1,m1) ;
+      matrix:=TransposeMatrix(matrix,StringGrid1.RowCount);
+      showMD(matrix,n1,m1);
+    end
+    else showmessage('Матрица не квадратичная!!!');
+end;
+
+procedure TForm2.Button5Click(Sender: TObject);
+begin
+    n1:=Strtoint(Edit1.Text);
+    m1:=strtoint(Edit2.Text);
+    var mrx:String_Matrix;
+    setlength(mrx,n1,m1);
+    var i,j:integer;
+    StringGrid2.RowCount:= n1;
+    StringGrid2.ColCount:= m1;
+    for i := 0 to n1-1 do
+      for j := 0 to m1-1 do
+        mrx[i, j] := StringGrid1.Cells[j, i];
+    mrx:=ConjugateMatrix(mrx,n1,m1);
+    for i := 0 to n1-1 do
+      for j := 0 to m1-1 do
+        StringGrid2.Cells[j, i]:=(mrx[i][j]);
+end;
+
+procedure TForm2.Button6Click(Sender: TObject);
+begin
+    n1:=StrToint(Edit1.Text);
+    m1:=strtoint(Edit2.Text);
+    var mInv:ddm;
+    var dd:Extended;
+    var i,j:integer;
+    if n1<>m1 then showmessage('Матрица не квадратичная!!!')
+    else
+      begin
+        SetLength(matrix,n1,m1);
+        matrix:=fillMD(n1,m1);
+        dd:=Determinant(matrix,StringGrid1.RowCount);
+        if dd=0 then
+        begin
+          for i := 0 to n1-1 do
+            for j := 0 to n1-1 do
+              StringGrid2.Cells[j, i]:='nan';
+        end
+        else
+          begin
+            mInv:=InverseMatrix(matrix,n1);
+            showMD(mInv,n1,m1);
+          end;
+      end;
+end;
+
+procedure TForm2.Button7Click(Sender: TObject);
+begin
+    n1:=strtoint(Edit1.text);
+    m1:=strtoint(edit2.Text);
+    n2:=strtoint(edit3.text);
+    m2:=strtoint(edit4.Text);
+    var matrix1,matrix2:ddm;
+    var i,j:integer;
+    setlength(matrix1,n1,m1);
+    setlength(matrix2,n2,m2);
+    if (n1=n2) and (m1=m2) then
+    begin
+      matrix1:=fillMD(n1,m1);
+      for i := 0 to n2-1 do
+        for j := 0 to m2-1 do
+        begin
+          matrix2[i, j] := StrToFloat(StringGrid3.Cells[j, i])
+        end;
+
+      matrix1:=AddMatrices(matrix1,matrix2,n1,m1);
+      showMD(matrix1,n1,m1);
+    end
+    else showmessage('Размеры матриц не совпадают!!!');
+end;
+
+procedure TForm2.Button8Click(Sender: TObject);
+begin
+    var mrx1,mrx2:ddm;
+    var i,j:integer;
+    n1:=Strtoint(Edit1.Text);
+    m1:=strtoint(edit2.text);
+    n2:=strtoint(edit3.text);
+    m2:=strtoint(edit4.text);
+    setlength(mrx1,n1,m1);
+    setlength(mrx2,n2,m2);
+    if (n1=n2) and (m2=m1) then
+    begin
+      mrx1:=fillMD(n1,m1);
+      for i := 0 to n2-1 do
+        for j := 0 to m2-1 do
+          mrx2[i, j] := StrToInt(StringGrid3.Cells[j, i]);
+
+      mrx1:=SubtractMatrices(mrx1,mrx2,n1,m1);
+      showMD(mrx1,n1,m1);
+    end
+    else showmessage('Размеры не совпадают');
+end;
+
+procedure TForm2.Button9Click(Sender: TObject);
+begin
+var mtrx1,mtrx2,res:ddm;
+    n1:=Strtoint(Edit1.Text);
+    m1:=strtoint(edit2.text);
+    n2:=strtoint(edit3.text);
+    m2:=strtoint(edit4.text);
+setlength(mtrx1,n1,m1);
+setlength(mtrx2,n2,m2);
+setlength(res,n1,m2);
+    if m1=n2 then
+    begin
+      StringGrid2.ColCount:=m2;
+      StringGrid2.RowCount:=n1;
+      mtrx1:=fillMD(n1,m1);
+      var i,j:integer;
+
+      for i := 0 to n2-1 do
+        for j := 0 to m2-1 do
+          mtrx2[i, j] := StrToFloat(StringGrid3.Cells[j, i]);
+      res:=MultiplyMatrices(mtrx1,mtrx2,n1,m1,n2,m2);
+      showMD(res,n1,m2);
+    end;
+end;
+
+procedure TForm2.FormCreate(Sender: TObject);
+begin
+  var height:=Form2.Height;
+      width:=Form2.Width;
+
+  StringGrid1.Width:=width div 3;
+  StringGrid1.Height:=300;
+  StringGrid3.Width:=width div 3;
+  StringGrid3.Height:=300;
+  StringGrid2.Width:=width div 3;
+  StringGrid2.Height:=300;
+  StringGrid3.Top:=5;
+  StringGrid1.Top:=5;
+  StringGrid2.Top:=5;
+  StringGrid1.Left:=5;
+  StringGrid3.Left:=5+width div 3;
+  StringGrid2.Left:=5+2*width div 3;
+end;
+
+end.

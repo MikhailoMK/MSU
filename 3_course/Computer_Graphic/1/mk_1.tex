@@ -1,0 +1,93 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\textwidth=18cm
+\oddsidemargin=-1cm
+\evensidemargin=-1cm
+\topmargin=-3cm
+\textheight=32cm
+\linespread{1.2}
+
+\begin{document}
+	\Large
+	
+	192 
+	\vspace*{-31pt}
+	\begin{center}
+		\textit{Гл. 2. Предел и непрерывность функции}\
+	\end{center}
+	\vspace*{-25pt}
+	\noindent \rule{\textwidth}{0.5pt}
+
+	\textbf{58.} \text{Вычислить:}
+	
+	1) $\lim\limits_{{x \to 2}} \frac{\arctg{(2 - x)} + \sin{(x - 2)^2}}{x^2 - 4};$ 
+	\hspace{0.1cm}
+	2) $\lim\limits_{x \to 0} \frac{\sqrt[4]{1 + x^2} + x^3 - 1}{\ln{\cos{x}}};$
+	
+	3) $\lim\limits_{x \to 0} \frac{x^2(\sqrt[3]{1+3x}-1) + \sin^3{x}}{1-\sqrt{1+x^3}};$
+	
+	4) $\lim\limits_{x \to 0} \frac{(\sin{2x} - 2\tg{x})^2 + (1-\cos{2x})^3}{\tg^{7}{6x}+\sin^{6}{x}}.$
+	
+	\textbf{59.} Пусть $\lim\limits_{{t \to t_0}} \varphi(t) = a$, причем $\varphi(t) \neq a$ при $t \neq t_0$ в некоторой окрестности точки $t_0$. Доказать, что:
+	
+	1) если $f(x) = o(g(x))$ при $x \to x_0$, то $f(\varphi(t)) = o(g(\varphi(t)))$ при $t \to t_0$;
+	
+	2) если $f(x) = O(g(x))$ при $x \to x_0$, то $f(\varphi(t)) = O(g(\varphi(t)))$ при $t \to t_0$.
+	
+	\textbf{60.} Найти $\lim\limits_{{x \to x_0}} f(x)$, $x \in R$, если
+	 
+	\begin{center}
+		f(x) =
+		$\begin{cases} 
+			\text{ } 1/q \quad \text{при } x = p/q, \\
+			\text{ } 0 \quad \text{при } x \text{ иррациональном},
+		\end{cases}$
+	\end{center}
+	
+	где $p$ и $q$ — взаимно простые целые числа.
+	
+	\textbf{61.} Пусть $\lim\limits_{{x \to x_0}} f(x) = a$ и $\lim\limits_{{t\to t_0}}g(t) = x_0$. Следует ли отсюда, что 
+	\\$\lim\limits_{{t\to t_0}} f(g(t)) = a\text{Г}$
+	
+	\textbf{62.} Доказать, что если функция  $f(x)$, $x \in (x_0; +\infty)$, ограничена в каждом интервале  $(x_0; x_1)$ и существует конечный или бесконечный
+	\begin{center}
+		$\lim\limits_{{x \to +\infty}} \frac{f(x+1)-f(x)}{x^n} \quad (n=0,1,2,\dots),$
+	\end{center}
+	то
+	\begin{center}
+		$\lim\limits_{{x \to +\infty}} \frac{f(x)}{x^{n+1}} = \frac{1}{n+1}+\lim\limits_{{x \to +\infty}}\frac{f(x+1)-f(x)}{x^n}$.
+	\end{center}
+	
+
+	\textbf{63.} Найти $\underset{x \to x_0}{\overline{\lim}} f(x)$ и $\underset{x \to x_0}{\underline{\lim}} f(x)$, если:
+
+	1) $f(x) = e^{\cos(1/x^2)};$ \hspace{0.1cm}
+	2) $f(x) = \frac{1}{x^2} \sin^2\frac{1}{x};$ \hspace{0.1cm}
+	3) $f(x) = \arctg(\frac{1}{x});$
+	
+	4) $f(x) = \sqrt{1/x^2 - 1/x} - 1/x.$
+
+	\textbf{64.} Найти  $\underset{n \to \infty}{\overline{\lim}} f(x)$ и $\underset{n \to \infty}{\underline{\lim}} f(x)$ если:
+
+
+
+	1) $f(x) = \frac{\pi}{2} \cos^2 x + \arctg x$; \hspace{0.1cm}
+	2) $f(x) = \frac{1 + x + 6x^2}{1 - x + 2x^2} \sin x^2$;
+	
+	3) $f(x) = (\sqrt{4x^2 + x + 1} - \sqrt{4x^2 - x +1})(1+\cos 2x)$;
+	
+	4) $f(x)= (1+\cos^2 x)^{1/\cos^2 x}$.
+
+
+	\textbf{65.} Доказать, что  
+	\begin{center}
+		$\underset{n \to \infty}{\overline{\lim}} (\cos{x}+\sin{\sqrt{2x}}) = 2$
+	\end{center}
+	
+	
+\end{document}

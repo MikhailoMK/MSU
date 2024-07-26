@@ -1,0 +1,112 @@
+unit Unit2;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, SuperButton, ComObj;
+
+type
+  TForm2 = class(TForm)
+    SuperButton1: TSuperButton;
+    SuperButton2: TSuperButton;
+    SuperButton3: TSuperButton;
+    SuperButton4: TSuperButton;
+    SuperButton5: TSuperButton;
+    SuperButton6: TSuperButton;
+    SuperButton7: TSuperButton;
+    procedure SuperButton1Click(Sender: TObject);
+    procedure FormMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure SuperButton2Click(Sender: TObject);
+    procedure SuperButton6Click(Sender: TObject);
+    procedure SuperButton3Click(Sender: TObject);
+    procedure SuperButton4Click(Sender: TObject);
+    procedure SuperButton5Click(Sender: TObject);
+    procedure SuperButton7Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form2: TForm2;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm2.FormMouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+var p:tpoint;
+begin
+   p:=Mouse.CursorPos;
+   p:= ScreenToClient(p);
+   p:= Point(p.X - SuperButton1.Left, p.Y - SuperButton1.Top);
+   if not ((p.X >=0) and (p.X <= SuperButton1.Width) and (p.Y<=0) and (p.Y<= SuperButton1.Height))then
+   SuperButton1.SetFocus(False);
+
+   p:= Point(p.X - SuperButton2.Left, p.Y - SuperButton2.Top);
+   if not ((p.X >=0) and (p.X <= SuperButton2.Width) and (p.Y<=0) and (p.Y<= SuperButton2.Height))then
+   SuperButton2.SetFocus(False);
+
+   p:= Point(p.X - SuperButton3.Left, p.Y - SuperButton3.Top);
+   if not ((p.X >=0) and (p.X <= SuperButton3.Width) and (p.Y<=0) and (p.Y<= SuperButton3.Height))then
+   SuperButton3.SetFocus(False);
+
+   p:= Point(p.X - SuperButton4.Left, p.Y - SuperButton4.Top);
+   if not ((p.X >=0) and (p.X <= SuperButton4.Width) and (p.Y<=0) and (p.Y<= SuperButton4.Height))then
+   SuperButton4.SetFocus(False);
+
+   p:= Point(p.X - SuperButton5.Left, p.Y - SuperButton5.Top);
+   if not ((p.X >=0) and (p.X <= SuperButton5.Width) and (p.Y<=0) and (p.Y<= SuperButton5.Height))then
+   SuperButton5.SetFocus(False);
+
+   p:= Point(p.X - SuperButton6.Left, p.Y - SuperButton6.Top);
+   if not ((p.X >=0) and (p.X <= SuperButton6.Width) and (p.Y<=0) and (p.Y<= SuperButton6.Height))then
+   SuperButton6.SetFocus(False);
+
+   p:= Point(p.X - SuperButton7.Left, p.Y - SuperButton7.Top);
+   if not ((p.X >=0) and (p.X <= SuperButton7.Width) and (p.Y<=0) and (p.Y<= SuperButton7.Height))then
+   SuperButton7.SetFocus(False);
+
+end;
+procedure TForm2.SuperButton1Click(Sender: TObject);
+
+begin
+  SuperButton1.SetFocus(True);
+
+end;
+
+procedure TForm2.SuperButton2Click(Sender: TObject);
+begin
+   SuperButton2.SetFocus(True);
+end;
+
+procedure TForm2.SuperButton3Click(Sender: TObject);
+begin
+  SuperButton3.SetFocus(True);
+end;
+
+procedure TForm2.SuperButton4Click(Sender: TObject);
+begin
+ SuperButton4.SetFocus(True);
+end;
+
+procedure TForm2.SuperButton5Click(Sender: TObject);
+begin
+   SuperButton5.SetFocus(True);
+end;
+
+procedure TForm2.SuperButton6Click(Sender: TObject);
+begin
+  SuperButton6.SetFocus(True);
+end;
+
+procedure TForm2.SuperButton7Click(Sender: TObject);
+begin
+    SuperButton7.SetFocus(True);
+end;
+
+end.

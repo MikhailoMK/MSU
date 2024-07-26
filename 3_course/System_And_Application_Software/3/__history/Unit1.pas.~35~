@@ -1,0 +1,438 @@
+﻿unit Unit1;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.MPlayer, Vcl.ExtCtrls, IniFiles, Vcl.Imaging.jpeg, Vcl.Imaging.pngimage,
+  Vcl.Menus, Vcl.ComCtrls, MMSystem;
+
+
+type
+  TForm1 = class(TForm)
+    Panel1: TPanel;
+    Panel2: TPanel;
+    Button1: TButton;
+    OpenDialog1: TOpenDialog;
+    Label1: TLabel;
+    MediaPlayer1: TMediaPlayer;
+    ScrollBar1: TScrollBar;
+    Timer1: TTimer;
+    Image1: TImage;
+    ListBox1: TListBox;
+    Button2: TButton;
+    Panel3: TPanel;
+    Button3: TButton;
+    Button4: TButton;
+    Panel4: TPanel;
+    RadioButton1: TRadioButton;
+    RadioButton2: TRadioButton;
+    Button5: TButton;
+    Timer2: TTimer;
+    TrackBar1: TTrackBar;
+    procedure Button1Click(Sender: TObject);
+    procedure Timer1Timer(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure Panel2Resize(Sender: TObject);
+    procedure ScrollBar1Scroll(Sender: TObject; ScrollCode: TScrollCode;
+      var ScrollPos: Integer);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure Button2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
+    procedure Timer2Timer(Sender: TObject);
+    procedure ShowSelectedFile(const AFileName: string);
+    procedure Button7Click(Sender: TObject);
+    procedure TrackBar1Change(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+  Ini: TIniFile;
+implementation
+
+{$R *.dfm}
+
+const
+  MCI_SETAUDIO = $0873;
+  MCI_DGV_SETAUDIO_VOLUME = $4002;
+  MCI_DGV_SETAUDIO_ITEM = $00800000;
+  MCI_DGV_SETAUDIO_VALUE = $01000000;
+  MCI_DGV_STATUS_VOLUME = $4019;
+  wave_mapper = $FFFFFFFF;
+
+function isImage(const AFileName: UnicodeString): Boolean;
+var
+  Ext: string;
+  ImageFormats: array of string;
+  Format: string;
+begin
+  Ext := LowerCase(ExtractFileExt(AFileName));
+
+  SetLength(ImageFormats, 3); // Number of image formats
+  ImageFormats[0] := '.jpg';
+  ImageFormats[1] := '.jpeg';
+  ImageFormats[2] := '.png';
+
+  for Format in ImageFormats do
+  begin
+    if SameText(Format, Ext) then // Case-insensitive comparison
+    begin
+      Result := True; // Found a match, return true
+      Exit;
+    end;
+  end;
+
+  Result := False; // No match found, return false
+end;
+
+
+
+procedure TForm1.Button1Click(Sender: TObject);
+var MultiMediaAddress: String;
+begin
+  if OpenDialog1.Execute then
+  begin
+    MultiMediaAddress := OpenDialog1.FileName;
+    if ListBox1.Items.IndexOf(MultiMediaAddress) = -1 then ListBox1.Items.Add(MultiMediaAddress);
+    ListBox1.ItemIndex := ListBox1.Items.IndexOf(MultiMediaAddress);
+    if isImage(OpenDialog1.FileName) then
+    begin
+      ScrollBar1.Visible := false;
+      MediaPlayer1.Close;
+      Image1.Visible := true;
+      Image1.Picture.LoadFromFile(Opendialog1.FileName);
+    end
+    else
+    begin
+//      Image1.Picture.Free;
+      Image1.Visible := False;
+      OpenDialog1.InitialDir := ExtractFilePath(Application.ExeName);
+      Timer1.Enabled := false;
+      MediaPlayer1.FileName := OpenDialog1.FileName;
+      MediaPlayer1.Open;
+      MediaPlayer1.Display := Panel2;
+      MediaPlayer1.DisplayRect := Panel2.ClientRect;
+      ScrollBar1.Visible := true;
+      ScrollBar1.Max := MediaPlayer1.TrackLength[1];
+      Timer1.Enabled := True;
+    end;
+  end;
+
+end;
+
+
+procedure TForm1.Button2Click(Sender: TObject);
+var filename: string;
+begin
+  if ListBox1.ItemIndex <> -1 then
+  begin
+    filename:= ListBox1.Items[ListBox1.ItemIndex];
+    ShowSelectedFile(filename);
+  end;
+
+end;
+
+procedure TForm1.Button3Click(Sender: TObject);
+var filename: string;
+begin
+  if ListBox1.Items.Count > 0 then
+  begin
+    if ListBox1.ItemIndex <> 0 then ListBox1.ItemIndex := (ListBox1.ItemIndex -1 );
+
+    fileName := ListBox1.Items[ListBox1.ItemIndex];
+    if isImage(filename) then
+    begin
+      MediaPlayer1.Close;
+      Image1.Visible := true;
+      ScrollBar1.Visible := false;
+      Image1.Picture.LoadFromFile(filename);
+    end
+    else
+    begin
+      //Image1.Picture.Free;
+      Image1.Visible := false;
+      OpenDialog1.InitialDir := ExtractFilePath(Application.ExeName);
+      Timer1.Enabled := false;
+      MediaPlayer1.FileName := filename;
+      MediaPlayer1.Open;
+      ScrollBar1.Visible := true;
+      MediaPlayer1.Display := Panel2;
+      MediaPlayer1.DisplayRect := Panel2.ClientRect;
+      ScrollBar1.Max := MediaPlayer1.TrackLength[1];
+      Timer1.Enabled := True;
+      MediaPlayer1.Play;
+    end;
+  end;
+end;
+
+procedure TForm1.Button4Click(Sender: TObject);
+var filename: string;
+begin
+  if ListBox1.Items.Count > 0 then
+  begin
+    if ListBox1.Items.Count-1 = ListBox1.ItemIndex then ListBox1.ItemIndex := 0
+    else ListBox1.ItemIndex := (ListBox1.ItemIndex + 1);
+
+    fileName := ListBox1.Items[ListBox1.ItemIndex];
+    if isImage(filename) then
+    begin
+      MediaPlayer1.Close;
+      Image1.Visible := true;
+      ScrollBar1.Visible := false;
+      Image1.Picture.LoadFromFile(filename);
+    end
+    else
+    begin
+      //Image1.Picture.Free;
+      Image1.Visible := False;
+      ScrollBar1.Visible := true;
+      OpenDialog1.InitialDir := ExtractFilePath(Application.ExeName);
+      Timer1.Enabled := false;
+      MediaPlayer1.FileName := filename;
+      MediaPlayer1.Open;
+      MediaPlayer1.Display := Panel2;
+      MediaPlayer1.DisplayRect := Panel2.ClientRect;
+      ScrollBar1.Max := MediaPlayer1.TrackLength[1];
+      Timer1.Enabled := True;
+      MediaPlayer1.Play;
+    end;
+  end;
+end;
+
+procedure TForm1.Button5Click(Sender: TObject);
+var
+  selectedIdx: Integer;
+begin
+  if (ListBox1.Items.Count > 0) and (ListBox1.ItemIndex <> -1) then
+  begin
+    Timer1.Enabled := false;
+    selectedIdx := ListBox1.ItemIndex;
+    if MediaPlayer1.FileName = ListBox1.Items[selectedIdx] then
+    begin
+      MediaPLayer1.Pause;
+      MediaPlayer1.Close;
+      MediaPlayer1.FileName := '';
+      ScrollBar1.Position := 0;
+      Label1.Caption := '';
+    end
+    else if isImage(ListBox1.Items[ListBox1.ItemIndex]) then
+    begin
+      //Image1.Picture.Free;
+      Image1.Visible := False;
+      ScrollBar1.Visible := true;
+    end;
+    ListBox1.Items.Objects[selectedIdx].Free;
+    ListBox1.Items.Delete(selectedIdx);
+    if ListBox1.Items.Count > 0 then
+    begin
+      if selectedIdx >= ListBox1.Items.Count then selectedIdx := ListBox1.Items.Count - 1;
+      ListBox1.ItemIndex := selectedIdx;
+      ScrollBar1.Position := 0;
+      Label1.Caption := '';
+    end
+    else
+    begin
+      ListBox1.ItemIndex := 0;
+    end;
+  end
+  else
+  begin
+     ListBox1.ItemIndex := 0;
+  end;
+end;
+
+procedure TForm1.Button7Click(Sender: TObject);
+begin
+  if MediaPlayer1.Position - 10 >= 0 then
+    MediaPlayer1.Position := MediaPlayer1.Position - 10
+
+  else
+    MediaPlayer1.Position := 0;
+end;
+
+procedure TForm1.FormClose(Sender: TObject; var Action: TCloseAction);
+var
+  i: Integer;
+begin
+  Ini := TIniFile.Create(ExtractFilePath(ParamStr(0)) + 'settings.ini');
+  Ini.EraseSection('Form1');
+  Ini.EraseSection('Listbox');
+  Ini.EraseSection('ListBoxItems');
+  Ini.WriteInteger('Form1', 'Height', Form1.Height);
+  Ini.WriteInteger('Form1', 'Width', Form1.Width);
+  Ini.WriteInteger('ListBox', 'ListBoxSize', ListBox1.Items.Count);
+
+  if ListBox1.Items.Count > 0 then
+  begin
+//    ShowMessage(ListBox1.Items[0]);
+    for i := 0 to ListBox1.Items.Count - 1 do Ini.WriteString('ListBoxItems', 'Item ' + IntToStr(i + 1), ListBox1.Items[i]);
+    if MediaPLayer1.FileName <> '' then Ini.WriteString('ListBox', 'LastFile', MediaPlayer1.FileName)
+    else if Image1.Visible then Ini.WriteString('ListBox', 'LastFile', Image1.Picture.GetNamePath)
+  end;
+  Ini.Free;
+end;
+
+
+
+procedure TForm1.FormCreate(Sender: TObject);
+var
+  i: integer;
+  len: integer;
+  fileCheck: string;
+begin
+  Ini := TIniFile.Create(ExtractFilePath(ParamStr(0)) + 'settings.ini');
+  Form1.Height := Ini.ReadInteger('Form1', 'Height', Form1.Height);
+  Form1.Width := Ini.ReadInteger('Form1', 'Width', Form1.Width);
+  len := Ini.ReadInteger('ListBox', 'ListBoxSize', 0);
+
+  if len > 0 then
+  begin
+    for i := 0 to len-1 do
+    begin
+      ListBox1.Items.Add(Ini.ReadString('ListBoxItems', 'Item ' + IntToStr(i+1),''));
+    end;
+  end;
+
+  fileCheck := ini.ReadString('ListBox', 'LastFile', '');
+
+  if fileCheck <> '' then
+  begin
+    if isImage(fileCheck) then
+    begin
+      MediaPlayer1.Close;
+      Image1.Visible := true;
+      Image1.Picture.LoadFromFile(fileCheck);
+    end
+    else
+    begin
+      //Image1.Picture.Free;
+      Image1.Visible := false;
+      OpenDialog1.InitialDir := ExtractFilePath(Application.ExeName);
+      Timer1.Enabled := false;
+      MediaPlayer1.FileName := fileCheck;
+      MediaPlayer1.Open;
+      MediaPlayer1.Display := Panel2;
+      MediaPlayer1.DisplayRect := Panel2.ClientRect;
+      ScrollBar1.Max := MediaPlayer1.TrackLength[1];
+      Timer1.Enabled := True;
+    end;
+  end;
+
+  Ini.Free;
+  Label1.Parent := ScrollBar1;
+  Label1.Left := Round(ScrollBar1.Width / 2);
+  Label1.Top := 0;
+  //ShowMessage(TimeToStr(MediaPlayer1.TrackLength[0])) ;
+  Label1.Caption := TimeToStr(MediaPlayer1.Position) + '/' + TimeToStr(ScrollBar1.Max);
+end;
+
+procedure TForm1.Panel2Resize(Sender: TObject);
+begin
+  MediaPlayer1.DisplayRect := Panel2.ClientRect;
+  Label1.Left := Round(ScrollBar1.Width/2);
+  Label1.Top := 0;
+end;
+
+procedure TForm1.ScrollBar1Scroll(Sender: TObject; ScrollCode: TScrollCode;
+  var ScrollPos: Integer);
+begin
+  MediaPlayer1.Position := Scrollbar1.Position;
+  MediaPlayer1.Play;
+end;
+
+procedure TForm1.Timer1Timer(Sender: TObject);
+var filename:string;
+begin
+  Label1.Parent := ScrollBar1;
+  ScrollBar1.Position := MediaPlayer1.Position;
+  Label1.Caption := TimeToStr(MediaPlayer1.Position) + '/' + TimeToStr(ScrollBar1.Max);
+  if MediaPlayer1.Position = ScrollBar1.Max then
+  begin
+    if ListBox1.Items.Count > 0 then
+    begin
+      if (RadioButton1.Checked) then
+        begin
+          ListBox1.ItemIndex := (random(ListBox1.Items.Count) - 1);
+          fileName := ListBox1.Items[ListBox1.ItemIndex];
+          if isImage(filename) then Timer2.Enabled := true;
+          ShowSelectedFile(filename);
+        end
+
+      else if RadioButton2.Checked then
+      begin
+        if ListBox1.ItemIndex <> ListBox1.Items.Count -1 then ListBox1.ItemIndex := ListBox1.ItemIndex + 1
+        else ListBox1.ItemIndex := 0;
+        fileName := ListBox1.Items[ListBox1.ItemIndex];
+        if isImage(filename) then Timer2.Enabled := true;
+        ShowSelectedFile(filename);
+      end;
+    end;
+  end;
+end;
+
+procedure TForm1.Timer2Timer(Sender: TObject);
+var fileName:String;
+begin
+  Timer2.Enabled := false;
+  if ListBox1.Items.Count > 1 then
+  begin
+    if RadioButton1.Checked then
+    begin
+      // Рандомный выбор файла
+      ListBox1.ItemIndex := (random(ListBox1.Items.Count) - 1);
+      filename := ListBox1.Items[ListBox1.ItemIndex];
+      if isImage(filename) then Timer2.Enabled := true;
+      ShowSelectedFile(filename);
+    end
+    else if RadioButton2.Checked then
+    begin
+      if ListBox1.ItemIndex < ListBox1.Items.Count - 1 then
+        ListBox1.ItemIndex := ListBox1.ItemIndex + 1
+      else
+        ListBox1.ItemIndex := 0;
+      filename := ListBox1.Items[ListBox1.ItemIndex];
+      if isImage(filename) then Timer2.Enabled := true;
+      ShowSelectedFile(filename);
+    end;
+
+  end;
+end;
+
+procedure TForm1.TrackBar1Change(Sender: TObject);
+var value: DWord;
+begin
+  value := $FFFF-TrackBar1.Position;
+  WaveOutSetVolume(0, (value SHL 16)+value);
+end;
+
+procedure TForm1.ShowSelectedFile(const AFileName: string);
+begin
+  if isImage(AFileName) then
+  begin
+    MediaPlayer1.Close;
+    Image1.Visible := True;
+    ScrollBar1.Visible := False;
+    Image1.Picture.LoadFromFile(AFileName);
+  end
+  else
+  begin
+    MediaPlayer1.Close;
+    Image1.Visible := False;
+    ScrollBar1.Visible := True;
+    MediaPlayer1.FileName := AFileName;
+    MediaPlayer1.Open;
+    MediaPlayer1.Display := Panel2;
+    MediaPlayer1.DisplayRect := Panel2.ClientRect;
+    ScrollBar1.Max := MediaPlayer1.TrackLength[1];
+    ScrollBar1.Position := 0;
+    MediaPlayer1.Play;
+  end;
+end;
+
+end.

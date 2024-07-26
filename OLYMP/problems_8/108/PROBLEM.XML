@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<!-- Problem exchange format 0.1 -->
+<Problem
+   Gid="ru.olympiads.cources.8v.108"
+   Name="Трехзначные числа с различными цифрами"
+   Description="task.txt"
+   TimeLimit="5"
+   MemoryLimit=""
+   InputFile="input.txt"
+   OutputFile="output.txt"
+   CheckerExe="Checker.exe"
+   CheckerSrc="Checker.pas"
+   TestCount="1">
+<Test Input="Input01.txt" Answer="Answer01.txt" Points="0"/>
+</Problem>

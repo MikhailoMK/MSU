@@ -1,0 +1,44 @@
+object Form2: TForm2
+  Left = 0
+  Top = 0
+  Caption = 'Form2'
+  ClientHeight = 607
+  ClientWidth = 940
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  OnMouseDown = FormMouseDown
+  TextHeight = 15
+  object SuperButton1: TSuperButton
+    Left = 216
+    Top = 48
+    Width = 273
+    Height = 209
+    Buttonshape = bsTriangle
+    Color = clAqua
+    Caption = 'Button'
+    HeaderRotationAngle = a90
+  end
+  object SuperButton2: TSuperButton
+    Left = 592
+    Top = 96
+    Width = 193
+    Height = 161
+    Buttonshape = bsFive
+    Color = clAqua
+    Caption = 'Button'
+    HeaderRotationAngle = a90
+  end
+  object SuperButton3: TSuperButton
+    Left = 336
+    Top = 304
+    Width = 153
+    Height = 113
+    Buttonshape = bsFive
+    Color = 11977929
+    Caption = 'Button'
+  end
+end

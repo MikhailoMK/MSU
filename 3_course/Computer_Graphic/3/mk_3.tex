@@ -1,0 +1,69 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{setspace}
+
+\textwidth=18cm
+\oddsidemargin=-1cm
+\evensidemargin=-1cm
+\topmargin=-3.5cm
+\textheight=32cm
+\linespread{0.8}
+
+\begin{document}
+	\LARGE
+	
+	
+	\begin{flushleft}
+		\textbf{\S10)}
+	\end{flushleft}
+	
+	\vspace*{-40pt}
+	\begin{center}
+		\textbf{ ТЕПЛОВЫЕ ПОТЕНЦИАЛЫ}\
+	\end{center}
+	
+	\vspace*{-43pt}
+	\begin{flushright}
+		\textbf{225}
+	\end{flushright}
+	
+	\vspace{0.1cm}
+	Так как поверхность $\partial\Omega$ дважды непрерывно дифференцируема, то существует такая константа $C$, что для всех $x \in E_n$
+	
+	\begin{equation} \tag{66}
+		\int\limits_{\partial\Omega} |d\omega_\xi| < C.
+	\end{equation}
+	
+	Зададим произвольное $\varepsilon > 0$ и возьмем на $\bar{S}$ такую окрестность $\gamma$ точки $(t^0 , x^0 )$, что
+	\[
+	|\rho(t, x) - \rho(t^0 , x^0 )| < \frac{\varepsilon}{2^{n+1} aC} \quad \text{при} \quad (t, x) \in \gamma,
+	\]
+	 где $a$ и $C$ взяты соответственно из равенства (63) и неравенства (66).
+	
+	Тогда
+	
+	\begin{multline*}
+		\left|\int\limits_{\gamma} [\rho(\tau, \xi) - \rho(t^0, x^0)]\frac{|x-\xi|^n}{(t-\tau)^{n/2+1}} e^{-\frac{|x-\xi|^2}{4(t-\tau)}} \, d\tau d\omega_\xi \right| \leq  \\
+		\leq \frac{\varepsilon}{2^{n + 1}aC} \int\limits_{\gamma} \frac{|x-\xi|^n}{(t-\tau)^{n/2+1}} \, d\tau |d\omega_\xi| \leq \\
+		\leq \frac{\varepsilon}{2^{n + 1}aC} \int\limits_{\partial\Omega} \left(\int\limits_{-\infty}^t \frac{|x - \xi|}{(t - x)^{n/2+1}}e^{-\frac{|x - \xi|}{4(t - \tau)}} \, d\tau \right) \, |d\omega_\xi| \leq \\
+		\leq \frac{\varepsilon}{C} \int\limits_{\partial\Omega} |d\omega_\xi| = \varepsilon.
+	\end{multline*}
+	
+	Полученное неравенство одновременно показывает, что интеграл (57) сходится для всех $(t,x)$.
+	
+	Мы доказали, таким образом, что интеграл (65) равномерно сходится в точке $(t^0,x^0)$ (в качестве окрестности $U$ можно взять все $R_{n+1}$).
+	
+	Значит, этот интеграл как функция $t$ и $x$ непрерывен в точке $(t^0,x^0)$, чем и завершается доказательство теоремы о скачке потенциала.
+	
+	Итак, мы доказали, что тепловой потенциал двойного слоя определен всюду в $R_{n+1}$ в том числе на $\bar{S}$; существуют пределы ($59_1$) и ($59_2$) и выполнены равенства ($60_1$) и ($60_2$).
+	
+	\large  См. примечания к следующему параграфу.
+	
+	\vspace{1cm}
+	\large 8 Е. М. Ландис
+	
+\end{document}

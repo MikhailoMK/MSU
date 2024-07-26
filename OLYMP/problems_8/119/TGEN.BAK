@@ -1,0 +1,13 @@
+const n=100;
+
+var i:integer;
+
+begin
+assign(output,'input08.txt');
+rewrite(output);
+writeln(n);
+for i:=1 to n do
+  write(random(50),' ');
+close(output);
+end.
+

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<!-- Problem exchange format 0.1 -->
+<Problem
+   Gid="ru.olympiads.cources.8v.163"
+   Name="Числа в вершинах"
+   Description="task.txt"
+   TimeLimit="5"
+   MemoryLimit=""
+   InputFile="input.txt"
+   OutputFile="output.txt"
+   CheckerExe="Checker.exe"
+   CheckerSrc="Checker.pas"
+   TestCount="15">
+<Test Input="Input01.txt" Answer="Answer01.txt" Points="0"/>
+<Test Input="Input02.txt" Answer="Answer02.txt" Points="0"/>
+<Test Input="Input03.txt" Answer="Answer03.txt" Points="0"/>
+<Test Input="Input04.txt" Answer="Answer04.txt" Points="0"/>
+<Test Input="Input05.txt" Answer="Answer05.txt" Points="0"/>
+<Test Input="Input06.txt" Answer="Answer06.txt" Points="0"/>
+<Test Input="Input07.txt" Answer="Answer07.txt" Points="0"/>
+<Test Input="Input08.txt" Answer="Answer08.txt" Points="0"/>
+<Test Input="Input09.txt" Answer="Answer09.txt" Points="0"/>
+<Test Input="Input10.txt" Answer="Answer10.txt" Points="0"/>
+<Test Input="Input11.txt" Answer="Answer11.txt" Points="0"/>
+<Test Input="Input12.txt" Answer="Answer12.txt" Points="0"/>
+<Test Input="Input13.txt" Answer="Answer13.txt" Points="0"/>
+<Test Input="Input14.txt" Answer="Answer14.txt" Points="0"/>
+<Test Input="Input15.txt" Answer="Answer15.txt" Points="0"/>
+</Problem>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hover and Click Example</title>
+<style>
+    #status-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #f0f0f0;
+        padding: 10px;
+        text-align: center;
+    }
+    a {
+        text-decoration: none;
+    }
+    a:hover{
+        background-color: aqua;
+    }
+</style>
+</head>
+<body>
+    <a href="#" onmouseover="showText(this)" onmouseout="hideText(this)" >Link 1</a> <br>
+    <a href="#" onmouseover="showText(this)" onmouseout="hideText(this)" >Link 2</a> <br>
+    <a href="#" onmouseover="showText(this)" onmouseout="hideText(this)" >Link 3</a> <br>
+    <a href="#" onmouseover="showText(this)" onmouseout="hideText(this)" >Link 4</a> <br>
+    <a href="#" onmouseover="showText(this)" onmouseout="hideText(this)" >Link 5</a> <br>
+    <a href="#" onmouseover="showText(this)" onmouseout="hideText(this)" >Link 6</a> <br>
+    <div id="status-bar">
+        <marquee behavior="scroll" direction="right">Нажмите на ссылку!</marquee>
+    </div>
+
+    <script>
+        function showText(element) {
+            document.getElementById('status-bar').innerText = element.innerText;
+        }
+
+        function hideText(element) {
+            document.getElementById('status-bar').innerText = '';
+            document.getElementById('status-bar').innerHTML = '<marquee behavior="" direction="right">Нажмите на ссылку!</marquee>';
+        }
+    </script>
+</body>
+</html>

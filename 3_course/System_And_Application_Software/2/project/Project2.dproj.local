@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.453,C:\Users\akhli\OneDrive\Рабочий стол\WorkingWithMatrix\project\Project2.dproj=C:\Users\akhli\OneDrive\Документы\Embarcadero\Studio\Projects\Project2.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.514,C:\Users\akhli\OneDrive\Рабочий стол\WorkingWithMatrix\project\Matrix.pas=C:\Users\akhli\OneDrive\Документы\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.514,C:\Users\akhli\OneDrive\Рабочий стол\WorkingWithMatrix\project\Matrix.dfm=C:\Users\akhli\OneDrive\Документы\Embarcadero\Studio\Projects\Unit2.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.929,=C:\Users\akhli\OneDrive\Документы\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.745,=C:\Users\akhli\OneDrive\Документы\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+  </Transactions>
+</BorlandProject>

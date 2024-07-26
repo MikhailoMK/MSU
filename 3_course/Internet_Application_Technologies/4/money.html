@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        body {
+            background-image: url('img/back.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-color: black;
+            color: white;
+            text-align: center;
+        }
+        
+        .converter {
+            max-width: 600px;
+            padding: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            font-weight: bold;
+            font-size: 30px;
+        }
+        
+        .form-group select,
+        .form-group input[type="number"],
+        .form-group input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-sizing: border-box;
+            margin-top: 5px;
+            font-size: 30px;
+        }
+        
+        .form-group input[type="submit"] {
+            background-color: gray;
+            color: #fff;
+            border: none;
+            font-size: 30px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .result {
+            font-size: 30px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        label {
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="converter">
+        <div class="form-group">
+            <label for="amount">Введите сумму:</label>
+            <input type="number" id="amount" min="0">
+        </div>
+        <div class="form-group">
+            <label for="from">Из валюты:</label>
+            <select id="from">
+                <option value="AED">Дирхам ОАЭ (AED)</option>
+                <option value="USD">Доллары США (USD)</option>
+                <option value="EUR">Евро (EUR)</option>
+                <option value="CNY">Китайские юани (CNY)</option>
+                <option value="RUB">Российские рубли (RUB)</option>
+                <option value="TJS">Таджикские сомони (TJS)</option>
+                <option value="GBP">Фунты стерлингов (GBP)</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="to">В валюту:</label>
+            <select id="to">
+                <option value="AED">Дирхам ОАЭ (AED)</option>
+                <option value="USD">Доллары США (USD)</option>
+                <option value="EUR">Евро (EUR)</option>
+                <option value="CNY">Китайские юани (CNY)</option>
+                <option value="RUB">Российские рубли (RUB)</option>
+                <option value="TJS">Таджикские сомони (TJS)</option>
+                <option value="GBP">Фунты стерлингов (GBP)</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Конвертировать" onclick="convertCurrency()">
+        </div>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        async function convertCurrency() {
+            const amount = document.getElementById('amount').value;
+            const from = document.getElementById('from').value;
+            const to = document.getElementById('to').value;
+
+            const url = `https://api.exchangerate-api.com/v4/latest/${from}`;
+
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error('Ошибка HTTP: ' + response.status);
+                }
+
+                const data = await response.json();
+                const rate = data.rates[to];
+
+                if (!rate) {
+                    throw new Error(`Курс валюты ${to} не найден.`);
+                }
+                const result = amount * rate;
+                document.getElementById('result').innerText = `Результат конвертации: ${result.toFixed(2)} ${to}`;
+            } catch (error) {
+                console.error('Произошла ошибка:', error);
+            }
+        }
+    </script>
+</body>
+
+</html>

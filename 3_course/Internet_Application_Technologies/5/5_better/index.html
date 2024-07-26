@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Magic Square</title>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="navbar">
+                <button type="button" class="btn" onclick="generateMagicSquare(3, 0)">3x3</button>
+                <button type="button" class="btn" onclick="generateMagicSquare(4, 1)">4x4</button>
+                <button type="button" class="btn" onclick="generateMagicSquare(5, 2)">5x5</button>
+                <button type="button" class="btn" onclick="generateMagicSquare(6, 3)">6x6</button>
+                <button type="button" class="btn" onclick="generateMagicSquare(7, 4)">7x7</button>
+                <button type="button" class="btn" onclick="generateMagicSquare(8, 5)">8x8</button>
+                <button type="button" class="btn" onclick="generateMagicSquare(9, 6)">9x9</button>
+                <button type="button" class="btn" onclick="generateMagicSquare(10, 7)">10x10</button>
+            </div>
+            <input type="number" id="startingValue" placeholder="Starting value">    
+        </header>
+        <main class="main" id="magicSquareContainer">
+            
+        </main>
+        <footer class="footer">
+            <p class="amount"></p>
+            <marquee behavior="" direction="right" scrollamount="30" class="footer-content"></marquee>
+        </footer> 
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+template <class T>
+void func(T s1)
+{
+    for (int i = 0; i < s1.length(); i ++){
+        if (s1[i] == '1') s1[i] = '+';
+        else if (s1[i] == '2') s1[i] = '-';
+        else if (s1[i] == '3') s1[i] = '*';
+        else if (s1[i] == '4') s1[i] = '/';
+    }
+    cout << s1;
+}
+
+int main()
+{
+    string s1;
+    getline(cin,s1);
+    cin.ignore();
+    func (s1);
+}
