@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Конструктор диаграмм</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjs/lib/browser/math.min.js"></script>
+    <script src="script.js" defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .chart-container {
+            width: 100%;
+            height: 600px;
+        }
+        #myChart {
+            max-width: 100%;
+            height: 100%;
+        }
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            min-width: 150px;
+        }
+        .function-inputs, .data-inputs, .bubble-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+        }
+        .function-input, .data-input-field, .bubble-input-field {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .function-input input, .data-input-field input, .bubble-input-field input {
+            padding: 5px;
+            flex: 1;
+        }
+        .function-input select, .data-input-field select {
+            padding: 5px;
+        }
+        button {
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .remove-btn {
+            background-color: #ff4444;
+        }
+        .remove-btn:hover {
+            background-color: #cc0000;
+        }
+        .generate-btn {
+            background-color: #28a745;
+        }
+        .generate-btn:hover {
+            background-color: #218838;
+        }
+        label {
+            font-size: 14px;
+        }
+        input[type="number"], input[type="text"], select {
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Конструктор диаграмм</h1>
+        <div class="controls">
+            <div class="control-group">
+                <label for="chartType">Тип диаграммы:</label>
+                <select id="chartType">
+                    <option value="line">Линейная</option>
+                    <option value="stepped">Ступенчатая</option>
+                    <option value="bar">Гистограмма</option>
+                    <option value="scatter">Точечная</option>
+                    <option value="pie">Круговая</option>
+                    <option value="doughnut">Кольцевая</option>
+                    <option value="bubble">Пузырьковая</option>
+                    <option value="polarArea">Полярная область</option>
+                </select>
+            </div>
+            <div class="control-group x-controls">
+                <label for="xMin">Минимум X:</label>
+                <input type="number" id="xMin" value="-10">
+            </div>
+            <div class="control-group x-controls">
+                <label for="xMax">Максимум X:</label>
+                <input type="number" id="xMax" value="10">
+            </div>
+            <div class="control-group y-controls">
+                <label for="yMin">Минимум Y:</label>
+                <input type="number" id="yMin" value="-1.5">
+            </div>
+            <div class="control-group y-controls">
+                <label for="yMax">Максимум Y:</label>
+                <input type="number" id="yMax" value="1.5">
+            </div>
+            <div class="control-group min-controls hidden">
+                <label for="min">Минимум:</label>
+                <input type="number" id="min" value="0">
+            </div>
+            <div class="control-group max-controls hidden">
+                <label for="max">Максимум:</label>
+                <input type="number" id="max" value="100">
+            </div>
+            <div class="control-group">
+                <label for="step">Шаг (мин. 0.01):</label>
+                <input type="number" id="step" value="0.1" min="0.01">
+            </div>
+            <div class="control-group data-count-controls hidden">
+                <label for="dataCount">Количество данных:</label>
+                <input type="number" id="dataCount" value="15" min="1">
+            </div>
+            <div class="control-group">
+                <label>
+                    <input type="checkbox" id="grid" checked> Сетка
+                </label>
+            </div>
+        </div>
+        <div class="function-inputs">
+            <div class="function-input">
+                <select class="preset-functions">
+                    <option value="">Выберите функцию</option>
+                    <option value="x^2">x^2</option>
+                    <option value="x^3">x^3</option>
+                    <option value="sqrt(x)">sqrt(x)</option>
+                    <option value="log(x)">log(x)</option>
+                    <option value="exp(x)">exp(x)</option>
+                    <option value="sin(x)">sin(x)</option>
+                    <option value="cos(x)">cos(x)</option>
+                    <option value="tan(x)">tan(x)</option>
+                    <option value="cot(x)">cot(x)</option>
+                    <option value="sec(x)">sec(x)</option>
+                    <option value="csc(x)">csc(x)</option>
+                    <option value="asin(x)">asin(x)</option>
+                    <option value="acos(x)">acos(x)</option>
+                    <option value="atan(x)">atan(x)</option>
+                    <option value="acot(x)">acot(x)</option>
+                    <option value="asec(x)">asec(x)</option>
+                    <option value="acsc(x)">acsc(x)</option>
+                    <option value="sinh(x)">sinh(x)</option>
+                    <option value="cosh(x)">cosh(x)</option>
+                    <option value="tanh(x)">tanh(x)</option>
+                    <option value="coth(x)">coth(x)</option>
+                </select>
+                <input type="text" class="function-input-field" placeholder="Введите функцию, например: 10x^2 - 5x + 4">
+                <input type="text" class="legend-input" placeholder="Название легенды">
+                <button class="remove-btn">Удалить</button>
+            </div>
+        </div>
+        <button onclick="addFunction()" class="function-input-button">Добавить функцию</button>
+        <div class="data-inputs hidden">
+            <div class="data-input-field">
+                <input type="text" class="data-label" placeholder="Метка данных">
+                <input type="number" class="data-value" placeholder="Значение">
+                <button class="remove-btn">Удалить</button>
+            </div>
+        </div>
+        <div class="bubble-inputs hidden">
+            <div class="bubble-input-field">
+                <input type="number" class="bubble-x" placeholder="X">
+                <input type="number" class="bubble-y" placeholder="Y">
+                <input type="number" class="bubble-r" placeholder="R">
+                <button class="remove-btn">Удалить</button>
+            </div>
+        </div>
+        <button onclick="addDataField()" class="data-input-button hidden">Добавить данные</button>
+        <button onclick="addBubbleField()" class="bubble-input-button hidden">Добавить точку</button>
+        <button onclick="generateRandomData()" class="generate-btn hidden">Сгенерировать</button>
+        <div class="chart-container">
+            <canvas id="myChart"></canvas>
+        </div>
+    </div>
+</body>
+</html>

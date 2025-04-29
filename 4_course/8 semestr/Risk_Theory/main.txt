@@ -1,0 +1,258 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{mathrsfs}
+\usepackage{booktabs}
+
+\begin{document}
+
+\section*{ЗАДАЧИ ПО ТЕОРИИ РИСКА}
+
+\subsection*{\textbf{1. Что такое случайная величина, её функция распределения, математическое ожидание, дисперсия, характеристическая функция, производящая функция и производящая функция моментов?}}
+
+\textbf{Случайная величина (СВ)} — это измеримая функция $X: \Omega \to \mathbb{R}$, заданная на вероятностном пространстве $(\Omega, \mathscr{F}, \mathbb{P})$, где:
+\begin{itemize}
+\item $\Omega$ — пространство элементарных исходов
+\item $\mathscr{F}$ — $\sigma$-алгебра событий
+\item $\mathbb{P}$ — вероятностная мера
+\end{itemize}
+
+\subsubsection*{Функция распределения}
+Функция распределения $F_X(x)$ СВ $X$ определяется как:
+\[
+F_X(x) = \mathbb{P}(X \leq x), \quad x \in \mathbb{R}
+\]
+
+\textbf{Свойства:}
+\begin{enumerate}
+\item Монотонно неубывающая: $x_1 < x_2 \Rightarrow F(x_1) \leq F(x_2)$
+\item $\lim\limits_{x \to -\infty} F(x) = 0$, $\lim\limits_{x \to +\infty} F(x) = 1$
+\item Правосторонне непрерывна: $\lim\limits_{x \to x_0^+} F(x) = F(x_0)$
+\end{enumerate}
+
+\subsubsection*{Математическое ожидание}
+Для дискретной СВ:
+\[
+\mathbb{E}X = \sum_{i} x_i p_i
+\]
+Для абсолютно непрерывной СВ с плотностью $f_X(x)$:
+\[
+\mathbb{E}X = \int_{-\infty}^{+\infty} x f_X(x) dx
+\]
+
+\subsubsection*{Дисперсия}
+Мера разброса значений вокруг среднего:
+\[
+\mathrm{Var}(X) = \mathbb{E}[(X - \mathbb{E}X)^2] = \mathbb{E}[X^2] - (\mathbb{E}X)^2
+\]
+
+\subsubsection*{Характеристическая функция}
+Комплекснозначная функция:
+\[
+\varphi_X(t) = \mathbb{E}[e^{itX}] = \int_{-\infty}^{+\infty} e^{itx} dF_X(x)
+\]
+
+\bigskip
+\noindent\rule{\textwidth}{1pt}
+\bigskip
+
+\subsection*{\textbf{2. Сформулировать закон больших чисел, центральную предельную теорему и усиленный закон больших чисел.}}
+
+\subsubsection*{Закон больших чисел (ЗБЧ)}
+Пусть $\{X_n\}$ — последовательность независимых одинаково распределённых случайных величин с $\mathbb{E}|X_1| < \infty$. Тогда:
+\[
+\frac{1}{n}\sum_{k=1}^n X_k \xrightarrow{P} \mathbb{E}X_1
+\]
+где $\xrightarrow{P}$ означает сходимость по вероятности.
+
+\subsubsection*{Усиленный закон больших чисел (УЗБЧ)}
+При тех же условиях, если $\mathbb{E}|X_1| < \infty$, то:
+\[
+\frac{1}{n}\sum_{k=1}^n X_k \xrightarrow{\text{п.н.}} \mathbb{E}X_1
+\]
+где $\xrightarrow{\text{п.н.}}$ означает сходимость почти наверное.
+
+\subsubsection*{Центральная предельная теорема (ЦПТ)}
+Если $\{X_n\}$ — последовательность независимых одинаково распределённых случайных величин с $0 < \sigma^2 = \mathrm{Var}(X_1) < \infty$, то:
+\[
+\frac{\sum_{k=1}^n X_k - n\mathbb{E}X_1}{\sigma\sqrt{n}} \xrightarrow{d} N(0,1)
+\]
+где $\xrightarrow{d}$ означает сходимость по распределению к стандартному нормальному закону.
+
+\bigskip
+\noindent\rule{\textwidth}{1pt}
+\bigskip
+
+\subsection*{\textbf{3. Как выбрать премию, чтобы вероятность разорения была не больше заданного $\varepsilon > 0$?}}
+
+Пусть:
+\begin{itemize}
+\item $u$ — начальный капитал страховой компании
+\item $c$ — страховая премия (доход на единицу времени)
+\item $\{X_i\}$ — независимые одинаково распределённые убытки
+\item $N(t)$ — процесс страховых случаев
+\end{itemize}
+
+Процесс капитала:
+\[
+R(t) = u + ct - \sum_{i=1}^{N(t)} X_i
+\]
+
+Для экспоненциальных убытков $X_i \sim Exp(\lambda)$ и пуассоновского процесса $N(t) \sim Pois(\lambda t)$, вероятность разорения:
+\[
+\psi(u) \approx e^{-Ru}
+\]
+где $R$ — коэффициент Лундберга, решение:
+\[
+\mathbb{E}[e^{-R X}] = \frac{\lambda}{\lambda + R c}
+\]
+
+Чтобы $\psi(u) \leq \varepsilon$, необходимо:
+\[
+c \geq \frac{\lambda}{R} \ln\left(\frac{1}{\varepsilon}\right) - \frac{u}{t}
+\]
+
+\bigskip
+\noindent\rule{\textwidth}{1pt}
+\bigskip
+
+\subsection*{\textbf{4. Доказать, что единственное непрерывное распределение, обладающее отсутствием памяти, это показательное распределение.}}
+
+\textbf{Свойство отсутствия памяти:}
+\[
+P(X > x + t | X > x) = P(X > t), \quad \forall x,t > 0
+\]
+
+\textbf{Доказательство:} Обозначим $\overline{F}(x) = P(X > x)$. Условие эквивалентно:
+\[
+\overline{F}(x + t) = \overline{F}(x)\overline{F}(t)
+\]
+
+Единственное непрерывное решение этого функционального уравнения:
+\[
+\overline{F}(x) = e^{-\lambda x}, \quad \lambda > 0
+\]
+
+Таким образом:
+\[
+F(x) = 1 - e^{-\lambda x}, \quad x \geq 0
+\]
+что соответствует показательному распределению. \qed
+
+\bigskip
+\noindent\rule{\textwidth}{1pt}
+\bigskip
+
+\subsection*{\textbf{5. Преобразование случайной величины $Y = X^{1/\tau}$}}
+
+Пусть $X \sim \text{Exp}(1)$ с плотностью $f_X(x) = e^{-x}$, $x \geq 0$. Рассмотрим преобразование:
+\[ Y = X^{1/\tau}, \quad \tau \neq 0 \]
+
+\subsubsection*{Случаи преобразования:}
+\begin{itemize}
+\item При $\tau > 0$: \textbf{Распределение Вейбулла} \\
+Плотность $Y$:
+\[ f_Y(y) = \tau y^{\tau-1} e^{-y^\tau}, \quad y > 0 \]
+
+\item При $\tau = -1$: \textbf{Обратное экспоненциальное} \\
+Плотность $Y$:
+\[ f_Y(y) = \frac{1}{y^2} e^{-1/y}, \quad y > 0 \]
+
+\item При $\tau < 0$ ($\tau \neq -1$): \textbf{Обратно-преобразованное} \\
+Плотность $Y$:
+\[ f_Y(y) = |\tau| y^{\tau-1} e^{-y^\tau}, \quad y > 0 \]
+\end{itemize}
+
+\bigskip
+\noindent\rule{\textwidth}{1pt}
+\bigskip
+
+\subsection*{\textbf{6. Максимизация суммы функций на симплексе}}
+
+Дана задача:
+\[ \max_{\substack{x_i \geq 0 \\ \sum x_i = c}} \sum_{i=1}^n g_i(x_i) \]
+
+\subsubsection*{Рекуррентное решение:}
+Введём функции:
+\[
+f_n(c) = \max \sum_{i=1}^n g_i(x_i), \quad f_1(c) = g_1(c)
+\]
+Для $n \geq 2$:
+\[
+f_n(c) = \max_{0 \leq x \leq c} \left[ g_n(x) + f_{n-1}(c - x) \right]
+\]
+
+\textbf{Алгоритм:} Последовательно вычисляем $f_k(c)$ для $k = 1,\dots,n$ методом динамического программирования.
+
+\bigskip
+\noindent\rule{\textwidth}{1pt}
+\bigskip
+
+\subsection*{\textbf{7. Сумма экспоненциальных величин и гамма-распределение}}
+
+Если $X_i \sim \text{Exp}(1)$ независимы, то их сумма:
+\[
+S_n = \sum_{i=1}^n X_i \sim \Gamma(n, 1)
+\]
+Функция распределения:
+\[
+G(n, x) = \frac{1}{(n-1)!} \int_0^x t^{n-1} e^{-t} dt
+\]
+
+Для произвольного $\alpha > 0$:
+\[
+G(\alpha, x) = \frac{1}{\Gamma(\alpha)} \int_0^x t^{\alpha-1} e^{-t} dt
+\]
+
+Аналогично для бета-распределения:
+\[
+\beta(a,b,x) = \frac{1}{B(a,b)} \int_0^x t^{a-1} (1-t)^{b-1} dt
+\]
+
+\bigskip
+\noindent\rule{\textwidth}{1pt}
+\bigskip
+
+\subsection*{\textbf{8. Оптимизация суммы одинаковых функций}}
+
+Дана задача:
+\[
+\max_{\substack{x_i \geq 0 \\ \sum x_i = c}} \sum_{i=1}^n g(x_i)
+\]
+
+\subsubsection*{Решение:}
+\begin{itemize}
+\item Если $g(x)$ \textbf{вогнута}: максимум при $x_i = c/n$ для всех $i$
+\item Если $g(x)$ \textbf{выпукла}: максимум в вершине симплекса (например, $x_1 = c$, остальные $x_i = 0$)
+\end{itemize}
+
+\bigskip
+\noindent\rule{\textwidth}{1pt}
+\bigskip
+
+\subsection*{\textbf{9. Максимум произведения и неравенство средних}}
+
+\subsubsection*{Задача:}
+Доказать, что:
+\[
+\max_{\substack{x_i \geq 0 \\ \sum x_i = a}} \prod_{i=1}^n x_i = \left( \frac{a}{n} \right)^n
+\]
+
+\subsubsection*{Доказательство:}
+Введём $f_n(a) = \max \prod_{i=1}^n x_i$. Рекуррентное соотношение:
+\[
+f_n(a) = \max_{0 \leq x \leq a} x \cdot f_{n-1}(a - x)
+\]
+База: $f_1(a) = a$. По индукции:
+\[
+f_n(a) = \left( \frac{a}{n} \right)^n \quad \text{(достигается при } x_i = a/n)
+\]
+
+\subsubsection*{Следствие (неравенство Коши):}
+\[
+\frac{x_1 + \dots + x_n}{n} \geq \sqrt[n]{x_1 \cdots x_n}
+\]
+Равенство $\Leftrightarrow x_1 = \dots = x_n$.
+
+\end{document}

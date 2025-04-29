@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анкета киберспортсмена</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 20px;
+            width: 100%;
+        }
+        label {
+            font-size: 16px;
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, select, textarea {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            width: 95%;
+        }
+        button {
+            grid-column: span 2;
+            padding: 10px;
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: darkblue;
+        }
+        .file-input {
+            grid-column: span 2;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .textarea {
+            grid-column: span 2;
+        }
+        .checkbox-group {
+            grid-column: span 2;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .multi-select {
+            grid-column: span 2;
+        }
+        .row {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .row .label {
+            width: 150px;
+        }
+        .row .value {
+            flex: 1;
+        }
+        .button-group {
+            display: flex;
+            gap: 5px;
+        }
+        .button-group button {
+            padding: 5px 15px;
+            background-color: #ddd;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+        .button-group button.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .gender-btn {
+            padding: 10px 15px;
+            background-color: #ddd;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .gender-btn.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <form id="cyberForm">
+        <div class="row">
+            <label for="firstName">Имя:</label>
+            <input type="text" id="firstName" name="firstName" required>
+        </div>
+        <div class="row">
+            <label for="lastName">Фамилия:</label>
+            <input type="text" id="lastName" name="lastName" required>
+        </div>
+        <div class="row">
+            <label for="dob">Дата рождения:</label>
+            <input type="date" id="dob" name="dob" required>
+        </div>
+        <div class="row">
+            <label>Пол:</label>
+            <div class="button-group" id="gender">
+                <input type="hidden" id="genderValue" name="gender">
+                <button type="button" class="gender-btn" data-gender="М">М</button>
+                <button type="button" class="gender-btn" data-gender="Ж">Ж</button>
+            </div>
+        </div>
+        <div class="row">
+            <label for="games">Любимые игры:</label>
+            <select id="games" name="games" multiple required>
+                <option value="Dota 2">Dota 2</option>
+                <option value="CS:GO">CS:GO</option>
+                <option value="League of Legends">League of Legends</option>
+                <option value="Fortnite">Fortnite</option>
+                <option value="Valorant">Valorant</option>
+            </select>
+        </div>
+        <div class="row">
+            <label for="platform">Предпочитаемая платформа:</label>
+            <select id="platform" name="platform" required>
+                <option value="PC">PC</option>
+                <option value="PlayStation">PlayStation</option>
+                <option value="Xbox">Xbox</option>
+                <option value="Nintendo Switch">Nintendo Switch</option>
+            </select>
+        </div>
+        <div class="row">
+            <label for="experience">Опыт в киберспорте (лет):</label>
+            <input type="number" id="experience" name="experience" required>
+        </div>
+        <div class="checkbox-group">
+            <label>Навыки:</label>
+            <label><input type="checkbox" name="skills" value="Tactics"> Тактика</label>
+            <label><input type="checkbox" name="skills" value="Teamwork" style="margin-right: -20px;"> Командная работа</label>
+            <label><input type="checkbox" name="skills" value="Communication"> Коммуникация</label>
+            <label><input type="checkbox" name="skills" value="Strategy"> Стратегия</label>
+            <label><input type="checkbox" name="skills" value="Reaction"> Реакция</label>
+            <label><input type="checkbox" name="skills" value="Leadership"> Лидерство</label>
+        </div>
+        <div class="row">
+            <label for="favoriteTeam">Любимая команда:</label>
+            <input type="text" id="favoriteTeam" name="favoriteTeam">
+        </div>
+        <div class="textarea">
+            <label for="bio">Биография:</label>
+            <textarea id="bio" name="bio" rows="4"></textarea>
+        </div>
+        <div class="multi-select">
+            <label for="teams">Команды, в которых играли:</label>
+            <select id="teams" name="teams" multiple>
+                <option value="Team Spirit">Team Spirit</option>
+                <option value="Virtus Pro">Virtus Pro</option>
+                <option value="OG">OG</option>
+                <option value="Team Liquid">Team Liquid</option>
+            </select>
+        </div>
+        <button type="submit">Отправить</button>
+    </form>
+    <script>
+        const genderBtns = document.querySelectorAll('.gender-btn');
+        genderBtns.forEach(button => {
+            button.addEventListener('click', () => {
+                genderBtns.forEach(b => b.classList.remove('active'));
+                button.classList.add('active');
+                document.getElementById('genderValue').value = button.dataset.gender;
+            });
+        });
+
+        document.getElementById('cyberForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            const queryString = new URLSearchParams(formData).toString();
+            window.location.href = '2_2.html?' + queryString;
+        });
+    </script>
+</body>
+</html>

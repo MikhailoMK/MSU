@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Text Effects</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #aea7a7;
+        }
+
+        h1, p {
+            transition: all 2s ease;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="title">Auto Effects</h1>
+    <p id="paragraph">Watch the text change automatically!</p>
+
+    <script>
+        const title = document.getElementById('title');
+        const paragraph = document.getElementById('paragraph');
+
+        const titleEffects = [
+            { transform: 'rotate(10deg)', fontSize: '40px', color: 'blue', fontStyle: 'italic' },
+            { transform: 'rotate(-10deg)', fontSize: '50px', color: 'red', fontStyle: 'normal' },
+            { transform: 'rotate(0deg)', fontSize: '36px', color: 'green', fontStyle: 'oblique' },
+            { transform: 'scaleX(-1)', fontSize: '48px', color: 'purple', fontStyle: 'italic' },
+            { transform: 'scaleY(-1)', fontSize: '42px', color: 'orange', fontStyle: 'normal' }
+        ];
+
+        const paragraphEffects = [
+            { transform: 'skewX(20deg)', fontSize: '28px', color: 'green', textDecoration: 'underline' },
+            { transform: 'skewY(20deg)', fontSize: '32px', color: 'purple', textDecoration: 'overline' },
+            { transform: 'rotate(180deg)', fontSize: '26px', color: 'blue', textDecoration: 'line-through' },
+            { transform: 'scale(1.5)', fontSize: '30px', color: 'red', textDecoration: 'none' },
+            { transform: 'translateX(50px)', fontSize: '24px', color: 'orange', textDecoration: 'underline' }
+        ];
+
+        let titleIndex = 0;
+        let paragraphIndex = 0;
+
+        function applyTitleEffect() {
+            const effect = titleEffects[titleIndex];
+            title.style.transform = effect.transform;
+            title.style.fontSize = effect.fontSize;
+            title.style.color = effect.color;
+            title.style.fontStyle = effect.fontStyle;
+
+            titleIndex = (titleIndex + 1) % titleEffects.length;
+        }
+
+        function applyParagraphEffect() {
+            const effect = paragraphEffects[paragraphIndex];
+            paragraph.style.transform = effect.transform;
+            paragraph.style.fontSize = effect.fontSize;
+            paragraph.style.color = effect.color;
+            paragraph.style.textDecoration = effect.textDecoration;
+
+            paragraphIndex = (paragraphIndex + 1) % paragraphEffects.length;
+        }
+
+        setInterval(applyTitleEffect, 1500);
+        setInterval(applyParagraphEffect, 1500);
+    </script>
+</body>
+</html>

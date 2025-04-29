@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #inputField {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="inputField" value="TEST">
+    
+    <script>
+        const inputField = document.getElementById('inputField');
+
+        inputField.addEventListener('input', function() {
+            if (inputField.value.trim() !== '') {
+                inputField.style.color = 'red';
+            } else {
+                inputField.style.color = 'black';
+            }
+        });
+    </script>
+</body>
+</html>

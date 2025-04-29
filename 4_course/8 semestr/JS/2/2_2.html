@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анкета киберспортсмена</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .document {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            width: 595px;
+            height: 842px;
+            margin: auto;
+            position: relative;
+            border: 1px solid #ddd;
+        }
+        h2 {
+            text-align: center;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .info-table {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        .info-cell {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            padding: 5px;
+        }
+        .label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .value {
+            font-size: 16px;
+        }
+        .bio-cell {
+            grid-column: span 2;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            padding: 5px;
+        }
+        .bio-cell .value {
+            white-space: pre-wrap; /* Сохраняет переносы строк */
+        }
+    </style>
+</head>
+<body>
+    <div class="document">
+        <h2>Анкета киберспортсмена</h2>
+        <div class="info-table">
+            <div class="info-cell">
+                <span class="label">Имя:</span>
+                <span class="value" id="firstName"></span>
+            </div>
+            <div class="info-cell">
+                <span class="label">Фамилия:</span>
+                <span class="value" id="lastName"></span>
+            </div>
+            <div class="info-cell">
+                <span class="label">Дата рождения:</span>
+                <span class="value" id="dob"></span>
+            </div>
+            <div class="info-cell">
+                <span class="label">Пол:</span>
+                <span class="value" id="gender"></span>
+            </div>
+            <div class="info-cell">
+                <span class="label">Любимые игры:</span>
+                <span class="value" id="games"></span>
+            </div>
+            <div class="info-cell">
+                <span class="label">Платформа:</span>
+                <span class="value" id="platform"></span>
+            </div>
+            <div class="info-cell">
+                <span class="label">Опыт в киберспорте:</span>
+                <span class="value" id="experience"></span>
+            </div>
+            <div class="info-cell">
+                <span class="label">Навыки:</span>
+                <span class="value" id="skills"></span>
+            </div>
+            <div class="info-cell">
+                <span class="label">Любимая команда:</span>
+                <span class="value" id="favoriteTeam"></span>
+            </div>
+            <div class="info-cell">
+                <span class="label">Команды:</span>
+                <span class="value" id="teams"></span>
+            </div>
+            <div class="bio-cell">
+                <span class="label">Биография:</span>
+                <span class="value" id="bio"></span>
+            </div>
+        </div>
+    </div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        document.getElementById('firstName').textContent = urlParams.get('firstName') || '';
+        document.getElementById('lastName').textContent = urlParams.get('lastName') || '';
+        document.getElementById('dob').textContent = urlParams.get('dob') || '';
+        document.getElementById('gender').textContent = urlParams.get('gender') || 'Не указан';
+        document.getElementById('games').textContent = [...new Set(urlParams.getAll('games'))].join(', ') || '';
+        document.getElementById('platform').textContent = urlParams.get('platform') || '';
+        document.getElementById('experience').textContent = urlParams.get('experience') || '';
+        document.getElementById('skills').textContent = [...new Set(urlParams.getAll('skills'))].join(', ') || '';
+        document.getElementById('favoriteTeam').textContent = urlParams.get('favoriteTeam') || '';
+        document.getElementById('bio').textContent = urlParams.get('bio') || '';
+        document.getElementById('teams').textContent = [...new Set(urlParams.getAll('teams'))].join(', ') || '';
+    </script>
+</body>
+</html>

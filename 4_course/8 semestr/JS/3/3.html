@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фигуры</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        #shapeSelector {
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .container {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            gap: 20px;
+        }
+        #shapeProperties {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        #shapeProperties label {
+            font-weight: bold;
+            color: #555;
+        }
+        #shapeProperties input {
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100px;
+        }
+        .highlight {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 1px solid #ccc;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        canvas {
+            flex: 1;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .switch {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .switch label {
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body>
+    <h1>Выберите фигуру</h1>
+    <select id="shapeSelector">
+        <option value="square">Квадрат</option>
+        <option value="rectangle">Прямоугольник</option>
+        <option value="circle">Круг</option>
+        <option value="triangle">Треугольник</option>
+        <option value="rhombus">Ромб</option>
+        <option value="parallelogram">Параллелограмм</option>
+        <option value="rightTriangle">Прямоугольный треугольник</option>
+        <option value="isoscelesTriangle">Равнобедренный треугольник</option>
+        <option value="equilateralTriangle">Равносторонний треугольник</option>
+        <option value="scaleneTriangle">Разносторонний треугольник</option>
+        <option value="ellipse">Эллипс</option>
+        <option value="trapezoid">Трапеция</option>
+    </select>
+
+    <div class="container">
+        <div id="shapeProperties"></div>
+        <canvas id="shapeCanvas" width="400" height="400"></canvas>
+    </div>
+
+    <script src="calculation.js"></script>
+    <script src="drawing.js"></script>
+</body>
+</html>
